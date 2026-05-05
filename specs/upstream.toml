@@ -1,0 +1,5 @@
+enabled = true
+
+[[sources]]
+url = "https://api.transip.nl/rest/openapi.yaml"
+target = "specs/transip.yaml"

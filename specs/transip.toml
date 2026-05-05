@@ -1,0 +1,69 @@
+output_path = "src"
+target_framework = "net10.0"
+generate_nullable_reference_types = true
+generate_data_annotations = true
+
+global_usings = [
+    "System.Text.Json.Serialization"
+]
+
+[[specs]]
+path = "specs/transip.yaml"
+path_prefix = ""
+
+[models]
+namespace = "Apigen.Transip.Models"
+project_name = "Apigen.Transip.Models"
+
+[model_generation]
+strategy = "SingleModel"
+
+[enum_generation]
+generation_mode = "Raw"
+add_json_string_enum_converter = true
+add_json_string_enum_member_name = true
+
+[serialization]
+nullable_for_optional_properties = true
+ignore_condition = "WhenWritingNull"
+
+[client]
+generate_client = true
+namespace = "Apigen.Transip.Client"
+project_name = "Apigen.Transip.Client"
+client_class_name = "TransipApiClient"
+use_async_suffix = true
+generate_interfaces = true
+
+[client.request_organization]
+strategy = "individual_files"
+directory = "Requests"
+include_base_classes = true
+
+[client.authentication]
+token_header = "Authorization"
+required_headers = []
+
+[naming]
+# Spec uses "HA-IP" in operationIds. The client generator preserves "HAIP"
+# (uppercased) for derived request type names, while the model generator
+# normalises to "Haip". naming.overrides bypasses PascalCase so model files
+# match the client's references.
+[naming.overrides]
+"OrderANewHaipRequest" = "OrderANewHAIPRequest"
+"CancelAhaipRequest" = "CancelAHAIPRequest"
+"UpdateAhaipRequest" = "UpdateAHAIPRequest"
+"AddLetsEncryptCertificateToHaipRequest" = "AddLetsEncryptCertificateToHAIPRequest"
+"SetHaipAttachedIPAddressesRequest" = "SetHAIPAttachedIPAddressesRequest"
+
+[formatting]
+use_spaces = true
+indent_width = 2
+
+[header]
+include_header = true
+include_timestamp = false
+include_source = true
+include_generator_info = true
+include_config_info = false
+custom_text = "TransIP API Client - Auto-generated from OpenAPI specification"

@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Frank Hommers</Authors>
+    <Company>Initialize.nl</Company>
+    <Copyright>Copyright (c) Frank Hommers / Initialize.nl</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/apigen-dotnet/transip</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/apigen-dotnet/transip</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Transip.Models'">
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Transip.Client'">
+    <PackageId>Apigen.Transip.Client</PackageId>
+    <Version>6.53.0</Version>
+    <Description>Generated C# client for the TransIP REST API v6</Description>
+    <PackageTags>transip;api;client;openapi;apigen;hosting;domains;vps</PackageTags>
+    <PackageReadmeFile>NUGET.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Transip.Client'">
+    <None Include="../../NUGET.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
