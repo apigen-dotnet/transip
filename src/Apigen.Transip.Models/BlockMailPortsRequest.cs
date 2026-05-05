@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// BlockMailPortsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/BlockMailPortsRequest
+/// BlockMailPortsRequest (generated from inline request body).
+/// Source: PATCH /kubernetes/clusters/{clusterName} (requestBody)
 /// </summary>
-public class BlockMailPortsRequest
+public partial class BlockMailPortsRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("action")]

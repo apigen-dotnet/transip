@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// SetHAIPAttachedIPAddressesRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/SetHAIPAttachedIPAddressesRequest
+/// SetHaipAttachedIpAddressesRequest (generated from inline request body).
+/// Source: PUT /haips/{haipName}/ip-addresses (requestBody)
 /// </summary>
-public class SetHAIPAttachedIPAddressesRequest
+public partial class SetHaipAttachedIpAddressesRequest
 {
   /// <summary>
   /// Set of IP addresses to attach, replaces the current set of IP addresses

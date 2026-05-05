@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// HaipStatusReport from OpenAPI schema.
 /// Schema path: #/components/schemas/HaipStatusReport
 /// </summary>
-public class HaipStatusReport
+public partial class HaipStatusReport
 {
   /// <summary>
   /// Attached IP address this status report is for

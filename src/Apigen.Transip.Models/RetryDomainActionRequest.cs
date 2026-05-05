@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// RetryDomainActionRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/RetryDomainActionRequest
+/// RetryDomainActionRequest (generated from inline request body).
+/// Source: PATCH /domains/{domainName}/actions (requestBody)
 /// </summary>
-public class RetryDomainActionRequest
+public partial class RetryDomainActionRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("authCode")]

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// HaipPortConfiguration from OpenAPI schema.
 /// Schema path: #/components/schemas/HaipPortConfiguration
 /// </summary>
-public class HaipPortConfiguration
+public partial class HaipPortConfiguration
 {
   /// <summary>
   /// The mode determining how traffic between our load balancers and your attached IP address(es) is encrypted: &apos;off&apos;, &apos;on&apos;, &apos;strict&apos;

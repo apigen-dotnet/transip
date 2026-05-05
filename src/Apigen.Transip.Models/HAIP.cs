@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Haip from OpenAPI schema.
 /// Schema path: #/components/schemas/Haip
 /// </summary>
-public class Haip
+public partial class Haip
 {
   /// <summary>
   /// The description that can be set by the customer

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesPortConfiguration from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesPortConfiguration
 /// </summary>
-public class KubernetesPortConfiguration
+public partial class KubernetesPortConfiguration
 {
   /// <summary>
   /// The mode determining how traffic between our load balancers and your attached IP address(es) is encrypted: &apos;off&apos;, &apos;on&apos;, &apos;strict&apos;

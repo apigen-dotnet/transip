@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// HaipCertificate from OpenAPI schema.
 /// Schema path: #/components/schemas/HaipCertificate
 /// </summary>
-public class HaipCertificate
+public partial class HaipCertificate
 {
   /// <summary>
   /// The common name of the certificate, usually a domain name

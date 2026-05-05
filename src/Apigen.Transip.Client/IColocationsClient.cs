@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Colocations operations
 /// </summary>
-public interface IColocationsClient
+public partial interface IColocationsClient
 {
   /// <summary>
   /// List all colocations
@@ -27,13 +27,13 @@ public interface IColocationsClient
   /// List IP addresses for a colocation
   /// Operation: GET /colocations/{colocationName}/ip-addresses
   /// </summary>
-  Task<JsonElement> ListIPAddressesForAColocationAsync(string colocationName);
+  Task<JsonElement> ListIpAddressesColocationAsync(string colocationName);
 
   /// <summary>
   /// Create a new IP address for a colocation
   /// Operation: POST /colocations/{colocationName}/ip-addresses
   /// </summary>
-  Task CreateANewIPAddressForAColocationAsync(string colocationName, Apigen.Transip.Models.CreateANewIPAddressForAColocationRequest createANewIPAddressForAColocationRequest);
+  Task CreateNewIpAddressColocationAsync(string colocationName, Apigen.Transip.Models.CreateNewIpAddressColocationRequest createNewIpAddressColocationRequest);
 
   /// <summary>
   /// Delete an IP address
@@ -51,6 +51,6 @@ public interface IColocationsClient
   /// Set reverse DNS for an IP address
   /// Operation: PUT /colocations/{colocationName}/ip-addresses/{ipAddress}
   /// </summary>
-  Task UpdateAsync(string colocationName, string ipAddress, Apigen.Transip.Models.SetReverseDnsForAnIPAddressRequest setReverseDnsForAnIPAddressRequest);
+  Task UpdateAsync(string colocationName, string ipAddress, Apigen.Transip.Models.SetReverseDnsIpAddressRequest setReverseDnsIpAddressRequest);
 
 }

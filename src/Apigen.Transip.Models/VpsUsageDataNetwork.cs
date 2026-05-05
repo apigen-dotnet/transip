@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsUsageDataNetwork from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsUsageDataNetwork
 /// </summary>
-public class VpsUsageDataNetwork
+public partial class VpsUsageDataNetwork
 {
   /// <summary>
   /// Date of the entry, by default in UNIX timestamp format

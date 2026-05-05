@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// BlockStorage from OpenAPI schema.
 /// Schema path: #/components/schemas/BlockStorage
 /// </summary>
-public class BlockStorage
+public partial class BlockStorage
 {
   /// <summary>
   /// The availability zone the block storage is located in

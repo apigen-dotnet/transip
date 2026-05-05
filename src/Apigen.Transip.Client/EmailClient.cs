@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Email operations
 /// </summary>
-public class EmailClient
+public partial class EmailClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -99,7 +99,7 @@ public class EmailClient
   /// Unlink email addon to mailbox
   /// Operation: PATCH /email/{domain}/mail-addons/{id}
   /// </summary>
-  public async Task<JsonElement> UnlinkEmailAddonToMailboxAsync(string domain, string id, Apigen.Transip.Models.UnlinkEmailAddonToMailboxRequest unlinkEmailAddonToMailboxRequest)
+  public async Task<JsonElement> UnlinkEmailAddonMailboxAsync(string domain, string id, Apigen.Transip.Models.UnlinkEmailAddonMailboxRequest unlinkEmailAddonMailboxRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -110,7 +110,7 @@ public class EmailClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(unlinkEmailAddonToMailboxRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(unlinkEmailAddonMailboxRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);

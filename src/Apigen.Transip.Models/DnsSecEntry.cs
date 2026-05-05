@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// DnsSecEntry from OpenAPI schema.
 /// Schema path: #/components/schemas/DnsSecEntry
 /// </summary>
-public class DnsSecEntry
+public partial class DnsSecEntry
 {
   /// <summary>
   /// The algorithm type that is used, click [here](https://www.transip.nl/vragen/461-domeinnaam-nameservers-gebruikt-beveiligen-dnssec/) to see the possible options.

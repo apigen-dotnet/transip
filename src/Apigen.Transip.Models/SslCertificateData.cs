@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// SslCertificateData from OpenAPI schema.
 /// Schema path: #/components/schemas/SslCertificateData
 /// </summary>
-public class SslCertificateData
+public partial class SslCertificateData
 {
   /// <summary>
   /// The certificates ca bundle

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Contact from OpenAPI schema.
 /// Schema path: #/components/schemas/Contact
 /// </summary>
-public class Contact
+public partial class Contact
 {
   /// <summary>
   /// Email address of the contact

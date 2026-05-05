@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// License from OpenAPI schema.
 /// Schema path: #/components/schemas/License
 /// </summary>
-public class License
+public partial class License
 {
   /// <summary>
   /// License Id

@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for General operations
 /// </summary>
-public interface IGeneralClient
+public partial interface IGeneralClient
 {
   /// <summary>
   /// API Test
@@ -33,6 +33,6 @@ public interface IGeneralClient
   /// List specifications for product
   /// Operation: GET /products/{productName}/elements
   /// </summary>
-  Task<JsonElement> ListSpecificationsForProductAsync(string productName);
+  Task<JsonElement> ListSpecificationsProductAsync(string productName);
 
 }

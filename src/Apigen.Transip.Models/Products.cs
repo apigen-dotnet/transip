@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Products from OpenAPI schema.
 /// Schema path: #/components/schemas/Products
 /// </summary>
-public class Products
+public partial class Products
 {
   /// <summary>
   /// A list of big storage products

@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// ListAllNodesRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/ListAllNodesRequest
+/// ListAllNodesRequest (generated from inline request body).
+/// Source: GET /kubernetes/clusters/{clusterName}/nodes (requestBody)
 /// </summary>
-public class ListAllNodesRequest
+public partial class ListAllNodesRequest
 {
   /// <summary>
   /// f779-3e68-6aa1-00007fbb911d (string, optional) - NodePool uuid to filter on

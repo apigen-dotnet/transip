@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Actions operations
 /// </summary>
-public interface IActionsClient
+public partial interface IActionsClient
 {
   /// <summary>
   /// List all actions
@@ -27,6 +27,6 @@ public interface IActionsClient
   /// List all child actions for a parent action
   /// Operation: GET /actions/{uuid}/children
   /// </summary>
-  Task<JsonElement> ListAllChildActionsForAParentActionAsync(string uuid);
+  Task<JsonElement> ListAllChildActionsParentActionAsync(string uuid);
 
 }

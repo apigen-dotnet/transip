@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Actions operations
 /// </summary>
-public class ActionsClient
+public partial class ActionsClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -99,7 +99,7 @@ public class ActionsClient
   /// List all child actions for a parent action
   /// Operation: GET /actions/{uuid}/children
   /// </summary>
-  public async Task<JsonElement> ListAllChildActionsForAParentActionAsync(string uuid)
+  public async Task<JsonElement> ListAllChildActionsParentActionAsync(string uuid)
   {
     Dictionary<string, object> pathParams = new()
     {

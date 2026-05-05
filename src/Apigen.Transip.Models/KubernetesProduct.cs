@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesProduct from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesProduct
 /// </summary>
-public class KubernetesProduct
+public partial class KubernetesProduct
 {
   /// <summary>
   /// Description of product

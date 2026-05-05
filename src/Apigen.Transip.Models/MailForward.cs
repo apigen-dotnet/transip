@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// MailForward from OpenAPI schema.
 /// Schema path: #/components/schemas/MailForward
 /// </summary>
-public class MailForward
+public partial class MailForward
 {
   /// <summary>
   /// The domain to forward (will be combined with the alias to make the full email address).

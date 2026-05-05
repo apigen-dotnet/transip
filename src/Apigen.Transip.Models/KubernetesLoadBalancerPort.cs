@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesLoadBalancerPort from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesLoadBalancerPort
 /// </summary>
-public class KubernetesLoadBalancerPort
+public partial class KubernetesLoadBalancerPort
 {
   /// <summary>
   /// LoadBalancer port mode, either tcp, http, https, http2_https or proxy

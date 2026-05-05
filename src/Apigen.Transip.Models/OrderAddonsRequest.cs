@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// OrderAddonsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/OrderAddonsRequest
+/// OrderAddonsRequest (generated from inline request body).
+/// Source: POST /acronis/tenants/{tenantUuid}/addons (requestBody)
 /// </summary>
-public class OrderAddonsRequest
+public partial class OrderAddonsRequest
 {
   /// <summary>
   /// Addons to be added

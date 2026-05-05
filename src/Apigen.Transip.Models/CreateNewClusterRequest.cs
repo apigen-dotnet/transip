@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// CreateNewClusterRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/CreateNewClusterRequest
+/// CreateNewClusterRequest (generated from inline request body).
+/// Source: POST /kubernetes/clusters (requestBody)
 /// </summary>
-public class CreateNewClusterRequest
+public partial class CreateNewClusterRequest
 {
   /// <summary>
   /// Availability Zone the WorkerNodes of the initial pool will spawn

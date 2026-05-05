@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesBlockStorage from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesBlockStorage
 /// </summary>
-public class KubernetesBlockStorage
+public partial class KubernetesBlockStorage
 {
   /// <summary>
   /// AvailabilityZone where this volume is located

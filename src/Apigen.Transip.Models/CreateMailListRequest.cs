@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// CreateMailListRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/CreateMailListRequest
+/// CreateMailListRequest (generated from inline request body).
+/// Source: POST /email/{domain}/mail-lists (requestBody)
 /// </summary>
-public class CreateMailListRequest
+public partial class CreateMailListRequest
 {
   /// <summary>
   /// The email address of the list itself

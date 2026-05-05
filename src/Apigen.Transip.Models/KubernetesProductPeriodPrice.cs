@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesProductPeriodPrice from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesProductPeriodPrice
 /// </summary>
-public class KubernetesProductPeriodPrice
+public partial class KubernetesProductPeriodPrice
 {
   /// <summary>
   /// The costs for the period described in this object

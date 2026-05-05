@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// TCPMonitorIgnoreTime from OpenAPI schema.
 /// Schema path: #/components/schemas/TCPMonitorIgnoreTime
 /// </summary>
-public class TcpMonitorIgnoreTime
+public partial class TcpMonitorIgnoreTime
 {
   /// <summary>
   /// Start from (24 hour format)

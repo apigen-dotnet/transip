@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateTaintsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateTaintsRequest
+/// UpdateTaintsRequest (generated from inline request body).
+/// Source: PUT /kubernetes/clusters/{clusterName}/node-pools/{uuid}/taints (requestBody)
 /// </summary>
-public class UpdateTaintsRequest
+public partial class UpdateTaintsRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("taints")]

@@ -10,29 +10,99 @@ dotnet add package Apigen.Transip.Client
 
 ## Usage
 
-### With a private key (recommended)
+### Singleton-friendly: `CreateClient` (recommended)
 
-`TransipAuthTokenProvider` signs an authentication request with your TransIP API
-private key and exchanges it for a short-lived JWT. No third-party crypto
-dependencies — uses the .NET BCL `RSA` APIs.
+The simplest way. Returns a `TransipApiClient` whose `HttpClient` automatically
+acquires and refreshes JWTs in the background. Safe to register as a singleton
+in DI.
 
 ```csharp
 using Apigen.Transip.Client;
 
-var privateKeyPem = File.ReadAllText("transip.pem");
+string privateKeyPem = File.ReadAllText("transip.pem");
 
-// One-shot: get a fully-configured client
-var client = await TransipAuthTokenProvider.CreateClientAsync(
+TransipApiClient client = TransipAuthTokenProvider.CreateClient(
     login: "your-username",
     privateKeyPem: privateKeyPem,
     label: "my-app");
 
-// Or just the raw token, e.g. to cache and reuse
-string token = await TransipAuthTokenProvider.GetBearerTokenAsync(
+// First API call triggers auth lazily; subsequent calls reuse the cached JWT
+// until 5 minutes before expiry, then re-authenticate transparently.
+var domains = await client.Domains.ListAllDomainsAsync();
+```
+
+In a DI container:
+
+```csharp
+services.AddSingleton(_ => TransipAuthTokenProvider.CreateClient(
+    login: config["Transip:Login"]!,
+    privateKeyPem: config["Transip:PrivateKey"]!));
+```
+
+### Custom `HttpClient` setup
+
+If you need to plug into your own HttpClient pipeline (handlers, Polly, etc.),
+wire up `TransipBearerHandler` yourself:
+
+```csharp
+TransipTokenAccessor accessor = TransipAuthTokenProvider.CreateAccessor(
     login: "your-username",
-    privateKeyPem: privateKeyPem,
-    label: "my-app");
-var client2 = TransipApiClient.WithBearer(token);
+    privateKeyPem: privateKeyPem);
+
+HttpClient http = new(new TransipBearerHandler(accessor, new HttpClientHandler()))
+{
+    BaseAddress = new Uri("https://api.transip.nl/v6/"),
+};
+
+var client = new TransipApiClient(http);
+```
+
+`TransipBearerHandler` injects `Authorization: Bearer <jwt>` on every outgoing
+request via the supplied accessor. The accessor caches the JWT in memory and
+re-acquires shortly before expiry.
+
+### Bring your own token storage
+
+The `TransipTokenAccessor` is just a delegate:
+
+```csharp
+public delegate ValueTask<string> TransipTokenAccessor(
+    CancellationToken cancellationToken = default);
+```
+
+Implement your own to put the token wherever you like — encrypted file, Redis,
+HashiCorp Vault, a database column, etc. The default in-memory accessor never
+persists anything.
+
+```csharp
+TransipTokenAccessor myAccessor = async ct =>
+{
+    string? cached = await myStorage.LoadJwtAsync(ct);
+    if (cached is not null && !IsExpiringSoon(cached)) return cached;
+
+    (string jwt, DateTimeOffset expiresAt) = await TransipAuthTokenProvider
+        .GetBearerTokenAsync(login, privateKeyPem, cancellationToken: ct);
+
+    await myStorage.SaveJwtAsync(jwt, expiresAt, ct);
+    return jwt;
+};
+
+HttpClient http = new(new TransipBearerHandler(myAccessor, new HttpClientHandler()))
+{
+    BaseAddress = new Uri("https://api.transip.nl/v6/"),
+};
+var client = new TransipApiClient(http);
+```
+
+### One-shot token exchange
+
+For scripts / CLI tools that don't need caching:
+
+```csharp
+(string jwt, DateTimeOffset expiresAt) = await TransipAuthTokenProvider
+    .GetBearerTokenAsync(login, privateKeyPem);
+
+var client = TransipApiClient.WithBearer(jwt);
 ```
 
 ### With a pre-obtained Bearer token
@@ -41,7 +111,7 @@ var client2 = TransipApiClient.WithBearer(token);
 var client = TransipApiClient.WithBearer("eyJ0eXAi...");
 ```
 
-### With a pre-configured HttpClient
+### With a pre-configured `HttpClient`
 
 ```csharp
 var client = new TransipApiClient(httpClient);
@@ -49,18 +119,19 @@ var client = new TransipApiClient(httpClient);
 
 ## Authentication options
 
-`GetBearerTokenAsync` and `CreateClientAsync` accept:
+`CreateClient`, `CreateAccessor`, and `GetBearerTokenAsync` accept:
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `login` | — | TransIP account name |
-| `privateKeyPem` | — | PKCS#8 PEM key from the control panel |
-| `label` | auto | Token label (must be unique per active token) |
-| `readOnly` | `false` | Request a read-only token |
-| `expirationTime` | `"30 minutes"` | e.g. `"1 hour"`, `"1 day"`, max 1 month |
-| `globalKey` | `false` | Allow use from any IP address |
-| `baseUrl` | `https://api.transip.nl/v6` | Override the API base URL |
-| `httpClient` | `null` | Reuse an existing HttpClient for the auth call |
+| Parameter         | Default                       | Description |
+|-------------------|-------------------------------|-------------|
+| `login`           | —                             | TransIP account name |
+| `privateKeyPem`   | —                             | PKCS#8 PEM key from the control panel |
+| `label`           | auto                          | Token label (must be unique per active token) |
+| `readOnly`        | `false`                       | Request a read-only token |
+| `expirationTime`  | `"1 day"`                     | e.g. `"30 minutes"`, `"1 hour"`, max `"1 month"` |
+| `globalKey`       | `false`                       | Allow use from any IP address |
+| `baseUrl`         | `https://api.transip.nl/v6`   | Override the API base URL |
+| `refreshBefore`   | 5 minutes                     | (`CreateClient` / `CreateAccessor`) re-auth this far before expiry |
+| `logger`          | `null`                        | Optional `ILogger` for auth events |
 
 ## Versioning
 

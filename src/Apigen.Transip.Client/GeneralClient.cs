@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for General operations
 /// </summary>
-public class GeneralClient
+public partial class GeneralClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -128,7 +128,7 @@ public class GeneralClient
   /// List specifications for product
   /// Operation: GET /products/{productName}/elements
   /// </summary>
-  public async Task<JsonElement> ListSpecificationsForProductAsync(string productName)
+  public async Task<JsonElement> ListSpecificationsProductAsync(string productName)
   {
     Dictionary<string, object> pathParams = new()
     {

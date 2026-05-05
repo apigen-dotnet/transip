@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsBackup from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsBackup
 /// </summary>
-public class VpsBackup
+public partial class VpsBackup
 {
   /// <summary>
   /// The name of the availability zone the backup is in

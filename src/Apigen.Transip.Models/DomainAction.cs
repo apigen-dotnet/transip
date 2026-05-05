@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// DomainAction from OpenAPI schema.
 /// Schema path: #/components/schemas/DomainAction
 /// </summary>
-public class DomainAction
+public partial class DomainAction
 {
   /// <summary>
   /// If this action has failed, this field will be true.

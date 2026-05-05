@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Domains operations
 /// </summary>
-public class DomainsClient
+public partial class DomainsClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -29,7 +29,7 @@ public class DomainsClient
   /// Check the availability for multiple domain names
   /// Operation: GET /domain-availability
   /// </summary>
-  public async Task<JsonElement> CheckTheAvailabilityForMultipleDomainNamesAsync(Apigen.Transip.Models.CheckTheAvailabilityForMultipleDomainNamesRequest checkTheAvailabilityForMultipleDomainNamesRequest)
+  public async Task<JsonElement> CheckAvailabilityMultipleDomainNamesAsync(Apigen.Transip.Models.CheckAvailabilityMultipleDomainNamesRequest checkAvailabilityMultipleDomainNamesRequest)
   {
     string url = "domain-availability";
 
@@ -99,7 +99,7 @@ public class DomainsClient
   /// List all default domain contacts for your account
   /// Operation: GET /domain-defaults/contacts
   /// </summary>
-  public async Task<JsonElement> ListAllDefaultDomainContactsForYourAccountAsync()
+  public async Task<JsonElement> ListAllDefaultDomainContactsYourAccountAsync()
   {
     string url = "domain-defaults/contacts";
 
@@ -132,13 +132,13 @@ public class DomainsClient
   /// Update contacts for a account
   /// Operation: PUT /domain-defaults/contacts
   /// </summary>
-  public async Task UpdateContactsForAAccountAsync(Apigen.Transip.Models.UpdateContactsForAAccountRequest updateContactsForAAccountRequest)
+  public async Task UpdateContactsAccountAsync(Apigen.Transip.Models.UpdateContactsAccountRequest updateContactsAccountRequest)
   {
     string url = "domain-defaults/contacts";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateContactsForAAccountRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateContactsAccountRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -195,13 +195,13 @@ public class DomainsClient
   /// Transfer a domain
   /// Operation: POST /domains
   /// </summary>
-  public async Task TransferADomainAsync(Apigen.Transip.Models.TransferADomainRequest transferADomainRequest)
+  public async Task TransferDomainAsync(Apigen.Transip.Models.TransferDomainRequest transferDomainRequest)
   {
     string url = "domains";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(transferADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(transferDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -225,7 +225,7 @@ public class DomainsClient
   /// Cancel a domain
   /// Operation: DELETE /domains/{domainName}
   /// </summary>
-  public async Task DeleteAsync(string domainName, Apigen.Transip.Models.CancelADomainRequest cancelADomainRequest)
+  public async Task DeleteAsync(string domainName, Apigen.Transip.Models.CancelDomainRequest cancelDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -293,7 +293,7 @@ public class DomainsClient
   /// Handover a domain
   /// Operation: PATCH /domains/{domainName}
   /// </summary>
-  public async Task HandoverADomainAsync(string domainName, Apigen.Transip.Models.HandoverADomainRequest handoverADomainRequest)
+  public async Task HandoverDomainAsync(string domainName, Apigen.Transip.Models.HandoverDomainRequest handoverDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -303,7 +303,7 @@ public class DomainsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(handoverADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(handoverDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);
@@ -327,7 +327,7 @@ public class DomainsClient
   /// Update a domain
   /// Operation: PUT /domains/{domainName}
   /// </summary>
-  public async Task UpdateAsync(string domainName, Apigen.Transip.Models.UpdateADomainRequest updateADomainRequest)
+  public async Task UpdateAsync(string domainName, Apigen.Transip.Models.UpdateDomainRequest updateDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -337,7 +337,7 @@ public class DomainsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -463,7 +463,7 @@ public class DomainsClient
   /// Get auth-code of a domain name
   /// Operation: GET /domains/{domainName}/auth-code
   /// </summary>
-  public async Task<JsonElement> GetAuthCodeOfADomainNameAsync(string domainName)
+  public async Task<JsonElement> GetAuthCodeDomainNameAsync(string domainName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -500,7 +500,7 @@ public class DomainsClient
   /// Request an auth code for a domain name
   /// Operation: POST /domains/{domainName}/auth-code
   /// </summary>
-  public async Task RequestAnAuthCodeForADomainNameAsync(string domainName)
+  public async Task RequestAuthCodeDomainNameAsync(string domainName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -602,7 +602,7 @@ public class DomainsClient
   /// List all contacts for a domain
   /// Operation: GET /domains/{domainName}/contacts
   /// </summary>
-  public async Task<JsonElement> ListAllContactsForADomainAsync(string domainName)
+  public async Task<JsonElement> ListAllContactsDomainAsync(string domainName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -639,7 +639,7 @@ public class DomainsClient
   /// Update contacts for a domain
   /// Operation: PUT /domains/{domainName}/contacts
   /// </summary>
-  public async Task UpdateContactsForADomainAsync(string domainName, Apigen.Transip.Models.UpdateContactsForADomainRequest updateContactsForADomainRequest)
+  public async Task UpdateContactsDomainAsync(string domainName, Apigen.Transip.Models.UpdateContactsDomainRequest updateContactsDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -649,7 +649,7 @@ public class DomainsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateContactsForADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateContactsDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -673,7 +673,7 @@ public class DomainsClient
   /// Remove a DNS entry from a domain
   /// Operation: DELETE /domains/{domainName}/dns
   /// </summary>
-  public async Task RemoveADnsEntryFromADomainAsync(string domainName, Apigen.Transip.Models.RemoveADnsEntryFromADomainRequest removeADnsEntryFromADomainRequest)
+  public async Task RemoveDnsEntryDomainAsync(string domainName, Apigen.Transip.Models.RemoveDnsEntryDomainRequest removeDnsEntryDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -704,7 +704,7 @@ public class DomainsClient
   /// List all DNS entries for a domain
   /// Operation: GET /domains/{domainName}/dns
   /// </summary>
-  public async Task<JsonElement> ListAllDnsEntriesForADomainAsync(string domainName)
+  public async Task<JsonElement> ListAllDnsEntriesDomainAsync(string domainName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -775,7 +775,7 @@ public class DomainsClient
   /// Add a new single DNS entry to a domain
   /// Operation: POST /domains/{domainName}/dns
   /// </summary>
-  public async Task AddANewSingleDnsEntryToADomainAsync(string domainName, Apigen.Transip.Models.AddANewSingleDnsEntryToADomainRequest addANewSingleDnsEntryToADomainRequest)
+  public async Task AddNewSingleDnsEntryDomainAsync(string domainName, Apigen.Transip.Models.AddNewSingleDnsEntryDomainRequest addNewSingleDnsEntryDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -785,7 +785,7 @@ public class DomainsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(addANewSingleDnsEntryToADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(addNewSingleDnsEntryDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -809,7 +809,7 @@ public class DomainsClient
   /// Update all DNS entries for a domain
   /// Operation: PUT /domains/{domainName}/dns
   /// </summary>
-  public async Task UpdateAllDnsEntriesForADomainAsync(string domainName, Apigen.Transip.Models.UpdateAllDnsEntriesForADomainRequest updateAllDnsEntriesForADomainRequest)
+  public async Task UpdateAllDnsEntriesDomainAsync(string domainName, Apigen.Transip.Models.UpdateAllDnsEntriesDomainRequest updateAllDnsEntriesDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -819,7 +819,7 @@ public class DomainsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateAllDnsEntriesForADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateAllDnsEntriesDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -914,7 +914,7 @@ public class DomainsClient
   /// List nameservers for a domain
   /// Operation: GET /domains/{domainName}/nameservers
   /// </summary>
-  public async Task<JsonElement> ListNameserversForADomainAsync(string domainName)
+  public async Task<JsonElement> ListNameserversDomainAsync(string domainName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -951,7 +951,7 @@ public class DomainsClient
   /// Update nameservers for a domain
   /// Operation: PUT /domains/{domainName}/nameservers
   /// </summary>
-  public async Task UpdateNameserversForADomainAsync(string domainName, Apigen.Transip.Models.UpdateNameserversForADomainRequest updateNameserversForADomainRequest)
+  public async Task UpdateNameserversDomainAsync(string domainName, Apigen.Transip.Models.UpdateNameserversDomainRequest updateNameserversDomainRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -961,7 +961,7 @@ public class DomainsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateNameserversForADomainRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateNameserversDomainRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -1060,7 +1060,7 @@ public class DomainsClient
   /// Get WHOIS information for a domain name
   /// Operation: GET /domains/{domainName}/whois
   /// </summary>
-  public async Task<JsonElement> GetWhoisInformationForADomainNameAsync(string domainName)
+  public async Task<JsonElement> GetWhoisInformationDomainNameAsync(string domainName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -1167,7 +1167,7 @@ public class DomainsClient
   /// Order a whitelabel account
   /// Operation: POST /whitelabel
   /// </summary>
-  public async Task OrderAWhitelabelAccountAsync()
+  public async Task OrderWhitelabelAccountAsync()
   {
     string url = "whitelabel";
 

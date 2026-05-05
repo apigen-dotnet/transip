@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// ListAllDomainsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/ListAllDomainsRequest
+/// ListAllDomainsRequest (generated from inline request body).
+/// Source: GET /domains (requestBody)
 /// </summary>
-public class ListAllDomainsRequest
+public partial class ListAllDomainsRequest
 {
   /// <summary>
   /// Tags to filter by, separated by a comma.

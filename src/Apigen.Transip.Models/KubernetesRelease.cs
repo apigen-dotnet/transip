@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesRelease from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesRelease
 /// </summary>
-public class KubernetesRelease
+public partial class KubernetesRelease
 {
   /// <summary>
   /// The end of life date of the Kubernetes release

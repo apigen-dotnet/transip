@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Acronis operations
 /// </summary>
-public class AcronisClient
+public partial class AcronisClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -62,13 +62,13 @@ public class AcronisClient
   /// Order a new tenant
   /// Operation: POST /acronis/tenants
   /// </summary>
-  public async Task OrderANewTenantAsync(Apigen.Transip.Models.OrderANewTenantRequest orderANewTenantRequest)
+  public async Task OrderNewTenantAsync(Apigen.Transip.Models.OrderNewTenantRequest orderNewTenantRequest)
   {
     string url = "acronis/tenants";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(orderANewTenantRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(orderNewTenantRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -92,7 +92,7 @@ public class AcronisClient
   /// Cancel a tenant
   /// Operation: DELETE /acronis/tenants/{tenantUuid}
   /// </summary>
-  public async Task DeleteAsync(string tenantUuid, Apigen.Transip.Models.CancelATenantRequest cancelATenantRequest)
+  public async Task DeleteAsync(string tenantUuid, Apigen.Transip.Models.CancelTenantRequest cancelTenantRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -260,7 +260,7 @@ public class AcronisClient
   /// Downgrade a tenant
   /// Operation: PUT /acronis/tenants/{tenantUuid}/downgrades
   /// </summary>
-  public async Task DowngradeATenantAsync(string tenantUuid, Apigen.Transip.Models.DowngradeATenantRequest downgradeATenantRequest)
+  public async Task DowngradeTenantAsync(string tenantUuid, Apigen.Transip.Models.DowngradeTenantRequest downgradeTenantRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -270,7 +270,7 @@ public class AcronisClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(downgradeATenantRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(downgradeTenantRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -331,7 +331,7 @@ public class AcronisClient
   /// Upgrade a tenant
   /// Operation: PUT /acronis/tenants/{tenantUuid}/upgrades
   /// </summary>
-  public async Task UpgradeATenantAsync(string tenantUuid, Apigen.Transip.Models.UpgradeATenantRequest upgradeATenantRequest)
+  public async Task UpgradeTenantAsync(string tenantUuid, Apigen.Transip.Models.UpgradeTenantRequest upgradeTenantRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -341,7 +341,7 @@ public class AcronisClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(upgradeATenantRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(upgradeTenantRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -365,7 +365,7 @@ public class AcronisClient
   /// Fetch overview of current storage usage [DEPRECATED]
   /// Operation: GET /acronis/tenants/{tenantUuid}/usage
   /// </summary>
-  public async Task<JsonElement> FetchOverviewOfCurrentStorageUsageDeprecatedAsync(string tenantUuid)
+  public async Task<JsonElement> FetchOverviewCurrentStorageUsageDeprecatedAsync(string tenantUuid)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -402,7 +402,7 @@ public class AcronisClient
   /// Fetch overview of current usages
   /// Operation: GET /acronis/tenants/{tenantUuid}/usages
   /// </summary>
-  public async Task<JsonElement> FetchOverviewOfCurrentUsagesAsync(string tenantUuid)
+  public async Task<JsonElement> FetchOverviewCurrentUsagesAsync(string tenantUuid)
   {
     Dictionary<string, object> pathParams = new()
     {

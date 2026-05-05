@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Kubernetes operations
 /// </summary>
-public interface IKubernetesClient
+public partial interface IKubernetesClient
 {
   /// <summary>
   /// List all clusters
@@ -93,7 +93,7 @@ public interface IKubernetesClient
   /// Get KubeConfig for Cluster
   /// Operation: GET /kubernetes/clusters/{clusterName}/kube-config
   /// </summary>
-  Task<JsonElement> GetKubeConfigForClusterAsync(string clusterName);
+  Task<JsonElement> GetKubeConfigClusterAsync(string clusterName);
 
   /// <summary>
   /// List all LoadBalancers
@@ -105,7 +105,7 @@ public interface IKubernetesClient
   /// Add a LoadBalancer
   /// Operation: POST /kubernetes/clusters/{clusterName}/load-balancers
   /// </summary>
-  Task AddALoadBalancerAsync(string clusterName, Apigen.Transip.Models.AddALoadBalancerRequest addALoadBalancerRequest);
+  Task AddLoadBalancerAsync(string clusterName, Apigen.Transip.Models.AddLoadBalancerRequest addLoadBalancerRequest);
 
   /// <summary>
   /// Remove a LoadBalancer
@@ -123,7 +123,7 @@ public interface IKubernetesClient
   /// Update a loadBalancer
   /// Operation: PUT /kubernetes/clusters/{clusterName}/load-balancers/{name}
   /// </summary>
-  Task UpdateAsync(string clusterName, string name, Apigen.Transip.Models.UpdateALoadBalancerRequest updateALoadBalancerRequest);
+  Task UpdateAsync(string clusterName, string name, Apigen.Transip.Models.UpdateLoadBalancerRequest updateLoadBalancerRequest);
 
   /// <summary>
   /// List all LoadBalancer status reports
@@ -207,7 +207,7 @@ public interface IKubernetesClient
   /// Reboot a node
   /// Operation: PATCH /kubernetes/clusters/{clusterName}/nodes/{uuid}
   /// </summary>
-  Task RebootANodeAsync(string clusterName, string uuid, Apigen.Transip.Models.RebootANodeRequest rebootANodeRequest);
+  Task RebootNodeAsync(string clusterName, string uuid, Apigen.Transip.Models.RebootNodeRequest rebootNodeRequest);
 
   /// <summary>
   /// Get node statistics

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// OpenStackProject from OpenAPI schema.
 /// Schema path: #/components/schemas/OpenStackProject
 /// </summary>
-public class OpenStackProject
+public partial class OpenStackProject
 {
   /// <summary>
   /// Describes this project

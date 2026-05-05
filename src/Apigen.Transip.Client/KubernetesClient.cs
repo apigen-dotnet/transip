@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Kubernetes operations
 /// </summary>
-public class KubernetesClient
+public partial class KubernetesClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -483,7 +483,7 @@ public class KubernetesClient
   /// Get KubeConfig for Cluster
   /// Operation: GET /kubernetes/clusters/{clusterName}/kube-config
   /// </summary>
-  public async Task<JsonElement> GetKubeConfigForClusterAsync(string clusterName)
+  public async Task<JsonElement> GetKubeConfigClusterAsync(string clusterName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -557,7 +557,7 @@ public class KubernetesClient
   /// Add a LoadBalancer
   /// Operation: POST /kubernetes/clusters/{clusterName}/load-balancers
   /// </summary>
-  public async Task AddALoadBalancerAsync(string clusterName, Apigen.Transip.Models.AddALoadBalancerRequest addALoadBalancerRequest)
+  public async Task AddLoadBalancerAsync(string clusterName, Apigen.Transip.Models.AddLoadBalancerRequest addLoadBalancerRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -567,7 +567,7 @@ public class KubernetesClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(addALoadBalancerRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(addLoadBalancerRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -661,7 +661,7 @@ public class KubernetesClient
   /// Update a loadBalancer
   /// Operation: PUT /kubernetes/clusters/{clusterName}/load-balancers/{name}
   /// </summary>
-  public async Task UpdateAsync(string clusterName, string name, Apigen.Transip.Models.UpdateALoadBalancerRequest updateALoadBalancerRequest)
+  public async Task UpdateAsync(string clusterName, string name, Apigen.Transip.Models.UpdateLoadBalancerRequest updateLoadBalancerRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -672,7 +672,7 @@ public class KubernetesClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateALoadBalancerRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateLoadBalancerRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -1176,7 +1176,7 @@ public class KubernetesClient
   /// Reboot a node
   /// Operation: PATCH /kubernetes/clusters/{clusterName}/nodes/{uuid}
   /// </summary>
-  public async Task RebootANodeAsync(string clusterName, string uuid, Apigen.Transip.Models.RebootANodeRequest rebootANodeRequest)
+  public async Task RebootNodeAsync(string clusterName, string uuid, Apigen.Transip.Models.RebootNodeRequest rebootNodeRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -1187,7 +1187,7 @@ public class KubernetesClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(rebootANodeRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(rebootNodeRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);

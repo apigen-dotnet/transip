@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// SshKey from OpenAPI schema.
 /// Schema path: #/components/schemas/SshKey
 /// </summary>
-public class SshKey
+public partial class SshKey
 {
   /// <summary>
   /// Date when this SSH key was added (TimeZone: Europe/Amsterdam)

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesCluster from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesCluster
 /// </summary>
-public class KubernetesCluster
+public partial class KubernetesCluster
 {
   /// <summary>
   /// cluster (string, optional) - Describes this cluster

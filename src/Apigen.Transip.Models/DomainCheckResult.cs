@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// DomainCheckResult from OpenAPI schema.
 /// Schema path: #/components/schemas/DomainCheckResult
 /// </summary>
-public class DomainCheckResult
+public partial class DomainCheckResult
 {
   /// <summary>
   /// List of available actions to perform on this domain. Possible actions are: &apos;register&apos;, &apos;transfer&apos;, &apos;internalpull&apos; and &apos;internalpush&apos;

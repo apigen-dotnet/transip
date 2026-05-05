@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateClusterRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateClusterRequest
+/// UpdateClusterRequest (generated from inline request body).
+/// Source: PUT /kubernetes/clusters/{clusterName} (requestBody)
 /// </summary>
-public class UpdateClusterRequest
+public partial class UpdateClusterRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("cluster")]

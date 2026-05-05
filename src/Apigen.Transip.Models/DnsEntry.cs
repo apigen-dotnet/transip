@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// DnsEntry from OpenAPI schema.
 /// Schema path: #/components/schemas/DnsEntry
 /// </summary>
-public class DnsEntry
+public partial class DnsEntry
 {
   /// <summary>
   /// The content of of the dns entry, for example &apos;10 mail&apos;, &apos;127.0.0.1&apos; or &apos;www&apos;

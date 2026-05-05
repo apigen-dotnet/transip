@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsFirewallRule from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsFirewallRule
 /// </summary>
-public class VpsFirewallRule
+public partial class VpsFirewallRule
 {
   /// <summary>
   /// The rule name

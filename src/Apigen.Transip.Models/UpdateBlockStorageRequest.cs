@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateBlockStorageRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateBlockStorageRequest
+/// UpdateBlockStorageRequest (generated from inline request body).
+/// Source: PUT /block-storages/{blockStorageIdentifier} (requestBody)
 /// </summary>
-public class UpdateBlockStorageRequest
+public partial class UpdateBlockStorageRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("blockStorage")]

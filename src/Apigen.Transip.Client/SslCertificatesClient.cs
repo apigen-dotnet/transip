@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for SSL Certificates operations
 /// </summary>
-public class SslCertificatesClient
+public partial class SslCertificatesClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -62,13 +62,13 @@ public class SslCertificatesClient
   /// Order a SSL certificate
   /// Operation: POST /ssl-certificates
   /// </summary>
-  public async Task OrderASslCertificateAsync(Apigen.Transip.Models.OrderASslCertificateRequest orderASslCertificateRequest)
+  public async Task OrderSslCertificateAsync(Apigen.Transip.Models.OrderSslCertificateRequest orderSslCertificateRequest)
   {
     string url = "ssl-certificates";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(orderASslCertificateRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(orderSslCertificateRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -129,7 +129,7 @@ public class SslCertificatesClient
   /// Reissue a certificate
   /// Operation: PATCH /ssl-certificates/{certificateId}
   /// </summary>
-  public async Task ReissueACertificateAsync(decimal certificateId, Apigen.Transip.Models.ReissueACertificateRequest reissueACertificateRequest)
+  public async Task ReissueCertificateAsync(decimal certificateId, Apigen.Transip.Models.ReissueCertificateRequest reissueCertificateRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -139,7 +139,7 @@ public class SslCertificatesClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(reissueACertificateRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(reissueCertificateRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);
@@ -163,7 +163,7 @@ public class SslCertificatesClient
   /// Details for SSL certificate by id
   /// Operation: GET /ssl-certificates/{certificateId}/details
   /// </summary>
-  public async Task<JsonElement> DetailsForSslCertificateByIdAsync(decimal certificateId)
+  public async Task<JsonElement> DetailsSslCertificateIdAsync(decimal certificateId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -200,7 +200,7 @@ public class SslCertificatesClient
   /// Download a SSL certificate by id
   /// Operation: POST /ssl-certificates/{certificateId}/download
   /// </summary>
-  public async Task<JsonElement> DownloadASslCertificateByIdAsync(decimal certificateId, Apigen.Transip.Models.DownloadASslCertificateByIdRequest downloadASslCertificateByIdRequest)
+  public async Task<JsonElement> DownloadSslCertificateIdAsync(decimal certificateId, Apigen.Transip.Models.DownloadSslCertificateIdRequest downloadSslCertificateIdRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -210,7 +210,7 @@ public class SslCertificatesClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(downloadASslCertificateByIdRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(downloadSslCertificateIdRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -240,7 +240,7 @@ public class SslCertificatesClient
   /// Install an ssl certificate
   /// Operation: PATCH /ssl-certificates/{certificateId}/install
   /// </summary>
-  public async Task InstallAnSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.InstallAnSslCertificateRequest installAnSslCertificateRequest)
+  public async Task InstallSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.InstallSslCertificateRequest installSslCertificateRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -250,7 +250,7 @@ public class SslCertificatesClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(installAnSslCertificateRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(installSslCertificateRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);
@@ -274,7 +274,7 @@ public class SslCertificatesClient
   /// Uninstall an ssl certificate
   /// Operation: DELETE /ssl-certificates/{certificateId}/uninstall
   /// </summary>
-  public async Task UninstallAnSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.UninstallAnSslCertificateRequest uninstallAnSslCertificateRequest)
+  public async Task UninstallSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.UninstallSslCertificateRequest uninstallSslCertificateRequest)
   {
     Dictionary<string, object> pathParams = new()
     {

@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateVolumeRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateVolumeRequest
+/// UpdateVolumeRequest (generated from inline request body).
+/// Source: PUT /kubernetes/clusters/{clusterName}/block-storages/{name} (requestBody)
 /// </summary>
-public class UpdateVolumeRequest
+public partial class UpdateVolumeRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("volume")]

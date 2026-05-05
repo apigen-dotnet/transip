@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// OpenStackUser from OpenAPI schema.
 /// Schema path: #/components/schemas/OpenStackUser
 /// </summary>
-public class OpenStackUser
+public partial class OpenStackUser
 {
   /// <summary>
   /// Description

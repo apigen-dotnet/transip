@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Account operations
 /// </summary>
-public class AccountClient
+public partial class AccountClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -132,7 +132,7 @@ public class AccountClient
   /// List invoice items by InvoiceNumber
   /// Operation: GET /invoices/{invoiceNumber}/invoice-items
   /// </summary>
-  public async Task<JsonElement> ListInvoiceItemsByInvoiceNumberAsync(string invoiceNumber)
+  public async Task<JsonElement> ListInvoiceItemsInvoiceNumberAsync(string invoiceNumber)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -169,7 +169,7 @@ public class AccountClient
   /// Retrieve an invoice as PDF file
   /// Operation: GET /invoices/{invoiceNumber}/pdf
   /// </summary>
-  public async Task<JsonElement> RetrieveAnInvoiceAsPdfFileAsync(string invoiceNumber)
+  public async Task<JsonElement> RetrieveInvoiceAsPdfFileAsync(string invoiceNumber)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -239,13 +239,13 @@ public class AccountClient
   /// Add a new SSH key
   /// Operation: POST /ssh-keys
   /// </summary>
-  public async Task AddANewSshKeyAsync(Apigen.Transip.Models.AddANewSshKeyRequest addANewSshKeyRequest)
+  public async Task AddNewSshKeyAsync(Apigen.Transip.Models.AddNewSshKeyRequest addNewSshKeyRequest)
   {
     string url = "ssh-keys";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(addANewSshKeyRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(addNewSshKeyRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -337,7 +337,7 @@ public class AccountClient
   /// Update an SSH key
   /// Operation: PUT /ssh-keys/{id}
   /// </summary>
-  public async Task UpdateAsync(string id, Apigen.Transip.Models.UpdateAnSshKeyRequest updateAnSshKeyRequest)
+  public async Task UpdateAsync(string id, Apigen.Transip.Models.UpdateSshKeyRequest updateSshKeyRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -347,7 +347,7 @@ public class AccountClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateAnSshKeyRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateSshKeyRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesBlockStorageSnapshot from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesBlockStorageSnapshot
 /// </summary>
-public class KubernetesBlockStorageSnapshot
+public partial class KubernetesBlockStorageSnapshot
 {
   /// <summary>
   /// Name of the volume this snapshot belongs to

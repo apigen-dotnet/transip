@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsUsageDataCpu from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsUsageDataCpu
 /// </summary>
-public class VpsUsageDataCpu
+public partial class VpsUsageDataCpu
 {
   /// <summary>
   /// Date of the entry, by default in UNIX timestamp format

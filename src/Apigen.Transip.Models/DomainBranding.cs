@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// DomainBranding from OpenAPI schema.
 /// Schema path: #/components/schemas/DomainBranding
 /// </summary>
-public class DomainBranding
+public partial class DomainBranding
 {
   /// <summary>
   /// The first generic bannerLine displayed in whois-branded whois output.

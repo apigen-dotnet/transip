@@ -8,13 +8,20 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Apigen.Transip.Client;
+
+/// <summary>
+/// Async delegate that returns a valid TransIP JWT bearer token for use in an
+/// <c>Authorization: Bearer …</c> header. Implementations are responsible for
+/// caching, expiry tracking, and acquiring fresh tokens as needed.
+/// </summary>
+public delegate ValueTask<string> TransipTokenAccessor(CancellationToken cancellationToken = default);
 
 /// <summary>
 /// Exchanges a TransIP API private key for a short-lived JWT bearer token.
@@ -22,17 +29,23 @@ namespace Apigen.Transip.Client;
 public static class TransipAuthTokenProvider
 {
   public const string DefaultBaseUrl = "https://api.transip.nl/v6";
+  public const string DefaultExpirationTime = "1 day";
   private const string AuthPath = "auth";
 
-  // Serialize all fields (including false booleans) so the request body matches the
-  // shape documented at https://api.transip.nl/rest/docs.html#header-authentication
+  private static readonly TimeSpan s_defaultRefreshBefore = TimeSpan.FromMinutes(5);
+
+  // Serialize all fields (including false booleans) so the request body matches
+  // the shape documented at https://api.transip.nl/rest/docs.html#header-authentication
   private static readonly JsonSerializerOptions s_jsonOptions = new()
   {
     Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
   };
 
   /// <summary>
-  /// Exchange a private key for a JWT bearer token.
+  /// Build a token accessor that lazily acquires a JWT and caches it in memory
+  /// until it is within <paramref name="refreshBefore"/> of expiry, at which
+  /// point the next call performs a fresh authentication. Thread-safe; concurrent
+  /// callers during a refresh share a single in-flight request.
   /// </summary>
   /// <param name="login">TransIP account name.</param>
   /// <param name="privateKeyPem">PKCS#8 PEM private key from the TransIP control panel.</param>
@@ -41,15 +54,103 @@ public static class TransipAuthTokenProvider
   /// <param name="expirationTime">Lifetime, e.g. "30 minutes", "1 hour", "1 day". Max 1 month.</param>
   /// <param name="globalKey">Allow use from any IP address.</param>
   /// <param name="baseUrl">Base URL of the TransIP API.</param>
-  /// <param name="httpClient">Optional HttpClient to use for the auth call. A transient one is created if null.</param>
-  /// <param name="cancellationToken">Cancellation token.</param>
-  /// <returns>The JWT bearer token string (without the "Bearer " prefix).</returns>
-  public static async Task<string> GetBearerTokenAsync(
+  /// <param name="refreshBefore">Acquire a new token this far before expiry. Default: 5 minutes.</param>
+  /// <param name="httpClientFactory">Optional factory for the HttpClient used to call /auth.
+  /// If null, a transient HttpClient is created per auth call.</param>
+  /// <param name="logger">Optional logger for auth events.</param>
+  public static TransipTokenAccessor CreateAccessor(
     string login,
     string privateKeyPem,
     string? label = null,
     bool readOnly = false,
-    string expirationTime = "30 minutes",
+    string expirationTime = DefaultExpirationTime,
+    bool globalKey = false,
+    string baseUrl = DefaultBaseUrl,
+    TimeSpan? refreshBefore = null,
+    Func<HttpClient>? httpClientFactory = null,
+    ILogger? logger = null)
+  {
+    if (string.IsNullOrWhiteSpace(login)) throw new ArgumentException("login is required", nameof(login));
+    if (string.IsNullOrWhiteSpace(privateKeyPem)) throw new ArgumentException("privateKeyPem is required", nameof(privateKeyPem));
+
+    TimeSpan margin = refreshBefore ?? s_defaultRefreshBefore;
+
+    CachedToken? cached = null;
+    SemaphoreSlim gate = new(1, 1);
+
+    return async (cancellationToken) =>
+    {
+      // Fast path: usable cached token, no lock.
+      CachedToken? snapshot = cached;
+      if (snapshot != null && snapshot.IsUsable(margin))
+      {
+        return snapshot.Jwt;
+      }
+
+      await gate.WaitAsync(cancellationToken).ConfigureAwait(false);
+      try
+      {
+        // Re-check after acquiring the lock — another caller may have refreshed.
+        snapshot = cached;
+        if (snapshot != null && snapshot.IsUsable(margin))
+        {
+          return snapshot.Jwt;
+        }
+
+        logger?.LogDebug("Acquiring new TransIP JWT for login '{Login}'", login);
+        (string jwt, DateTimeOffset expiresAt) = await GetBearerTokenAsync(
+          login, privateKeyPem, label, readOnly, expirationTime, globalKey,
+          baseUrl, httpClientFactory?.Invoke(), cancellationToken).ConfigureAwait(false);
+
+        cached = new CachedToken(jwt, expiresAt);
+        logger?.LogDebug("Acquired TransIP JWT for login '{Login}', expires at {ExpiresAt:o}", login, expiresAt);
+        return jwt;
+      }
+      finally
+      {
+        gate.Release();
+      }
+    };
+  }
+
+  /// <summary>
+  /// Build a fully-configured <see cref="TransipApiClient"/> backed by an
+  /// in-memory token cache that automatically re-authenticates before expiry.
+  /// Suitable for singleton registration in DI containers.
+  /// </summary>
+  public static TransipApiClient CreateClient(
+    string login,
+    string privateKeyPem,
+    string? label = null,
+    bool readOnly = false,
+    string expirationTime = DefaultExpirationTime,
+    bool globalKey = false,
+    string baseUrl = DefaultBaseUrl,
+    TimeSpan? refreshBefore = null,
+    ILogger? logger = null)
+  {
+    TransipTokenAccessor accessor = CreateAccessor(
+      login, privateKeyPem, label, readOnly, expirationTime, globalKey, baseUrl, refreshBefore, logger: logger);
+
+    string normalizedBaseUrl = baseUrl.EndsWith('/') ? baseUrl : baseUrl + "/";
+    HttpClient httpClient = new(new TransipBearerHandler(accessor) { InnerHandler = new HttpClientHandler() })
+    {
+      BaseAddress = new Uri(normalizedBaseUrl),
+    };
+
+    return new TransipApiClient(httpClient, logger);
+  }
+
+  /// <summary>
+  /// One-shot token exchange. Returns the raw JWT and its parsed expiry time.
+  /// Performs no caching; each call hits <c>/v6/auth</c>.
+  /// </summary>
+  public static async Task<(string Jwt, DateTimeOffset ExpiresAt)> GetBearerTokenAsync(
+    string login,
+    string privateKeyPem,
+    string? label = null,
+    bool readOnly = false,
+    string expirationTime = DefaultExpirationTime,
     bool globalKey = false,
     string baseUrl = DefaultBaseUrl,
     HttpClient? httpClient = null,
@@ -102,7 +203,10 @@ public static class TransipAuthTokenProvider
           responseBody);
       }
 
-      return parsed.Token;
+      DateTimeOffset expiresAt = ExtractJwtExpiry(parsed.Token)
+        ?? DateTimeOffset.UtcNow.Add(ParseExpirationTime(expirationTime));
+
+      return (parsed.Token, expiresAt);
     }
     finally
     {
@@ -111,24 +215,62 @@ public static class TransipAuthTokenProvider
   }
 
   /// <summary>
-  /// Convenience: obtain a token and return a fully-configured TransipApiClient.
+  /// Parse the <c>exp</c> claim from a JWT without validating its signature.
+  /// Returns <c>null</c> if the token can't be parsed.
   /// </summary>
-  public static async Task<TransipApiClient> CreateClientAsync(
-    string login,
-    string privateKeyPem,
-    string? label = null,
-    bool readOnly = false,
-    string expirationTime = "30 minutes",
-    bool globalKey = false,
-    string baseUrl = DefaultBaseUrl,
-    Microsoft.Extensions.Logging.ILogger? logger = null,
-    CancellationToken cancellationToken = default)
+  private static DateTimeOffset? ExtractJwtExpiry(string jwt)
   {
-    string token = await GetBearerTokenAsync(
-      login, privateKeyPem, label, readOnly, expirationTime, globalKey, baseUrl,
-      cancellationToken: cancellationToken).ConfigureAwait(false);
+    string[] parts = jwt.Split('.');
+    if (parts.Length != 3) return null;
 
-    return TransipApiClient.WithBearer(token, baseUrl, logger);
+    try
+    {
+      byte[] payload = Base64UrlDecode(parts[1]);
+      using JsonDocument doc = JsonDocument.Parse(payload);
+      if (doc.RootElement.TryGetProperty("exp", out JsonElement exp) && exp.TryGetInt64(out long unix))
+      {
+        return DateTimeOffset.FromUnixTimeSeconds(unix);
+      }
+    }
+    catch
+    {
+      // Fall through to null — caller will use the requested expirationTime as a fallback.
+    }
+    return null;
+  }
+
+  private static byte[] Base64UrlDecode(string input)
+  {
+    string padded = input.Replace('-', '+').Replace('_', '/');
+    switch (padded.Length % 4)
+    {
+      case 2: padded += "=="; break;
+      case 3: padded += "="; break;
+    }
+    return Convert.FromBase64String(padded);
+  }
+
+  /// <summary>
+  /// Convert a TransIP-style expirationTime string ("30 minutes", "1 hour", "1 day", …)
+  /// to a TimeSpan. Used as a fallback when the JWT exp claim can't be read.
+  /// </summary>
+  private static TimeSpan ParseExpirationTime(string expirationTime)
+  {
+    string[] parts = expirationTime.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    if (parts.Length == 2 && int.TryParse(parts[0], out int n))
+    {
+      return parts[1].ToLowerInvariant() switch
+      {
+        "second" or "seconds" => TimeSpan.FromSeconds(n),
+        "minute" or "minutes" => TimeSpan.FromMinutes(n),
+        "hour" or "hours" => TimeSpan.FromHours(n),
+        "day" or "days" => TimeSpan.FromDays(n),
+        "week" or "weeks" => TimeSpan.FromDays(n * 7),
+        "month" or "months" => TimeSpan.FromDays(n * 30),
+        _ => TimeSpan.FromMinutes(30),
+      };
+    }
+    return TimeSpan.FromMinutes(30);
   }
 
   private static string SignBody(byte[] body, string privateKeyPem)
@@ -156,6 +298,21 @@ public static class TransipAuthTokenProvider
     return Convert.ToHexString(bytes).ToLowerInvariant();
   }
 
+  private sealed class CachedToken
+  {
+    public string Jwt { get; }
+    public DateTimeOffset ExpiresAt { get; }
+
+    public CachedToken(string jwt, DateTimeOffset expiresAt)
+    {
+      Jwt = jwt;
+      ExpiresAt = expiresAt;
+    }
+
+    public bool IsUsable(TimeSpan refreshBefore) =>
+      DateTimeOffset.UtcNow < ExpiresAt - refreshBefore;
+  }
+
   private sealed class AuthRequest
   {
     [JsonPropertyName("login")]
@@ -181,6 +338,36 @@ public static class TransipAuthTokenProvider
   {
     [JsonPropertyName("token")]
     public string? Token { get; set; }
+  }
+}
+
+/// <summary>
+/// HttpMessageHandler that injects a TransIP Bearer token on every outgoing
+/// request via the supplied <see cref="TransipTokenAccessor"/>. The accessor
+/// is responsible for caching and refresh-before-expiry; this handler simply
+/// asks for a valid token per request.
+/// </summary>
+public sealed class TransipBearerHandler : DelegatingHandler
+{
+  private readonly TransipTokenAccessor _accessor;
+
+  public TransipBearerHandler(TransipTokenAccessor accessor)
+  {
+    _accessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
+  }
+
+  public TransipBearerHandler(TransipTokenAccessor accessor, HttpMessageHandler innerHandler)
+    : base(innerHandler)
+  {
+    _accessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
+  }
+
+  protected override async Task<HttpResponseMessage> SendAsync(
+    HttpRequestMessage request, CancellationToken cancellationToken)
+  {
+    string token = await _accessor(cancellationToken).ConfigureAwait(false);
+    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+    return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
   }
 }
 

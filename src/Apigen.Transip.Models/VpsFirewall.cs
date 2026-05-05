@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsFirewall from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsFirewall
 /// </summary>
-public class VpsFirewall
+public partial class VpsFirewall
 {
   /// <summary>
   /// Whether the firewall is enabled for this VPS

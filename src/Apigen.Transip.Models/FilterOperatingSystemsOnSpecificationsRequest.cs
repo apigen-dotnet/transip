@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// FilterOperatingSystemsOnSpecificationsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/FilterOperatingSystemsOnSpecificationsRequest
+/// FilterOperatingSystemsOnSpecificationsRequest (generated from inline request body).
+/// Source: GET /operating-systems (requestBody)
 /// </summary>
-public class FilterOperatingSystemsOnSpecificationsRequest
+public partial class FilterOperatingSystemsOnSpecificationsRequest
 {
   /// <summary>
   /// Comma separated list of addons

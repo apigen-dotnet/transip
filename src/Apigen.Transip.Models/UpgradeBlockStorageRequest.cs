@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpgradeBlockStorageRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpgradeBlockStorageRequest
+/// UpgradeBlockStorageRequest (generated from inline request body).
+/// Source: POST /block-storages (requestBody)
 /// </summary>
-public class UpgradeBlockStorageRequest
+public partial class UpgradeBlockStorageRequest
 {
   /// <summary>
   /// The name of the blockstorage to upgrade

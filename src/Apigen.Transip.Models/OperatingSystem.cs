@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// OperatingSystem from OpenAPI schema.
 /// Schema path: #/components/schemas/OperatingSystem
 /// </summary>
-public class OperatingSystem
+public partial class OperatingSystem
 {
   /// <summary>
   /// The baseName of the operating system

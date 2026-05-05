@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// InstallationTemplate from OpenAPI schema.
 /// Schema path: #/components/schemas/InstallationTemplate
 /// </summary>
-public class InstallationTemplate
+public partial class InstallationTemplate
 {
   /// <summary>
   /// name of the template

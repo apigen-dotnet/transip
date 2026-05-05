@@ -9,25 +9,25 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for HA-IP operations
 /// </summary>
-public interface IHaipClient
+public partial interface IHaipClient
 {
   /// <summary>
   /// List all HA-IPs
   /// Operation: GET /haips
   /// </summary>
-  Task<JsonElement> ListAllHaiPsAsync();
+  Task<JsonElement> ListAllHaipsAsync();
 
   /// <summary>
   /// Order a new HA-IP
   /// Operation: POST /haips
   /// </summary>
-  Task OrderANewHaipAsync(Apigen.Transip.Models.OrderANewHAIPRequest orderANewHaipRequest);
+  Task OrderNewHaipAsync(Apigen.Transip.Models.OrderNewHaipRequest orderNewHaipRequest);
 
   /// <summary>
   /// Cancel a HA-IP
   /// Operation: DELETE /haips/{haipName}
   /// </summary>
-  Task DeleteAsync(string haipName, Apigen.Transip.Models.CancelAHAIPRequest cancelAhaipRequest);
+  Task DeleteAsync(string haipName, Apigen.Transip.Models.CancelHaipRequest cancelHaipRequest);
 
   /// <summary>
   /// Get HA-IP info
@@ -39,7 +39,7 @@ public interface IHaipClient
   /// Update a HA-IP
   /// Operation: PUT /haips/{haipName}
   /// </summary>
-  Task UpdateAsync(string haipName, Apigen.Transip.Models.UpdateAHAIPRequest updateAhaipRequest);
+  Task UpdateAsync(string haipName, Apigen.Transip.Models.UpdateHaipRequest updateHaipRequest);
 
   /// <summary>
   /// List all HA-IP certificates
@@ -51,7 +51,7 @@ public interface IHaipClient
   /// Add LetsEncrypt certificate to HA-IP
   /// Operation: POST /haips/{haipName}/certificates
   /// </summary>
-  Task AddLetsEncryptCertificateToHaipAsync(string haipName, Apigen.Transip.Models.AddLetsEncryptCertificateToHAIPRequest addLetsEncryptCertificateToHaipRequest);
+  Task AddLetsEncryptCertificateHaipAsync(string haipName, Apigen.Transip.Models.AddLetsEncryptCertificateHaipRequest addLetsEncryptCertificateHaipRequest);
 
   /// <summary>
   /// Detach a certificate from this HA-IP
@@ -63,19 +63,19 @@ public interface IHaipClient
   /// Detach all IPs from HA-IP
   /// Operation: DELETE /haips/{haipName}/ip-addresses
   /// </summary>
-  Task DetachAllIPsFromHaipAsync(string haipName);
+  Task DetachAllIpsHaipAsync(string haipName);
 
   /// <summary>
   /// List all IPs attached to a HA-IP
   /// Operation: GET /haips/{haipName}/ip-addresses
   /// </summary>
-  Task<JsonElement> ListAllIPsAttachedToAhaipAsync(string haipName);
+  Task<JsonElement> ListAllIpsAttachedHaipAsync(string haipName);
 
   /// <summary>
   /// Set HA-IP attached IP addresses
   /// Operation: PUT /haips/{haipName}/ip-addresses
   /// </summary>
-  Task SetHaipAttachedIPAddressesAsync(string haipName, Apigen.Transip.Models.SetHAIPAttachedIPAddressesRequest setHaipAttachedIPAddressesRequest);
+  Task SetHaipAttachedIpAddressesAsync(string haipName, Apigen.Transip.Models.SetHaipAttachedIpAddressesRequest setHaipAttachedIpAddressesRequest);
 
   /// <summary>
   /// List all HA-IP port configurations
@@ -87,7 +87,7 @@ public interface IHaipClient
   /// Create a port configuration
   /// Operation: POST /haips/{haipName}/port-configurations
   /// </summary>
-  Task CreateAPortConfigurationAsync(string haipName, Apigen.Transip.Models.CreateAPortConfigurationRequest createAPortConfigurationRequest);
+  Task CreatePortConfigurationAsync(string haipName, Apigen.Transip.Models.CreatePortConfigurationRequest createPortConfigurationRequest);
 
   /// <summary>
   /// Remove port configuration
@@ -105,12 +105,12 @@ public interface IHaipClient
   /// Update a port configuration
   /// Operation: PUT /haips/{haipName}/port-configurations/{portConfigurationId}
   /// </summary>
-  Task UpdateAsync(string haipName, decimal portConfigurationId, Apigen.Transip.Models.UpdateAPortConfigurationRequest updateAPortConfigurationRequest);
+  Task UpdateAsync(string haipName, decimal portConfigurationId, Apigen.Transip.Models.UpdatePortConfigurationRequest updatePortConfigurationRequest);
 
   /// <summary>
   /// Get a full status report for a HA-IP
   /// Operation: GET /haips/{haipName}/status-reports
   /// </summary>
-  Task<JsonElement> GetAFullStatusReportForAhaipAsync(string haipName);
+  Task<JsonElement> GetFullStatusReportHaipAsync(string haipName);
 
 }

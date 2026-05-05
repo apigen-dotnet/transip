@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Licenses from OpenAPI schema.
 /// Schema path: #/components/schemas/Licenses
 /// </summary>
-public class Licenses
+public partial class Licenses
 {
   /// <summary>
   /// A list of licenses active on your VPS

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// BigStorageBackup from OpenAPI schema.
 /// Schema path: #/components/schemas/BigStorageBackup
 /// </summary>
-public class BigStorageBackup
+public partial class BigStorageBackup
 {
   /// <summary>
   /// The name of the availability zone the backup is in

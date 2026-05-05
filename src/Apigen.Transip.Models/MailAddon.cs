@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// MailAddon from OpenAPI schema.
 /// Schema path: #/components/schemas/MailAddon
 /// </summary>
-public class MailAddon
+public partial class MailAddon
 {
   /// <summary>
   /// Indication of whether this addon can be linked, any addons that do not add extra disk space cannot be linked.

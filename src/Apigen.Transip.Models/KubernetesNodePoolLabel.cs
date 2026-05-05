@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesNodePoolLabel from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesNodePoolLabel
 /// </summary>
-public class KubernetesNodePoolLabel
+public partial class KubernetesNodePoolLabel
 {
   /// <summary>
   /// Label key

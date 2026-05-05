@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// SslCertificate from OpenAPI schema.
 /// Schema path: #/components/schemas/SslCertificate
 /// </summary>
-public class SslCertificate
+public partial class SslCertificate
 {
   /// <summary>
   /// Whether the certificate can be reissued

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Nameserver from OpenAPI schema.
 /// Schema path: #/components/schemas/Nameserver
 /// </summary>
-public class Nameserver
+public partial class Nameserver
 {
   /// <summary>
   /// The hostname of this nameserver

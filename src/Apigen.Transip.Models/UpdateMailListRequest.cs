@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateMailListRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateMailListRequest
+/// UpdateMailListRequest (generated from inline request body).
+/// Source: PUT /email/{domain}/mail-lists/{listId} (requestBody)
 /// </summary>
-public class UpdateMailListRequest
+public partial class UpdateMailListRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("mailList")]

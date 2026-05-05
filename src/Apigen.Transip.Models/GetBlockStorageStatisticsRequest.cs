@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// GetBlockStorageStatisticsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/GetBlockStorageStatisticsRequest
+/// GetBlockStorageStatisticsRequest (generated from inline request body).
+/// Source: GET /kubernetes/clusters/{clusterName}/block-storages/{name}/stats (requestBody)
 /// </summary>
-public class GetBlockStorageStatisticsRequest
+public partial class GetBlockStorageStatisticsRequest
 {
   /// <summary>
   /// The end date of the usage statistics

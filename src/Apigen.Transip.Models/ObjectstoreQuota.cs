@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// ObjectstoreQuota from OpenAPI schema.
 /// Schema path: #/components/schemas/ObjectstoreQuota
 /// </summary>
-public class ObjectstoreQuota
+public partial class ObjectstoreQuota
 {
   /// <summary>
   /// The active quota in bytes

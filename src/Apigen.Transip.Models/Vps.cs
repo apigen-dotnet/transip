@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Vps from OpenAPI schema.
 /// Schema path: #/components/schemas/Vps
 /// </summary>
-public class Vps
+public partial class Vps
 {
   /// <summary>
   /// The custom tags added to this VPS

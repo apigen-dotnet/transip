@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// InvoiceItemDiscount from OpenAPI schema.
 /// Schema path: #/components/schemas/InvoiceItemDiscount
 /// </summary>
-public class InvoiceItemDiscount
+public partial class InvoiceItemDiscount
 {
   /// <summary>
   /// Discounted amount (in cents)

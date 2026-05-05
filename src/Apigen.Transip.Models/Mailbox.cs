@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Mailbox from OpenAPI schema.
 /// Schema path: #/components/schemas/Mailbox
 /// </summary>
-public class Mailbox
+public partial class Mailbox
 {
   /// <summary>
   /// Disk space that is available for the mailbox

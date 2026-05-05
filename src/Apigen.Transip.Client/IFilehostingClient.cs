@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Filehosting operations
 /// </summary>
-public interface IFilehostingClient
+public partial interface IFilehostingClient
 {
   /// <summary>
   /// List all disks
@@ -21,13 +21,13 @@ public interface IFilehostingClient
   /// Order a new disk
   /// Operation: POST /filehosting/disks
   /// </summary>
-  Task OrderANewDiskAsync(Apigen.Transip.Models.OrderANewDiskRequest orderANewDiskRequest);
+  Task OrderNewDiskAsync(Apigen.Transip.Models.OrderNewDiskRequest orderNewDiskRequest);
 
   /// <summary>
   /// Cancel a disk
   /// Operation: DELETE /filehosting/disks/{diskId}
   /// </summary>
-  Task DeleteAsync(string diskId, Apigen.Transip.Models.CancelADiskRequest cancelADiskRequest);
+  Task DeleteAsync(string diskId, Apigen.Transip.Models.CancelDiskRequest cancelDiskRequest);
 
   /// <summary>
   /// Get disk by disk id
@@ -45,7 +45,7 @@ public interface IFilehostingClient
   /// List all backups for a disk
   /// Operation: GET /filehosting/disks/{diskId}/backups
   /// </summary>
-  Task<JsonElement> ListAllBackupsForADiskAsync(string diskId);
+  Task<JsonElement> ListAllBackupsDiskAsync(string diskId);
 
   /// <summary>
   /// Revert a backup for a disk
@@ -57,13 +57,13 @@ public interface IFilehostingClient
   /// List all custom domain names for a disk
   /// Operation: GET /filehosting/disks/{diskId}/custom-domains
   /// </summary>
-  Task<JsonElement> ListAllCustomDomainNamesForADiskAsync(string diskId);
+  Task<JsonElement> ListAllCustomDomainNamesDiskAsync(string diskId);
 
   /// <summary>
   /// Attach custom domain name for a disk
   /// Operation: POST /filehosting/disks/{diskId}/custom-domains
   /// </summary>
-  Task AttachCustomDomainNameForADiskAsync(string diskId, Apigen.Transip.Models.AttachCustomDomainNameForADiskRequest attachCustomDomainNameForADiskRequest);
+  Task AttachCustomDomainNameDiskAsync(string diskId, Apigen.Transip.Models.AttachCustomDomainNameDiskRequest attachCustomDomainNameDiskRequest);
 
   /// <summary>
   /// Detach a custom domain for a disk
@@ -75,18 +75,18 @@ public interface IFilehostingClient
   /// Upgrade a disk contract
   /// Operation: PUT /filehosting/disks/{diskId}/upgrades
   /// </summary>
-  Task UpgradeADiskContractAsync(string diskId, Apigen.Transip.Models.UpgradeADiskContractRequest upgradeADiskContractRequest);
+  Task UpgradeDiskContractAsync(string diskId, Apigen.Transip.Models.UpgradeDiskContractRequest upgradeDiskContractRequest);
 
   /// <summary>
   /// List all users of a disk
   /// Operation: GET /filehosting/disks/{diskId}/users
   /// </summary>
-  Task<JsonElement> ListAllUsersOfADiskAsync(string diskId);
+  Task<JsonElement> ListAllUsersDiskAsync(string diskId);
 
   /// <summary>
   /// Reset password for a disk user
   /// Operation: PUT /filehosting/disks/{diskId}/users
   /// </summary>
-  Task ResetPasswordForADiskUserAsync(string diskId, Apigen.Transip.Models.ResetPasswordForADiskUserRequest resetPasswordForADiskUserRequest);
+  Task ResetPasswordDiskUserAsync(string diskId, Apigen.Transip.Models.ResetPasswordDiskUserRequest resetPasswordDiskUserRequest);
 
 }

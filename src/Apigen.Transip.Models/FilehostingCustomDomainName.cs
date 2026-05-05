@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// FilehostingCustomDomainName from OpenAPI schema.
 /// Schema path: #/components/schemas/FilehostingCustomDomainName
 /// </summary>
-public class FilehostingCustomDomainName
+public partial class FilehostingCustomDomainName
 {
   /// <summary>
   /// Creation time of the custom domain name

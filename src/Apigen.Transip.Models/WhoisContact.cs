@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// WhoisContact from OpenAPI schema.
 /// Schema path: #/components/schemas/WhoisContact
 /// </summary>
-public class WhoisContact
+public partial class WhoisContact
 {
   /// <summary>
   /// The city part of the address of this Contact

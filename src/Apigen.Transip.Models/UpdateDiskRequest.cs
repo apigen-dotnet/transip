@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateDiskRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateDiskRequest
+/// UpdateDiskRequest (generated from inline request body).
+/// Source: PUT /filehosting/disks/{diskId} (requestBody)
 /// </summary>
-public class UpdateDiskRequest
+public partial class UpdateDiskRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("disk")]

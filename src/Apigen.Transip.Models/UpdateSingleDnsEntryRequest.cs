@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateSingleDnsEntryRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateSingleDnsEntryRequest
+/// UpdateSingleDnsEntryRequest (generated from inline request body).
+/// Source: PATCH /domains/{domainName}/dns (requestBody)
 /// </summary>
-public class UpdateSingleDnsEntryRequest
+public partial class UpdateSingleDnsEntryRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("dnsEntry")]

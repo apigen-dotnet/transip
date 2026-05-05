@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for VPS operations
 /// </summary>
-public interface IVpsClient
+public partial interface IVpsClient
 {
   /// <summary>
   /// List all big storages
@@ -45,13 +45,13 @@ public interface IVpsClient
   /// List backups for a big storage
   /// Operation: GET /big-storages/{bigStorageIdentifier}/backups
   /// </summary>
-  Task<JsonElement> ListBackupsForABigStorageAsync(string bigStorageIdentifier);
+  Task<JsonElement> ListBackupsBigStorageAsync(string bigStorageIdentifier);
 
   /// <summary>
   /// Revert a big storage backup
   /// Operation: PATCH /big-storages/{bigStorageIdentifier}/backups/{backupId}
   /// </summary>
-  Task RevertABigStorageBackupAsync(string bigStorageIdentifier, decimal backupId, Apigen.Transip.Models.RevertABigStorageBackupRequest revertABigStorageBackupRequest);
+  Task RevertBigStorageBackupAsync(string bigStorageIdentifier, decimal backupId, Apigen.Transip.Models.RevertBigStorageBackupRequest revertBigStorageBackupRequest);
 
   /// <summary>
   /// Get big storage usage statistics
@@ -93,13 +93,13 @@ public interface IVpsClient
   /// List backups for a block storage
   /// Operation: GET /block-storages/{blockStorageIdentifier}/backups
   /// </summary>
-  Task<JsonElement> ListBackupsForABlockStorageAsync(string blockStorageIdentifier);
+  Task<JsonElement> ListBackupsBlockStorageAsync(string blockStorageIdentifier);
 
   /// <summary>
   /// Revert a block storage backup
   /// Operation: PATCH /block-storages/{blockStorageIdentifier}/backups/{backupId}
   /// </summary>
-  Task RevertABlockStorageBackupAsync(string blockStorageIdentifier, decimal backupId, Apigen.Transip.Models.RevertABlockStorageBackupRequest revertABlockStorageBackupRequest);
+  Task RevertBlockStorageBackupAsync(string blockStorageIdentifier, decimal backupId, Apigen.Transip.Models.RevertBlockStorageBackupRequest revertBlockStorageBackupRequest);
 
   /// <summary>
   /// Get block storage usage statistics
@@ -123,7 +123,7 @@ public interface IVpsClient
   /// Add mail service DNS entries to domains
   /// Operation: POST /mail-service
   /// </summary>
-  Task AddMailServiceDnsEntriesToDomainsAsync(Apigen.Transip.Models.AddMailServiceDnsEntriesToDomainsRequest addMailServiceDnsEntriesToDomainsRequest);
+  Task AddMailServiceDnsEntriesDomainsAsync(Apigen.Transip.Models.AddMailServiceDnsEntriesDomainsRequest addMailServiceDnsEntriesDomainsRequest);
 
   /// <summary>
   /// List all contacts
@@ -135,7 +135,7 @@ public interface IVpsClient
   /// Create a contact
   /// Operation: POST /monitoring-contacts
   /// </summary>
-  Task CreateAContactAsync(Apigen.Transip.Models.CreateAContactRequest createAContactRequest);
+  Task CreateContactAsync(Apigen.Transip.Models.CreateContactRequest createContactRequest);
 
   /// <summary>
   /// Delete a contact
@@ -147,7 +147,7 @@ public interface IVpsClient
   /// Update a contact
   /// Operation: PUT /monitoring-contacts/{contactId}
   /// </summary>
-  Task UpdateAsync(decimal contactId, Apigen.Transip.Models.UpdateAContactRequest updateAContactRequest);
+  Task UpdateAsync(decimal contactId, Apigen.Transip.Models.UpdateContactRequest updateContactRequest);
 
   /// <summary>
   /// Filter Operating Systems on specifications
@@ -165,13 +165,13 @@ public interface IVpsClient
   /// Order a new private network
   /// Operation: POST /private-networks
   /// </summary>
-  Task OrderANewPrivateNetworkAsync(Apigen.Transip.Models.OrderANewPrivateNetworkRequest orderANewPrivateNetworkRequest);
+  Task OrderNewPrivateNetworkAsync(Apigen.Transip.Models.OrderNewPrivateNetworkRequest orderNewPrivateNetworkRequest);
 
   /// <summary>
   /// Cancel a private network
   /// Operation: DELETE /private-networks/{privateNetworkName}
   /// </summary>
-  Task DeleteAsync(string privateNetworkName, Apigen.Transip.Models.CancelAPrivateNetworkRequest cancelAPrivateNetworkRequest);
+  Task DeleteAsync(string privateNetworkName, Apigen.Transip.Models.CancelPrivateNetworkRequest cancelPrivateNetworkRequest);
 
   /// <summary>
   /// Get private network by name
@@ -183,7 +183,7 @@ public interface IVpsClient
   /// Detach vps from privateNetwork
   /// Operation: PATCH /private-networks/{privateNetworkName}
   /// </summary>
-  Task DetachVpsFromPrivateNetworkAsync(string privateNetworkName, Apigen.Transip.Models.DetachVpsFromPrivateNetworkRequest detachVpsFromPrivateNetworkRequest);
+  Task DetachVpsPrivateNetworkAsync(string privateNetworkName, Apigen.Transip.Models.DetachVpsPrivateNetworkRequest detachVpsPrivateNetworkRequest);
 
   /// <summary>
   /// Update private network
@@ -213,13 +213,13 @@ public interface IVpsClient
   /// Clone a VPS
   /// Operation: POST /vps
   /// </summary>
-  Task CloneAVpsAsync(Apigen.Transip.Models.CloneAVpsRequest cloneAVpsRequest);
+  Task CloneVpsAsync(Apigen.Transip.Models.CloneVpsRequest cloneVpsRequest);
 
   /// <summary>
   /// Cancel a VPS
   /// Operation: DELETE /vps/{vpsIdentifier}
   /// </summary>
-  Task DeleteAsync(string vpsIdentifier, Apigen.Transip.Models.CancelAVpsRequest cancelAVpsRequest);
+  Task DeleteAsync(string vpsIdentifier, Apigen.Transip.Models.CancelVpsRequest cancelVpsRequest);
 
   /// <summary>
   /// Get VPS by identifier
@@ -231,25 +231,25 @@ public interface IVpsClient
   /// Handover a VPS
   /// Operation: PATCH /vps/{vpsIdentifier}
   /// </summary>
-  Task HandoverAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.HandoverAVpsRequest handoverAVpsRequest);
+  Task HandoverVpsAsync(string vpsIdentifier, Apigen.Transip.Models.HandoverVpsRequest handoverVpsRequest);
 
   /// <summary>
   /// Update a VPS
   /// Operation: PUT /vps/{vpsIdentifier}
   /// </summary>
-  Task UpdateAsync(string vpsIdentifier, Apigen.Transip.Models.UpdateAVpsRequest updateAVpsRequest);
+  Task UpdateAsync(string vpsIdentifier, Apigen.Transip.Models.UpdateVpsRequest updateVpsRequest);
 
   /// <summary>
   /// List addons for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/addons
   /// </summary>
-  Task<JsonElement> ListAddonsForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListAddonsVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Order addons for a VPS
   /// Operation: POST /vps/{vpsIdentifier}/addons
   /// </summary>
-  Task OrderAddonsForAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.OrderAddonsForAVpsRequest orderAddonsForAVpsRequest);
+  Task OrderAddonsVpsAsync(string vpsIdentifier, Apigen.Transip.Models.OrderAddonsVpsRequest orderAddonsVpsRequest);
 
   /// <summary>
   /// Cancel an addon for a VPS
@@ -261,43 +261,43 @@ public interface IVpsClient
   /// List backups for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/backups
   /// </summary>
-  Task<JsonElement> ListBackupsForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListBackupsVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Convert backup to snapshot
   /// Operation: PATCH /vps/{vpsIdentifier}/backups/{backupId}
   /// </summary>
-  Task ConvertBackupToSnapshotAsync(string vpsIdentifier, decimal backupId, Apigen.Transip.Models.ConvertBackupToSnapshotRequest convertBackupToSnapshotRequest);
+  Task ConvertBackupSnapshotAsync(string vpsIdentifier, decimal backupId, Apigen.Transip.Models.ConvertBackupSnapshotRequest convertBackupSnapshotRequest);
 
   /// <summary>
   /// List firewall for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/firewall
   /// </summary>
-  Task<JsonElement> ListFirewallForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListFirewallVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Reset firewall for a VPS
   /// Operation: PATCH /vps/{vpsIdentifier}/firewall
   /// </summary>
-  Task ResetFirewallForAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.ResetFirewallForAVpsRequest resetFirewallForAVpsRequest);
+  Task ResetFirewallVpsAsync(string vpsIdentifier, Apigen.Transip.Models.ResetFirewallVpsRequest resetFirewallVpsRequest);
 
   /// <summary>
   /// Update firewall for a VPS
   /// Operation: PUT /vps/{vpsIdentifier}/firewall
   /// </summary>
-  Task UpdateFirewallForAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.UpdateFirewallForAVpsRequest updateFirewallForAVpsRequest);
+  Task UpdateFirewallVpsAsync(string vpsIdentifier, Apigen.Transip.Models.UpdateFirewallVpsRequest updateFirewallVpsRequest);
 
   /// <summary>
   /// List IP addresses for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/ip-addresses
   /// </summary>
-  Task<JsonElement> ListIPAddressesForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListIpAddressesVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Add IPv6 address to a VPS
   /// Operation: POST /vps/{vpsIdentifier}/ip-addresses
   /// </summary>
-  Task AddIPv6AddressToAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.AddIPv6AddressToAVpsRequest addIPv6AddressToAVpsRequest);
+  Task AddIPv6AddressVpsAsync(string vpsIdentifier, Apigen.Transip.Models.AddIPv6AddressVpsRequest addIPv6AddressVpsRequest);
 
   /// <summary>
   /// Remove an IPv6 address from a VPS
@@ -315,19 +315,19 @@ public interface IVpsClient
   /// Update reverse DNS for a VPS
   /// Operation: PUT /vps/{vpsIdentifier}/ip-addresses/{ipAddress}
   /// </summary>
-  Task UpdateAsync(string vpsIdentifier, string ipAddress, Apigen.Transip.Models.UpdateReverseDnsForAVpsRequest updateReverseDnsForAVpsRequest);
+  Task UpdateAsync(string vpsIdentifier, string ipAddress, Apigen.Transip.Models.UpdateReverseDnsVpsRequest updateReverseDnsVpsRequest);
 
   /// <summary>
   /// List licenses for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/licenses
   /// </summary>
-  Task<JsonElement> ListLicensesForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListLicensesVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Order an addon license
   /// Operation: POST /vps/{vpsIdentifier}/licenses
   /// </summary>
-  Task OrderAnAddonLicenseAsync(string vpsIdentifier, Apigen.Transip.Models.OrderAnAddonLicenseRequest orderAnAddonLicenseRequest);
+  Task OrderAddonLicenseAsync(string vpsIdentifier, Apigen.Transip.Models.OrderAddonLicenseRequest orderAddonLicenseRequest);
 
   /// <summary>
   /// Cancel an addon license
@@ -339,37 +339,37 @@ public interface IVpsClient
   /// Update an operating system license
   /// Operation: PUT /vps/{vpsIdentifier}/licenses/{licenseId}
   /// </summary>
-  Task UpdateAsync(string vpsIdentifier, string licenseId, Apigen.Transip.Models.UpdateAnOperatingSystemLicenseRequest updateAnOperatingSystemLicenseRequest);
+  Task UpdateAsync(string vpsIdentifier, string licenseId, Apigen.Transip.Models.UpdateOperatingSystemLicenseRequest updateOperatingSystemLicenseRequest);
 
   /// <summary>
   /// List installable operating systems for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/operating-systems
   /// </summary>
-  Task<JsonElement> ListInstallableOperatingSystemsForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListInstallableOperatingSystemsVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Install an operating system on a VPS
   /// Operation: POST /vps/{vpsIdentifier}/operating-systems
   /// </summary>
-  Task InstallAnOperatingSystemOnAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.InstallAnOperatingSystemOnAVpsRequest installAnOperatingSystemOnAVpsRequest);
+  Task InstallOperatingSystemOnVpsAsync(string vpsIdentifier, Apigen.Transip.Models.InstallOperatingSystemOnVpsRequest installOperatingSystemOnVpsRequest);
 
   /// <summary>
   /// Get Rescue Images for your VPS
   /// Operation: GET /vps/{vpsIdentifier}/rescue-images
   /// </summary>
-  Task<JsonElement> GetRescueImagesForYourVpsAsync(string vpsIdentifier);
+  Task<JsonElement> GetRescueImagesYourVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Boot Rescue Image for a VPS
   /// Operation: PATCH /vps/{vpsIdentifier}/rescue-images
   /// </summary>
-  Task BootRescueImageForAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.BootRescueImageForAVpsRequest bootRescueImageForAVpsRequest);
+  Task BootRescueImageVpsAsync(string vpsIdentifier, Apigen.Transip.Models.BootRescueImageVpsRequest bootRescueImageVpsRequest);
 
   /// <summary>
   /// List All Settings for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/settings
   /// </summary>
-  Task<JsonElement> ListAllSettingsForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListAllSettingsVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Get VPS Setting Information
@@ -381,19 +381,19 @@ public interface IVpsClient
   /// Update a setting for the specified VPS
   /// Operation: PUT /vps/{vpsIdentifier}/settings/{setting}
   /// </summary>
-  Task UpdateAsync(string vpsIdentifier, string setting, Apigen.Transip.Models.UpdateASettingForTheSpecifiedVpsRequest updateASettingForTheSpecifiedVpsRequest);
+  Task UpdateAsync(string vpsIdentifier, string setting, Apigen.Transip.Models.UpdateSettingSpecifiedVpsRequest updateSettingSpecifiedVpsRequest);
 
   /// <summary>
   /// List snapshots for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/snapshots
   /// </summary>
-  Task<JsonElement> ListSnapshotsForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListSnapshotsVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Create snapshot of a VPS
   /// Operation: POST /vps/{vpsIdentifier}/snapshots
   /// </summary>
-  Task CreateSnapshotOfAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.CreateSnapshotOfAVpsRequest createSnapshotOfAVpsRequest);
+  Task CreateSnapshotVpsAsync(string vpsIdentifier, Apigen.Transip.Models.CreateSnapshotVpsRequest createSnapshotVpsRequest);
 
   /// <summary>
   /// Delete a snapshot
@@ -411,19 +411,19 @@ public interface IVpsClient
   /// Revert snapshot to a VPS
   /// Operation: PATCH /vps/{vpsIdentifier}/snapshots/{snapshotName}
   /// </summary>
-  Task RevertSnapshotToAVpsAsync(string vpsIdentifier, string snapshotName, Apigen.Transip.Models.RevertSnapshotToAVpsRequest revertSnapshotToAVpsRequest);
+  Task RevertSnapshotVpsAsync(string vpsIdentifier, string snapshotName, Apigen.Transip.Models.RevertSnapshotVpsRequest revertSnapshotVpsRequest);
 
   /// <summary>
   /// List all TCP monitors for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/tcp-monitors
   /// </summary>
-  Task<JsonElement> ListAllTcpMonitorsForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListAllTcpMonitorsVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Create a TCP monitor for a VPS
   /// Operation: POST /vps/{vpsIdentifier}/tcp-monitors
   /// </summary>
-  Task CreateATcpMonitorForAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.CreateATcpMonitorForAVpsRequest createATcpMonitorForAVpsRequest);
+  Task CreateTcpMonitorVpsAsync(string vpsIdentifier, Apigen.Transip.Models.CreateTcpMonitorVpsRequest createTcpMonitorVpsRequest);
 
   /// <summary>
   /// Delete a TCP monitor for a VPS
@@ -435,36 +435,36 @@ public interface IVpsClient
   /// Update a TCP monitor for a VPS
   /// Operation: PUT /vps/{vpsIdentifier}/tcp-monitors/{ipAddress}
   /// </summary>
-  Task UpdateAsync(string vpsIdentifier, string ipAddress, Apigen.Transip.Models.UpdateATcpMonitorForAVpsRequest updateATcpMonitorForAVpsRequest);
+  Task UpdateAsync(string vpsIdentifier, string ipAddress, Apigen.Transip.Models.UpdateTcpMonitorVpsRequest updateTcpMonitorVpsRequest);
 
   /// <summary>
   /// List available upgrades for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/upgrades
   /// </summary>
-  Task<JsonElement> ListAvailableUpgradesForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> ListAvailableUpgradesVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Upgrade a VPS
   /// Operation: POST /vps/{vpsIdentifier}/upgrades
   /// </summary>
-  Task UpgradeAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.UpgradeAVpsRequest upgradeAVpsRequest);
+  Task UpgradeVpsAsync(string vpsIdentifier, Apigen.Transip.Models.UpgradeVpsRequest upgradeVpsRequest);
 
   /// <summary>
   /// Get usage data for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/usage
   /// </summary>
-  Task<JsonElement> GetUsageDataForAVpsAsync(string vpsIdentifier, Apigen.Transip.Models.GetUsageDataForAVpsRequest getUsageDataForAVpsRequest);
+  Task<JsonElement> GetUsageDataVpsAsync(string vpsIdentifier, Apigen.Transip.Models.GetUsageDataVpsRequest getUsageDataVpsRequest);
 
   /// <summary>
   /// Get VNC data for a VPS
   /// Operation: GET /vps/{vpsIdentifier}/vnc-data
   /// </summary>
-  Task<JsonElement> GetVncDataForAVpsAsync(string vpsIdentifier);
+  Task<JsonElement> GetVncDataVpsAsync(string vpsIdentifier);
 
   /// <summary>
   /// Regenerate VNC token for a vps
   /// Operation: PATCH /vps/{vpsIdentifier}/vnc-data
   /// </summary>
-  Task RegenerateVncTokenForAVpsAsync(string vpsIdentifier);
+  Task RegenerateVncTokenVpsAsync(string vpsIdentifier);
 
 }

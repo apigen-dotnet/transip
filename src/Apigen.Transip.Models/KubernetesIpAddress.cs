@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesIpAddress from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesIpAddress
 /// </summary>
-public class KubernetesIpAddress
+public partial class KubernetesIpAddress
 {
   /// <summary>
   /// The IP address

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// AvailabilityZone from OpenAPI schema.
 /// Schema path: #/components/schemas/AvailabilityZone
 /// </summary>
-public class AvailabilityZone
+public partial class AvailabilityZone
 {
   /// <summary>
   /// The 2 letter code for the country the AvailabilityZone is in

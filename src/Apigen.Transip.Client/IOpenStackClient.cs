@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for OpenStack operations
 /// </summary>
-public interface IOpenStackClient
+public partial interface IOpenStackClient
 {
   /// <summary>
   /// List all projects
@@ -21,7 +21,7 @@ public interface IOpenStackClient
   /// Create a new project
   /// Operation: POST /openstack/projects
   /// </summary>
-  Task CreateANewProjectAsync(Apigen.Transip.Models.CreateANewProjectRequest createANewProjectRequest);
+  Task CreateNewProjectAsync(Apigen.Transip.Models.CreateNewProjectRequest createNewProjectRequest);
 
   /// <summary>
   /// Cancel a Project
@@ -39,43 +39,43 @@ public interface IOpenStackClient
   /// Handover a project
   /// Operation: PATCH /openstack/projects/{projectId}
   /// </summary>
-  Task HandoverAProjectAsync(string projectId, Apigen.Transip.Models.HandoverAProjectRequest handoverAProjectRequest);
+  Task HandoverProjectAsync(string projectId, Apigen.Transip.Models.HandoverProjectRequest handoverProjectRequest);
 
   /// <summary>
   /// Update a project
   /// Operation: PUT /openstack/projects/{projectId}
   /// </summary>
-  Task UpdateAsync(string projectId, Apigen.Transip.Models.UpdateAProjectRequest updateAProjectRequest);
+  Task UpdateAsync(string projectId, Apigen.Transip.Models.UpdateProjectRequest updateProjectRequest);
 
   /// <summary>
   /// List users that can be assigned to a project
   /// Operation: GET /openstack/projects/{projectId}/assignable-users
   /// </summary>
-  Task<JsonElement> ListUsersThatCanBeAssignedToAProjectAsync(string projectId);
+  Task<JsonElement> ListUsersThatCanBeAssignedProjectAsync(string projectId);
 
   /// <summary>
   /// List a single project quota
   /// Operation: GET /openstack/projects/{projectId}/quota
   /// </summary>
-  Task<JsonElement> ListASingleProjectQuotaAsync(string projectId);
+  Task<JsonElement> ListSingleProjectQuotaAsync(string projectId);
 
   /// <summary>
   /// Create an Objectstore quota
   /// Operation: POST /openstack/projects/{projectId}/quota
   /// </summary>
-  Task CreateAnObjectstoreQuotaAsync(string projectId, Apigen.Transip.Models.CreateAnObjectstoreQuotaRequest createAnObjectstoreQuotaRequest);
+  Task CreateObjectstoreQuotaAsync(string projectId, Apigen.Transip.Models.CreateObjectstoreQuotaRequest createObjectstoreQuotaRequest);
 
   /// <summary>
   /// List users in a project
   /// Operation: GET /openstack/projects/{projectId}/users
   /// </summary>
-  Task<JsonElement> ListUsersInAProjectAsync(string projectId);
+  Task<JsonElement> ListUsersInProjectAsync(string projectId);
 
   /// <summary>
   /// Add a user to a project
   /// Operation: POST /openstack/projects/{projectId}/users
   /// </summary>
-  Task AddAUserToAProjectAsync(string projectId, Apigen.Transip.Models.AddAUserToAProjectRequest addAUserToAProjectRequest);
+  Task AddUserProjectAsync(string projectId, Apigen.Transip.Models.AddUserProjectRequest addUserProjectRequest);
 
   /// <summary>
   /// Remove a user from project
@@ -93,7 +93,7 @@ public interface IOpenStackClient
   /// Create a new user
   /// Operation: POST /openstack/users
   /// </summary>
-  Task CreateANewUserAsync(Apigen.Transip.Models.CreateANewUserRequest createANewUserRequest);
+  Task CreateNewUserAsync(Apigen.Transip.Models.CreateNewUserRequest createNewUserRequest);
 
   /// <summary>
   /// Delete a user
@@ -111,31 +111,31 @@ public interface IOpenStackClient
   /// Change password for a user
   /// Operation: PATCH /openstack/users/{userId}
   /// </summary>
-  Task ChangePasswordForAUserAsync(string userId, Apigen.Transip.Models.ChangePasswordForAUserRequest changePasswordForAUserRequest);
+  Task ChangePasswordUserAsync(string userId, Apigen.Transip.Models.ChangePasswordUserRequest changePasswordUserRequest);
 
   /// <summary>
   /// Update a user
   /// Operation: PUT /openstack/users/{userId}
   /// </summary>
-  Task UpdateAsync(string userId, Apigen.Transip.Models.UpdateAUserRequest updateAUserRequest);
+  Task UpdateAsync(string userId, Apigen.Transip.Models.UpdateUserRequest updateUserRequest);
 
   /// <summary>
   /// List all S3 tokens for a user
   /// Operation: GET /openstack/users/{userId}/tokens
   /// </summary>
-  Task<JsonElement> ListAllS3TokensForAUserAsync(string userId);
+  Task<JsonElement> ListAllS3TokensUserAsync(string userId);
 
   /// <summary>
   /// Create a new S3 token
   /// Operation: POST /openstack/users/{userId}/tokens
   /// </summary>
-  Task<JsonElement> CreateANewS3TokenAsync(string userId, Apigen.Transip.Models.CreateANewS3TokenRequest createANewS3TokenRequest);
+  Task<JsonElement> CreateNewS3TokenAsync(string userId, Apigen.Transip.Models.CreateNewS3TokenRequest createNewS3TokenRequest);
 
   /// <summary>
   /// Delete a S3 token
   /// Operation: DELETE /openstack/users/{userId}/tokens/{tokenId}
   /// </summary>
-  Task DeleteAsync(string userId, string tokenId, Apigen.Transip.Models.DeleteAS3TokenRequest deleteAS3TokenRequest);
+  Task DeleteAsync(string userId, string tokenId, Apigen.Transip.Models.DeleteS3TokenRequest deleteS3TokenRequest);
 
   /// <summary>
   /// List a S3 token

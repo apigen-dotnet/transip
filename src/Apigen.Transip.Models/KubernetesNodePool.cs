@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesNodePool from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesNodePool
 /// </summary>
-public class KubernetesNodePool
+public partial class KubernetesNodePool
 {
   /// <summary>
   /// The availabilityZone the nodes of this nodePool are in

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// LicenseProduct from OpenAPI schema.
 /// Schema path: #/components/schemas/LicenseProduct
 /// </summary>
-public class LicenseProduct
+public partial class LicenseProduct
 {
   /// <summary>
   /// Whether this license is the default

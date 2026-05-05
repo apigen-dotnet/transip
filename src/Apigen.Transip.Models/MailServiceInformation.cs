@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// MailServiceInformation from OpenAPI schema.
 /// Schema path: #/components/schemas/MailServiceInformation
 /// </summary>
-public class MailServiceInformation
+public partial class MailServiceInformation
 {
   /// <summary>
   /// x-transip-mail-auth DNS TXT record Value

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Tenant from OpenAPI schema.
 /// Schema path: #/components/schemas/Tenant
 /// </summary>
-public class Tenant
+public partial class Tenant
 {
   /// <summary>
   /// description of the tenant

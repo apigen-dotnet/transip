@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateAllDnssecEntriesRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateAllDnssecEntriesRequest
+/// UpdateAllDnssecEntriesRequest (generated from inline request body).
+/// Source: PUT /domains/{domainName}/dnssec (requestBody)
 /// </summary>
-public class UpdateAllDnssecEntriesRequest
+public partial class UpdateAllDnssecEntriesRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("dnsSecEntries")]

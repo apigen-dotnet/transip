@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// BigStorage from OpenAPI schema.
 /// Schema path: #/components/schemas/BigStorage
 /// </summary>
-public class BigStorage
+public partial class BigStorage
 {
   /// <summary>
   /// The availability zone the bigstorage is located in

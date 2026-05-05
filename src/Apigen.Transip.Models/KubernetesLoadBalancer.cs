@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesLoadBalancer from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesLoadBalancer
 /// </summary>
-public class KubernetesLoadBalancer
+public partial class KubernetesLoadBalancer
 {
   [System.Text.Json.Serialization.JsonPropertyName("aggregatedStatus")]
   public KubernetesLoadBalancerAggregatedStatus? AggregatedStatus { get; set; }

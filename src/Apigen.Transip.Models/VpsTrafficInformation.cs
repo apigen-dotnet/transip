@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsTrafficInformation from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsTrafficInformation
 /// </summary>
-public class VpsTrafficInformation
+public partial class VpsTrafficInformation
 {
   /// <summary>
   /// The end date in &apos;Y-m-d&apos; format

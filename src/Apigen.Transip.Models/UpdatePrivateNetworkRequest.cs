@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdatePrivateNetworkRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdatePrivateNetworkRequest
+/// UpdatePrivateNetworkRequest (generated from inline request body).
+/// Source: PUT /private-networks/{privateNetworkName} (requestBody)
 /// </summary>
-public class UpdatePrivateNetworkRequest
+public partial class UpdatePrivateNetworkRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("privateNetwork")]

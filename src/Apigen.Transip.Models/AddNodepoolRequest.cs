@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// AddNodepoolRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/AddNodepoolRequest
+/// AddNodepoolRequest (generated from inline request body).
+/// Source: POST /kubernetes/clusters/{clusterName}/node-pools (requestBody)
 /// </summary>
-public class AddNodepoolRequest
+public partial class AddNodepoolRequest
 {
   /// <summary>
   /// Availability Zone the WorkerNodes of this pool will spawn

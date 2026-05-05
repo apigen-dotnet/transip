@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// TCPMonitorContact from OpenAPI schema.
 /// Schema path: #/components/schemas/TCPMonitorContact
 /// </summary>
-public class TcpMonitorContact
+public partial class TcpMonitorContact
 {
   /// <summary>
   /// Send emails to contact

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// FilehostingDisk from OpenAPI schema.
 /// Schema path: #/components/schemas/FilehostingDisk
 /// </summary>
-public class FilehostingDisk
+public partial class FilehostingDisk
 {
   /// <summary>
   /// The creation date time for the disk

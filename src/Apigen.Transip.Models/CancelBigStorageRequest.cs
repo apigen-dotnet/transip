@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// CancelBigStorageRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/CancelBigStorageRequest
+/// CancelBigStorageRequest (generated from inline request body).
+/// Source: DELETE /big-storages/{bigStorageIdentifier} (requestBody)
 /// </summary>
-public class CancelBigStorageRequest
+public partial class CancelBigStorageRequest
 {
   /// <summary>
   /// Cancellation time, either &apos;end&apos; or &apos;immediately&apos;

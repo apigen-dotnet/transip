@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateTenantRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateTenantRequest
+/// UpdateTenantRequest (generated from inline request body).
+/// Source: PUT /acronis/tenants/{tenantUuid} (requestBody)
 /// </summary>
-public class UpdateTenantRequest
+public partial class UpdateTenantRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("tenant")]

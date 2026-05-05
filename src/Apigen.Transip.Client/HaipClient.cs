@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for HA-IP operations
 /// </summary>
-public class HaipClient
+public partial class HaipClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -29,7 +29,7 @@ public class HaipClient
   /// List all HA-IPs
   /// Operation: GET /haips
   /// </summary>
-  public async Task<JsonElement> ListAllHaiPsAsync()
+  public async Task<JsonElement> ListAllHaipsAsync()
   {
     string url = "haips";
 
@@ -62,13 +62,13 @@ public class HaipClient
   /// Order a new HA-IP
   /// Operation: POST /haips
   /// </summary>
-  public async Task OrderANewHaipAsync(Apigen.Transip.Models.OrderANewHAIPRequest orderANewHaipRequest)
+  public async Task OrderNewHaipAsync(Apigen.Transip.Models.OrderNewHaipRequest orderNewHaipRequest)
   {
     string url = "haips";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(orderANewHaipRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(orderNewHaipRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -92,7 +92,7 @@ public class HaipClient
   /// Cancel a HA-IP
   /// Operation: DELETE /haips/{haipName}
   /// </summary>
-  public async Task DeleteAsync(string haipName, Apigen.Transip.Models.CancelAHAIPRequest cancelAhaipRequest)
+  public async Task DeleteAsync(string haipName, Apigen.Transip.Models.CancelHaipRequest cancelHaipRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -160,7 +160,7 @@ public class HaipClient
   /// Update a HA-IP
   /// Operation: PUT /haips/{haipName}
   /// </summary>
-  public async Task UpdateAsync(string haipName, Apigen.Transip.Models.UpdateAHAIPRequest updateAhaipRequest)
+  public async Task UpdateAsync(string haipName, Apigen.Transip.Models.UpdateHaipRequest updateHaipRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -170,7 +170,7 @@ public class HaipClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateAhaipRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateHaipRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -231,7 +231,7 @@ public class HaipClient
   /// Add LetsEncrypt certificate to HA-IP
   /// Operation: POST /haips/{haipName}/certificates
   /// </summary>
-  public async Task AddLetsEncryptCertificateToHaipAsync(string haipName, Apigen.Transip.Models.AddLetsEncryptCertificateToHAIPRequest addLetsEncryptCertificateToHaipRequest)
+  public async Task AddLetsEncryptCertificateHaipAsync(string haipName, Apigen.Transip.Models.AddLetsEncryptCertificateHaipRequest addLetsEncryptCertificateHaipRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -241,7 +241,7 @@ public class HaipClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(addLetsEncryptCertificateToHaipRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(addLetsEncryptCertificateHaipRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -297,7 +297,7 @@ public class HaipClient
   /// Detach all IPs from HA-IP
   /// Operation: DELETE /haips/{haipName}/ip-addresses
   /// </summary>
-  public async Task DetachAllIPsFromHaipAsync(string haipName)
+  public async Task DetachAllIpsHaipAsync(string haipName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -328,7 +328,7 @@ public class HaipClient
   /// List all IPs attached to a HA-IP
   /// Operation: GET /haips/{haipName}/ip-addresses
   /// </summary>
-  public async Task<JsonElement> ListAllIPsAttachedToAhaipAsync(string haipName)
+  public async Task<JsonElement> ListAllIpsAttachedHaipAsync(string haipName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -365,7 +365,7 @@ public class HaipClient
   /// Set HA-IP attached IP addresses
   /// Operation: PUT /haips/{haipName}/ip-addresses
   /// </summary>
-  public async Task SetHaipAttachedIPAddressesAsync(string haipName, Apigen.Transip.Models.SetHAIPAttachedIPAddressesRequest setHaipAttachedIPAddressesRequest)
+  public async Task SetHaipAttachedIpAddressesAsync(string haipName, Apigen.Transip.Models.SetHaipAttachedIpAddressesRequest setHaipAttachedIpAddressesRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -375,7 +375,7 @@ public class HaipClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(setHaipAttachedIPAddressesRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(setHaipAttachedIpAddressesRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -436,7 +436,7 @@ public class HaipClient
   /// Create a port configuration
   /// Operation: POST /haips/{haipName}/port-configurations
   /// </summary>
-  public async Task CreateAPortConfigurationAsync(string haipName, Apigen.Transip.Models.CreateAPortConfigurationRequest createAPortConfigurationRequest)
+  public async Task CreatePortConfigurationAsync(string haipName, Apigen.Transip.Models.CreatePortConfigurationRequest createPortConfigurationRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -446,7 +446,7 @@ public class HaipClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(createAPortConfigurationRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(createPortConfigurationRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -540,7 +540,7 @@ public class HaipClient
   /// Update a port configuration
   /// Operation: PUT /haips/{haipName}/port-configurations/{portConfigurationId}
   /// </summary>
-  public async Task UpdateAsync(string haipName, decimal portConfigurationId, Apigen.Transip.Models.UpdateAPortConfigurationRequest updateAPortConfigurationRequest)
+  public async Task UpdateAsync(string haipName, decimal portConfigurationId, Apigen.Transip.Models.UpdatePortConfigurationRequest updatePortConfigurationRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -551,7 +551,7 @@ public class HaipClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateAPortConfigurationRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updatePortConfigurationRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -575,7 +575,7 @@ public class HaipClient
   /// Get a full status report for a HA-IP
   /// Operation: GET /haips/{haipName}/status-reports
   /// </summary>
-  public async Task<JsonElement> GetAFullStatusReportForAhaipAsync(string haipName)
+  public async Task<JsonElement> GetFullStatusReportHaipAsync(string haipName)
   {
     Dictionary<string, object> pathParams = new()
     {

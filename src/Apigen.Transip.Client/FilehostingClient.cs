@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Filehosting operations
 /// </summary>
-public class FilehostingClient
+public partial class FilehostingClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -62,13 +62,13 @@ public class FilehostingClient
   /// Order a new disk
   /// Operation: POST /filehosting/disks
   /// </summary>
-  public async Task OrderANewDiskAsync(Apigen.Transip.Models.OrderANewDiskRequest orderANewDiskRequest)
+  public async Task OrderNewDiskAsync(Apigen.Transip.Models.OrderNewDiskRequest orderNewDiskRequest)
   {
     string url = "filehosting/disks";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(orderANewDiskRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(orderNewDiskRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -92,7 +92,7 @@ public class FilehostingClient
   /// Cancel a disk
   /// Operation: DELETE /filehosting/disks/{diskId}
   /// </summary>
-  public async Task DeleteAsync(string diskId, Apigen.Transip.Models.CancelADiskRequest cancelADiskRequest)
+  public async Task DeleteAsync(string diskId, Apigen.Transip.Models.CancelDiskRequest cancelDiskRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -194,7 +194,7 @@ public class FilehostingClient
   /// List all backups for a disk
   /// Operation: GET /filehosting/disks/{diskId}/backups
   /// </summary>
-  public async Task<JsonElement> ListAllBackupsForADiskAsync(string diskId)
+  public async Task<JsonElement> ListAllBackupsDiskAsync(string diskId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -263,7 +263,7 @@ public class FilehostingClient
   /// List all custom domain names for a disk
   /// Operation: GET /filehosting/disks/{diskId}/custom-domains
   /// </summary>
-  public async Task<JsonElement> ListAllCustomDomainNamesForADiskAsync(string diskId)
+  public async Task<JsonElement> ListAllCustomDomainNamesDiskAsync(string diskId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -300,7 +300,7 @@ public class FilehostingClient
   /// Attach custom domain name for a disk
   /// Operation: POST /filehosting/disks/{diskId}/custom-domains
   /// </summary>
-  public async Task AttachCustomDomainNameForADiskAsync(string diskId, Apigen.Transip.Models.AttachCustomDomainNameForADiskRequest attachCustomDomainNameForADiskRequest)
+  public async Task AttachCustomDomainNameDiskAsync(string diskId, Apigen.Transip.Models.AttachCustomDomainNameDiskRequest attachCustomDomainNameDiskRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -310,7 +310,7 @@ public class FilehostingClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(attachCustomDomainNameForADiskRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(attachCustomDomainNameDiskRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -366,7 +366,7 @@ public class FilehostingClient
   /// Upgrade a disk contract
   /// Operation: PUT /filehosting/disks/{diskId}/upgrades
   /// </summary>
-  public async Task UpgradeADiskContractAsync(string diskId, Apigen.Transip.Models.UpgradeADiskContractRequest upgradeADiskContractRequest)
+  public async Task UpgradeDiskContractAsync(string diskId, Apigen.Transip.Models.UpgradeDiskContractRequest upgradeDiskContractRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -376,7 +376,7 @@ public class FilehostingClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(upgradeADiskContractRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(upgradeDiskContractRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -400,7 +400,7 @@ public class FilehostingClient
   /// List all users of a disk
   /// Operation: GET /filehosting/disks/{diskId}/users
   /// </summary>
-  public async Task<JsonElement> ListAllUsersOfADiskAsync(string diskId)
+  public async Task<JsonElement> ListAllUsersDiskAsync(string diskId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -437,7 +437,7 @@ public class FilehostingClient
   /// Reset password for a disk user
   /// Operation: PUT /filehosting/disks/{diskId}/users
   /// </summary>
-  public async Task ResetPasswordForADiskUserAsync(string diskId, Apigen.Transip.Models.ResetPasswordForADiskUserRequest resetPasswordForADiskUserRequest)
+  public async Task ResetPasswordDiskUserAsync(string diskId, Apigen.Transip.Models.ResetPasswordDiskUserRequest resetPasswordDiskUserRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -447,7 +447,7 @@ public class FilehostingClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(resetPasswordForADiskUserRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(resetPasswordDiskUserRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);

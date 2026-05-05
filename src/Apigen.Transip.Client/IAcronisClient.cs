@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Acronis operations
 /// </summary>
-public interface IAcronisClient
+public partial interface IAcronisClient
 {
   /// <summary>
   /// List all tenants
@@ -21,13 +21,13 @@ public interface IAcronisClient
   /// Order a new tenant
   /// Operation: POST /acronis/tenants
   /// </summary>
-  Task OrderANewTenantAsync(Apigen.Transip.Models.OrderANewTenantRequest orderANewTenantRequest);
+  Task OrderNewTenantAsync(Apigen.Transip.Models.OrderNewTenantRequest orderNewTenantRequest);
 
   /// <summary>
   /// Cancel a tenant
   /// Operation: DELETE /acronis/tenants/{tenantUuid}
   /// </summary>
-  Task DeleteAsync(string tenantUuid, Apigen.Transip.Models.CancelATenantRequest cancelATenantRequest);
+  Task DeleteAsync(string tenantUuid, Apigen.Transip.Models.CancelTenantRequest cancelTenantRequest);
 
   /// <summary>
   /// Get tenant by uuid
@@ -57,7 +57,7 @@ public interface IAcronisClient
   /// Downgrade a tenant
   /// Operation: PUT /acronis/tenants/{tenantUuid}/downgrades
   /// </summary>
-  Task DowngradeATenantAsync(string tenantUuid, Apigen.Transip.Models.DowngradeATenantRequest downgradeATenantRequest);
+  Task DowngradeTenantAsync(string tenantUuid, Apigen.Transip.Models.DowngradeTenantRequest downgradeTenantRequest);
 
   /// <summary>
   /// Generate one time token login url
@@ -69,18 +69,18 @@ public interface IAcronisClient
   /// Upgrade a tenant
   /// Operation: PUT /acronis/tenants/{tenantUuid}/upgrades
   /// </summary>
-  Task UpgradeATenantAsync(string tenantUuid, Apigen.Transip.Models.UpgradeATenantRequest upgradeATenantRequest);
+  Task UpgradeTenantAsync(string tenantUuid, Apigen.Transip.Models.UpgradeTenantRequest upgradeTenantRequest);
 
   /// <summary>
   /// Fetch overview of current storage usage [DEPRECATED]
   /// Operation: GET /acronis/tenants/{tenantUuid}/usage
   /// </summary>
-  Task<JsonElement> FetchOverviewOfCurrentStorageUsageDeprecatedAsync(string tenantUuid);
+  Task<JsonElement> FetchOverviewCurrentStorageUsageDeprecatedAsync(string tenantUuid);
 
   /// <summary>
   /// Fetch overview of current usages
   /// Operation: GET /acronis/tenants/{tenantUuid}/usages
   /// </summary>
-  Task<JsonElement> FetchOverviewOfCurrentUsagesAsync(string tenantUuid);
+  Task<JsonElement> FetchOverviewCurrentUsagesAsync(string tenantUuid);
 
 }

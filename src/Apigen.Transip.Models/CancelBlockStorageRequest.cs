@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// CancelBlockStorageRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/CancelBlockStorageRequest
+/// CancelBlockStorageRequest (generated from inline request body).
+/// Source: DELETE /block-storages/{blockStorageIdentifier} (requestBody)
 /// </summary>
-public class CancelBlockStorageRequest
+public partial class CancelBlockStorageRequest
 {
   /// <summary>
   /// Cancellation time, either &apos;end&apos; or &apos;immediately&apos;

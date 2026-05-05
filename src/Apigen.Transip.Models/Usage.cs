@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Usage from OpenAPI schema.
 /// Schema path: #/components/schemas/Usage
 /// </summary>
-public class Usage
+public partial class Usage
 {
   [Required]
   [System.Text.Json.Serialization.JsonPropertyName("cpu")]

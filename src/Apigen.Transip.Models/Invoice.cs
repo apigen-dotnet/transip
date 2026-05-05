@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Invoice from OpenAPI schema.
 /// Schema path: #/components/schemas/Invoice
 /// </summary>
-public class Invoice
+public partial class Invoice
 {
   /// <summary>
   /// Invoice creation date

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesEvent from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesEvent
 /// </summary>
-public class KubernetesEvent
+public partial class KubernetesEvent
 {
   /// <summary>
   /// The amount of times the event occured

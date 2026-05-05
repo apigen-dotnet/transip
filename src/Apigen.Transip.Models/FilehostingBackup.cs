@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// FilehostingBackup from OpenAPI schema.
 /// Schema path: #/components/schemas/FilehostingBackup
 /// </summary>
-public class FilehostingBackup
+public partial class FilehostingBackup
 {
   /// <summary>
   /// Size of this disk backup in bytes

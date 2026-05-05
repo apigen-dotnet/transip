@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// RescueImage from OpenAPI schema.
 /// Schema path: #/components/schemas/RescueImage
 /// </summary>
-public class RescueImage
+public partial class RescueImage
 {
   /// <summary>
   /// Name of Rescue Image

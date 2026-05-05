@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Addons from OpenAPI schema.
 /// Schema path: #/components/schemas/Addons
 /// </summary>
-public class Addons
+public partial class Addons
 {
   /// <summary>
   /// A list of all active addons

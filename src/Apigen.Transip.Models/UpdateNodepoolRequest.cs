@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateNodepoolRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateNodepoolRequest
+/// UpdateNodepoolRequest (generated from inline request body).
+/// Source: PUT /kubernetes/clusters/{clusterName}/node-pools/{uuid} (requestBody)
 /// </summary>
-public class UpdateNodepoolRequest
+public partial class UpdateNodepoolRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("nodePool")]

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// DataCenterVisitor from OpenAPI schema.
 /// Schema path: #/components/schemas/DataCenterVisitor
 /// </summary>
-public class DataCenterVisitor
+public partial class DataCenterVisitor
 {
   /// <summary>
   /// The accesscode of the visitor

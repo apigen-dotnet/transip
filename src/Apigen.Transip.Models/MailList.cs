@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// MailList from OpenAPI schema.
 /// Schema path: #/components/schemas/MailList
 /// </summary>
-public class MailList
+public partial class MailList
 {
   /// <summary>
   /// The emailAddress of the list.

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubeConfig from OpenAPI schema.
 /// Schema path: #/components/schemas/KubeConfig
 /// </summary>
-public class KubeConfig
+public partial class KubeConfig
 {
   /// <summary>
   /// KubeConfig base64 encoded YAML

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesLoadBalancerConfig from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesLoadBalancerConfig
 /// </summary>
-public class KubernetesLoadBalancerConfig
+public partial class KubernetesLoadBalancerConfig
 {
   /// <summary>
   /// The interval in milliseconds at which health checks are performed. The interval may not be smaller than 2000ms.

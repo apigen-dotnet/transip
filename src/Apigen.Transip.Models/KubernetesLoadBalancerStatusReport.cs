@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesLoadBalancerStatusReport from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesLoadBalancerStatusReport
 /// </summary>
-public class KubernetesLoadBalancerStatusReport
+public partial class KubernetesLoadBalancerStatusReport
 {
   /// <summary>
   /// IP version 4/6

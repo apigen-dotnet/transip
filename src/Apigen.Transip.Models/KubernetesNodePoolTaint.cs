@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesNodePoolTaint from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesNodePoolTaint
 /// </summary>
-public class KubernetesNodePoolTaint
+public partial class KubernetesNodePoolTaint
 {
   /// <summary>
   /// Taint effect, either NoSchedule, PreferNoSchedule or NoExecute

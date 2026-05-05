@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Setting from OpenAPI schema.
 /// Schema path: #/components/schemas/Setting
 /// </summary>
-public class Setting
+public partial class Setting
 {
   /// <summary>
   /// Setting Datatype

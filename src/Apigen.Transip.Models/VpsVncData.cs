@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsVncData from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsVncData
 /// </summary>
-public class VpsVncData
+public partial class VpsVncData
 {
   /// <summary>
   /// Location of the VNC Proxy

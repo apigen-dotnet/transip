@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// TenantUsage from OpenAPI schema.
 /// Schema path: #/components/schemas/TenantUsage
 /// </summary>
-public class TenantUsage
+public partial class TenantUsage
 {
   /// <summary>
   /// The current usage of your acronis product

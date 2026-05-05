@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// MailPackage from OpenAPI schema.
 /// Schema path: #/components/schemas/MailPackage
 /// </summary>
-public class MailPackage
+public partial class MailPackage
 {
   /// <summary>
   /// Domain of the EmailPackage

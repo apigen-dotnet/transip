@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for Colocations operations
 /// </summary>
-public class ColocationsClient
+public partial class ColocationsClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -99,7 +99,7 @@ public class ColocationsClient
   /// List IP addresses for a colocation
   /// Operation: GET /colocations/{colocationName}/ip-addresses
   /// </summary>
-  public async Task<JsonElement> ListIPAddressesForAColocationAsync(string colocationName)
+  public async Task<JsonElement> ListIpAddressesColocationAsync(string colocationName)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -136,7 +136,7 @@ public class ColocationsClient
   /// Create a new IP address for a colocation
   /// Operation: POST /colocations/{colocationName}/ip-addresses
   /// </summary>
-  public async Task CreateANewIPAddressForAColocationAsync(string colocationName, Apigen.Transip.Models.CreateANewIPAddressForAColocationRequest createANewIPAddressForAColocationRequest)
+  public async Task CreateNewIpAddressColocationAsync(string colocationName, Apigen.Transip.Models.CreateNewIpAddressColocationRequest createNewIpAddressColocationRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -146,7 +146,7 @@ public class ColocationsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(createANewIPAddressForAColocationRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(createNewIpAddressColocationRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -240,7 +240,7 @@ public class ColocationsClient
   /// Set reverse DNS for an IP address
   /// Operation: PUT /colocations/{colocationName}/ip-addresses/{ipAddress}
   /// </summary>
-  public async Task UpdateAsync(string colocationName, string ipAddress, Apigen.Transip.Models.SetReverseDnsForAnIPAddressRequest setReverseDnsForAnIPAddressRequest)
+  public async Task UpdateAsync(string colocationName, string ipAddress, Apigen.Transip.Models.SetReverseDnsIpAddressRequest setReverseDnsIpAddressRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -251,7 +251,7 @@ public class ColocationsClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(setReverseDnsForAnIPAddressRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(setReverseDnsIpAddressRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);

@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// GetBlockStorageUsageStatisticsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/GetBlockStorageUsageStatisticsRequest
+/// GetBlockStorageUsageStatisticsRequest (generated from inline request body).
+/// Source: GET /block-storages/{blockStorageIdentifier}/usage (requestBody)
 /// </summary>
-public class GetBlockStorageUsageStatisticsRequest
+public partial class GetBlockStorageUsageStatisticsRequest
 {
   /// <summary>
   /// The end date of the usage statistics

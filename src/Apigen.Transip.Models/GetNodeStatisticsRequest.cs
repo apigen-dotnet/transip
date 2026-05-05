@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// GetNodeStatisticsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/GetNodeStatisticsRequest
+/// GetNodeStatisticsRequest (generated from inline request body).
+/// Source: GET /kubernetes/clusters/{clusterName}/nodes/{uuid}/stats (requestBody)
 /// </summary>
-public class GetNodeStatisticsRequest
+public partial class GetNodeStatisticsRequest
 {
   /// <summary>
   /// The end date of the usage statistics

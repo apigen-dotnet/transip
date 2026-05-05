@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateDomainBrandingRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateDomainBrandingRequest
+/// UpdateDomainBrandingRequest (generated from inline request body).
+/// Source: PUT /domains/{domainName}/branding (requestBody)
 /// </summary>
-public class UpdateDomainBrandingRequest
+public partial class UpdateDomainBrandingRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("branding")]

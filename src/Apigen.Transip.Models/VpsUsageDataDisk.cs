@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsUsageDataDisk from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsUsageDataDisk
 /// </summary>
-public class VpsUsageDataDisk
+public partial class VpsUsageDataDisk
 {
   /// <summary>
   /// Date of the entry, by default in UNIX timestamp format

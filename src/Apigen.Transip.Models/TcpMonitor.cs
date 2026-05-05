@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// TCPMonitor from OpenAPI schema.
 /// Schema path: #/components/schemas/TCPMonitor
 /// </summary>
-public class TcpMonitor
+public partial class TcpMonitor
 {
   /// <summary>
   /// Allowed time outs (numbers 1-5)

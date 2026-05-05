@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpgradeBigStorageRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpgradeBigStorageRequest
+/// UpgradeBigStorageRequest (generated from inline request body).
+/// Source: POST /big-storages (requestBody)
 /// </summary>
-public class UpgradeBigStorageRequest
+public partial class UpgradeBigStorageRequest
 {
   /// <summary>
   /// The name of the bigstorage to upgrade

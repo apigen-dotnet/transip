@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// ListSingleVolumeRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/ListSingleVolumeRequest
+/// ListSingleVolumeRequest (generated from inline request body).
+/// Source: GET /kubernetes/clusters/{clusterName}/block-storages/{name} (requestBody)
 /// </summary>
-public class ListSingleVolumeRequest
+public partial class ListSingleVolumeRequest
 {
   /// <summary>
   /// location of the volume

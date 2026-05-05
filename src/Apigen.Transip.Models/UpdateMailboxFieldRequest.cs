@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateMailboxFieldRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateMailboxFieldRequest
+/// UpdateMailboxFieldRequest (generated from inline request body).
+/// Source: PATCH /email/{domain}/mailboxes/{identifier} (requestBody)
 /// </summary>
-public class UpdateMailboxFieldRequest
+public partial class UpdateMailboxFieldRequest
 {
   /// <summary>
   /// The target email to forward to

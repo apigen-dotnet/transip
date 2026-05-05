@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Tld from OpenAPI schema.
 /// Schema path: #/components/schemas/Tld
 /// </summary>
-public class Tld
+public partial class Tld
 {
   /// <summary>
   /// Number of days a domain needs to be canceled before the renewal date.

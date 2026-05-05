@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesNode from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesNode
 /// </summary>
-public class KubernetesNode
+public partial class KubernetesNode
 {
   /// <summary>
   /// Name of the cluster the node is in

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Colocation from OpenAPI schema.
 /// Schema path: #/components/schemas/Colocation
 /// </summary>
-public class Colocation
+public partial class Colocation
 {
   /// <summary>
   /// List of IP ranges

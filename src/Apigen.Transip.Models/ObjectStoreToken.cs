@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// ObjectStoreToken from OpenAPI schema.
 /// Schema path: #/components/schemas/ObjectStoreToken
 /// </summary>
-public class ObjectStoreToken
+public partial class ObjectStoreToken
 {
   /// <summary>
   /// Object Store access key

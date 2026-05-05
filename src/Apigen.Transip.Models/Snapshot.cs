@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Snapshot from OpenAPI schema.
 /// Schema path: #/components/schemas/Snapshot
 /// </summary>
-public class Snapshot
+public partial class Snapshot
 {
   /// <summary>
   /// The snapshot creation date

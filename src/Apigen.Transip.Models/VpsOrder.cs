@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// VpsOrder from OpenAPI schema.
 /// Schema path: #/components/schemas/VpsOrder
 /// </summary>
-public class VpsOrder
+public partial class VpsOrder
 {
   /// <summary>
   /// Array with additional addons

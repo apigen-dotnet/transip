@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// FilehostingUser from OpenAPI schema.
 /// Schema path: #/components/schemas/FilehostingUser
 /// </summary>
-public class FilehostingUser
+public partial class FilehostingUser
 {
   /// <summary>
   /// The creation date &amp; time of the user

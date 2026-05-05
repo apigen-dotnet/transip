@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Account operations
 /// </summary>
-public interface IAccountClient
+public partial interface IAccountClient
 {
   /// <summary>
   /// Contact key
@@ -33,13 +33,13 @@ public interface IAccountClient
   /// List invoice items by InvoiceNumber
   /// Operation: GET /invoices/{invoiceNumber}/invoice-items
   /// </summary>
-  Task<JsonElement> ListInvoiceItemsByInvoiceNumberAsync(string invoiceNumber);
+  Task<JsonElement> ListInvoiceItemsInvoiceNumberAsync(string invoiceNumber);
 
   /// <summary>
   /// Retrieve an invoice as PDF file
   /// Operation: GET /invoices/{invoiceNumber}/pdf
   /// </summary>
-  Task<JsonElement> RetrieveAnInvoiceAsPdfFileAsync(string invoiceNumber);
+  Task<JsonElement> RetrieveInvoiceAsPdfFileAsync(string invoiceNumber);
 
   /// <summary>
   /// List all SSH keys
@@ -51,7 +51,7 @@ public interface IAccountClient
   /// Add a new SSH key
   /// Operation: POST /ssh-keys
   /// </summary>
-  Task AddANewSshKeyAsync(Apigen.Transip.Models.AddANewSshKeyRequest addANewSshKeyRequest);
+  Task AddNewSshKeyAsync(Apigen.Transip.Models.AddNewSshKeyRequest addNewSshKeyRequest);
 
   /// <summary>
   /// Delete an SSH key
@@ -69,6 +69,6 @@ public interface IAccountClient
   /// Update an SSH key
   /// Operation: PUT /ssh-keys/{id}
   /// </summary>
-  Task UpdateAsync(string id, Apigen.Transip.Models.UpdateAnSshKeyRequest updateAnSshKeyRequest);
+  Task UpdateAsync(string id, Apigen.Transip.Models.UpdateSshKeyRequest updateSshKeyRequest);
 
 }

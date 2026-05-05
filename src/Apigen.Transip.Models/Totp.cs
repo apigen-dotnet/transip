@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Totp from OpenAPI schema.
 /// Schema path: #/components/schemas/Totp
 /// </summary>
-public class Totp
+public partial class Totp
 {
   /// <summary>
   /// Secret key which can be used to create a QR code.

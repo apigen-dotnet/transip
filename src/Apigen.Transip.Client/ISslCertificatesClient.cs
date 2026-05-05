@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for SSL Certificates operations
 /// </summary>
-public interface ISslCertificatesClient
+public partial interface ISslCertificatesClient
 {
   /// <summary>
   /// List all SSL certificates
@@ -21,7 +21,7 @@ public interface ISslCertificatesClient
   /// Order a SSL certificate
   /// Operation: POST /ssl-certificates
   /// </summary>
-  Task OrderASslCertificateAsync(Apigen.Transip.Models.OrderASslCertificateRequest orderASslCertificateRequest);
+  Task OrderSslCertificateAsync(Apigen.Transip.Models.OrderSslCertificateRequest orderSslCertificateRequest);
 
   /// <summary>
   /// Get SSL certificate by id
@@ -33,30 +33,30 @@ public interface ISslCertificatesClient
   /// Reissue a certificate
   /// Operation: PATCH /ssl-certificates/{certificateId}
   /// </summary>
-  Task ReissueACertificateAsync(decimal certificateId, Apigen.Transip.Models.ReissueACertificateRequest reissueACertificateRequest);
+  Task ReissueCertificateAsync(decimal certificateId, Apigen.Transip.Models.ReissueCertificateRequest reissueCertificateRequest);
 
   /// <summary>
   /// Details for SSL certificate by id
   /// Operation: GET /ssl-certificates/{certificateId}/details
   /// </summary>
-  Task<JsonElement> DetailsForSslCertificateByIdAsync(decimal certificateId);
+  Task<JsonElement> DetailsSslCertificateIdAsync(decimal certificateId);
 
   /// <summary>
   /// Download a SSL certificate by id
   /// Operation: POST /ssl-certificates/{certificateId}/download
   /// </summary>
-  Task<JsonElement> DownloadASslCertificateByIdAsync(decimal certificateId, Apigen.Transip.Models.DownloadASslCertificateByIdRequest downloadASslCertificateByIdRequest);
+  Task<JsonElement> DownloadSslCertificateIdAsync(decimal certificateId, Apigen.Transip.Models.DownloadSslCertificateIdRequest downloadSslCertificateIdRequest);
 
   /// <summary>
   /// Install an ssl certificate
   /// Operation: PATCH /ssl-certificates/{certificateId}/install
   /// </summary>
-  Task InstallAnSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.InstallAnSslCertificateRequest installAnSslCertificateRequest);
+  Task InstallSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.InstallSslCertificateRequest installSslCertificateRequest);
 
   /// <summary>
   /// Uninstall an ssl certificate
   /// Operation: DELETE /ssl-certificates/{certificateId}/uninstall
   /// </summary>
-  Task UninstallAnSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.UninstallAnSslCertificateRequest uninstallAnSslCertificateRequest);
+  Task UninstallSslCertificateAsync(decimal certificateId, Apigen.Transip.Models.UninstallSslCertificateRequest uninstallSslCertificateRequest);
 
 }

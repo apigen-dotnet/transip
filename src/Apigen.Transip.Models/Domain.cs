@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Domain from OpenAPI schema.
 /// Schema path: #/components/schemas/Domain
 /// </summary>
-public class Domain
+public partial class Domain
 {
   /// <summary>
   /// The custom tags added to this domain.

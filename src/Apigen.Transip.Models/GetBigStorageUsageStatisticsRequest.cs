@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// GetBigStorageUsageStatisticsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/GetBigStorageUsageStatisticsRequest
+/// GetBigStorageUsageStatisticsRequest (generated from inline request body).
+/// Source: GET /big-storages/{bigStorageIdentifier}/usage (requestBody)
 /// </summary>
-public class GetBigStorageUsageStatisticsRequest
+public partial class GetBigStorageUsageStatisticsRequest
 {
   /// <summary>
   /// The end date of the usage statistics

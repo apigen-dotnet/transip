@@ -9,7 +9,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Email operations
 /// </summary>
-public interface IEmailClient
+public partial interface IEmailClient
 {
   /// <summary>
   /// List all mail packages
@@ -27,7 +27,7 @@ public interface IEmailClient
   /// Unlink email addon to mailbox
   /// Operation: PATCH /email/{domain}/mail-addons/{id}
   /// </summary>
-  Task<JsonElement> UnlinkEmailAddonToMailboxAsync(string domain, string id, Apigen.Transip.Models.UnlinkEmailAddonToMailboxRequest unlinkEmailAddonToMailboxRequest);
+  Task<JsonElement> UnlinkEmailAddonMailboxAsync(string domain, string id, Apigen.Transip.Models.UnlinkEmailAddonMailboxRequest unlinkEmailAddonMailboxRequest);
 
   /// <summary>
   /// List all mail forwards

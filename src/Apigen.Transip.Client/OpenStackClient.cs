@@ -14,7 +14,7 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Client for OpenStack operations
 /// </summary>
-public class OpenStackClient
+public partial class OpenStackClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;
@@ -62,13 +62,13 @@ public class OpenStackClient
   /// Create a new project
   /// Operation: POST /openstack/projects
   /// </summary>
-  public async Task CreateANewProjectAsync(Apigen.Transip.Models.CreateANewProjectRequest createANewProjectRequest)
+  public async Task CreateNewProjectAsync(Apigen.Transip.Models.CreateNewProjectRequest createNewProjectRequest)
   {
     string url = "openstack/projects";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(createANewProjectRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(createNewProjectRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -160,7 +160,7 @@ public class OpenStackClient
   /// Handover a project
   /// Operation: PATCH /openstack/projects/{projectId}
   /// </summary>
-  public async Task HandoverAProjectAsync(string projectId, Apigen.Transip.Models.HandoverAProjectRequest handoverAProjectRequest)
+  public async Task HandoverProjectAsync(string projectId, Apigen.Transip.Models.HandoverProjectRequest handoverProjectRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -170,7 +170,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(handoverAProjectRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(handoverProjectRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);
@@ -194,7 +194,7 @@ public class OpenStackClient
   /// Update a project
   /// Operation: PUT /openstack/projects/{projectId}
   /// </summary>
-  public async Task UpdateAsync(string projectId, Apigen.Transip.Models.UpdateAProjectRequest updateAProjectRequest)
+  public async Task UpdateAsync(string projectId, Apigen.Transip.Models.UpdateProjectRequest updateProjectRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -204,7 +204,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateAProjectRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateProjectRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -228,7 +228,7 @@ public class OpenStackClient
   /// List users that can be assigned to a project
   /// Operation: GET /openstack/projects/{projectId}/assignable-users
   /// </summary>
-  public async Task<JsonElement> ListUsersThatCanBeAssignedToAProjectAsync(string projectId)
+  public async Task<JsonElement> ListUsersThatCanBeAssignedProjectAsync(string projectId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -265,7 +265,7 @@ public class OpenStackClient
   /// List a single project quota
   /// Operation: GET /openstack/projects/{projectId}/quota
   /// </summary>
-  public async Task<JsonElement> ListASingleProjectQuotaAsync(string projectId)
+  public async Task<JsonElement> ListSingleProjectQuotaAsync(string projectId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -302,7 +302,7 @@ public class OpenStackClient
   /// Create an Objectstore quota
   /// Operation: POST /openstack/projects/{projectId}/quota
   /// </summary>
-  public async Task CreateAnObjectstoreQuotaAsync(string projectId, Apigen.Transip.Models.CreateAnObjectstoreQuotaRequest createAnObjectstoreQuotaRequest)
+  public async Task CreateObjectstoreQuotaAsync(string projectId, Apigen.Transip.Models.CreateObjectstoreQuotaRequest createObjectstoreQuotaRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -312,7 +312,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(createAnObjectstoreQuotaRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(createObjectstoreQuotaRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -336,7 +336,7 @@ public class OpenStackClient
   /// List users in a project
   /// Operation: GET /openstack/projects/{projectId}/users
   /// </summary>
-  public async Task<JsonElement> ListUsersInAProjectAsync(string projectId)
+  public async Task<JsonElement> ListUsersInProjectAsync(string projectId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -373,7 +373,7 @@ public class OpenStackClient
   /// Add a user to a project
   /// Operation: POST /openstack/projects/{projectId}/users
   /// </summary>
-  public async Task AddAUserToAProjectAsync(string projectId, Apigen.Transip.Models.AddAUserToAProjectRequest addAUserToAProjectRequest)
+  public async Task AddUserProjectAsync(string projectId, Apigen.Transip.Models.AddUserProjectRequest addUserProjectRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -383,7 +383,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(addAUserToAProjectRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(addUserProjectRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -472,13 +472,13 @@ public class OpenStackClient
   /// Create a new user
   /// Operation: POST /openstack/users
   /// </summary>
-  public async Task CreateANewUserAsync(Apigen.Transip.Models.CreateANewUserRequest createANewUserRequest)
+  public async Task CreateNewUserAsync(Apigen.Transip.Models.CreateNewUserRequest createNewUserRequest)
   {
     string url = "openstack/users";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(createANewUserRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(createNewUserRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -570,7 +570,7 @@ public class OpenStackClient
   /// Change password for a user
   /// Operation: PATCH /openstack/users/{userId}
   /// </summary>
-  public async Task ChangePasswordForAUserAsync(string userId, Apigen.Transip.Models.ChangePasswordForAUserRequest changePasswordForAUserRequest)
+  public async Task ChangePasswordUserAsync(string userId, Apigen.Transip.Models.ChangePasswordUserRequest changePasswordUserRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -580,7 +580,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PATCH", url);
-    string json = JsonSerializer.Serialize(changePasswordForAUserRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(changePasswordUserRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PATCH", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PatchAsync(url, content);
@@ -604,7 +604,7 @@ public class OpenStackClient
   /// Update a user
   /// Operation: PUT /openstack/users/{userId}
   /// </summary>
-  public async Task UpdateAsync(string userId, Apigen.Transip.Models.UpdateAUserRequest updateAUserRequest)
+  public async Task UpdateAsync(string userId, Apigen.Transip.Models.UpdateUserRequest updateUserRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -614,7 +614,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(updateAUserRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(updateUserRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
@@ -638,7 +638,7 @@ public class OpenStackClient
   /// List all S3 tokens for a user
   /// Operation: GET /openstack/users/{userId}/tokens
   /// </summary>
-  public async Task<JsonElement> ListAllS3TokensForAUserAsync(string userId)
+  public async Task<JsonElement> ListAllS3TokensUserAsync(string userId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -675,7 +675,7 @@ public class OpenStackClient
   /// Create a new S3 token
   /// Operation: POST /openstack/users/{userId}/tokens
   /// </summary>
-  public async Task<JsonElement> CreateANewS3TokenAsync(string userId, Apigen.Transip.Models.CreateANewS3TokenRequest createANewS3TokenRequest)
+  public async Task<JsonElement> CreateNewS3TokenAsync(string userId, Apigen.Transip.Models.CreateNewS3TokenRequest createNewS3TokenRequest)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -685,7 +685,7 @@ public class OpenStackClient
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(createANewS3TokenRequest, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(createNewS3TokenRequest, JsonConfig.Default);
     HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -715,7 +715,7 @@ public class OpenStackClient
   /// Delete a S3 token
   /// Operation: DELETE /openstack/users/{userId}/tokens/{tokenId}
   /// </summary>
-  public async Task DeleteAsync(string userId, string tokenId, Apigen.Transip.Models.DeleteAS3TokenRequest deleteAS3TokenRequest)
+  public async Task DeleteAsync(string userId, string tokenId, Apigen.Transip.Models.DeleteS3TokenRequest deleteS3TokenRequest)
   {
     Dictionary<string, object> pathParams = new()
     {

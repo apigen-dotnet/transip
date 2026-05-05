@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesLoadBalancerBalancing from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesLoadBalancerBalancing
 /// </summary>
-public class KubernetesLoadBalancerBalancing
+public partial class KubernetesLoadBalancerBalancing
 {
   /// <summary>
   /// LoadBalancer balancing cookie name

@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateBigStorageRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateBigStorageRequest
+/// UpdateBigStorageRequest (generated from inline request body).
+/// Source: PUT /big-storages/{bigStorageIdentifier} (requestBody)
 /// </summary>
-public class UpdateBigStorageRequest
+public partial class UpdateBigStorageRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("bigStorage")]

@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// KubernetesLoadBalancerAggregatedStatus from OpenAPI schema.
 /// Schema path: #/components/schemas/KubernetesLoadBalancerAggregatedStatus
 /// </summary>
-public class KubernetesLoadBalancerAggregatedStatus
+public partial class KubernetesLoadBalancerAggregatedStatus
 {
   /// <summary>
   /// LoadBalancer&apos;s total amount of nodes

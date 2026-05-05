@@ -21,10 +21,10 @@ using System.Text.Json.Serialization;
 namespace Apigen.Transip.Models;
 
 /// <summary>
-/// UpdateLabelsRequest from OpenAPI schema.
-/// Schema path: #/components/schemas/UpdateLabelsRequest
+/// UpdateLabelsRequest (generated from inline request body).
+/// Source: PUT /kubernetes/clusters/{clusterName}/node-pools/{uuid}/labels (requestBody)
 /// </summary>
-public class UpdateLabelsRequest
+public partial class UpdateLabelsRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("labels")]

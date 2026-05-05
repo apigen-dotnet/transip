@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// IpAddress from OpenAPI schema.
 /// Schema path: #/components/schemas/IpAddress
 /// </summary>
-public class IpAddress
+public partial class IpAddress
 {
   /// <summary>
   /// The IP address

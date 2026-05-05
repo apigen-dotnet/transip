@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// Action from OpenAPI schema.
 /// Schema path: #/components/schemas/Action
 /// </summary>
-public class Action
+public partial class Action
 {
   /// <summary>
   /// datetime for this action

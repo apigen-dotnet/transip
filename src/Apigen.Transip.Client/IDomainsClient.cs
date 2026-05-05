@@ -9,13 +9,13 @@ namespace Apigen.Transip.Client;
 /// <summary>
 /// Interface for Domains operations
 /// </summary>
-public interface IDomainsClient
+public partial interface IDomainsClient
 {
   /// <summary>
   /// Check the availability for multiple domain names
   /// Operation: GET /domain-availability
   /// </summary>
-  Task<JsonElement> CheckTheAvailabilityForMultipleDomainNamesAsync(Apigen.Transip.Models.CheckTheAvailabilityForMultipleDomainNamesRequest checkTheAvailabilityForMultipleDomainNamesRequest);
+  Task<JsonElement> CheckAvailabilityMultipleDomainNamesAsync(Apigen.Transip.Models.CheckAvailabilityMultipleDomainNamesRequest checkAvailabilityMultipleDomainNamesRequest);
 
   /// <summary>
   /// Check availability for a domain name
@@ -27,13 +27,13 @@ public interface IDomainsClient
   /// List all default domain contacts for your account
   /// Operation: GET /domain-defaults/contacts
   /// </summary>
-  Task<JsonElement> ListAllDefaultDomainContactsForYourAccountAsync();
+  Task<JsonElement> ListAllDefaultDomainContactsYourAccountAsync();
 
   /// <summary>
   /// Update contacts for a account
   /// Operation: PUT /domain-defaults/contacts
   /// </summary>
-  Task UpdateContactsForAAccountAsync(Apigen.Transip.Models.UpdateContactsForAAccountRequest updateContactsForAAccountRequest);
+  Task UpdateContactsAccountAsync(Apigen.Transip.Models.UpdateContactsAccountRequest updateContactsAccountRequest);
 
   /// <summary>
   /// List all domains
@@ -45,13 +45,13 @@ public interface IDomainsClient
   /// Transfer a domain
   /// Operation: POST /domains
   /// </summary>
-  Task TransferADomainAsync(Apigen.Transip.Models.TransferADomainRequest transferADomainRequest);
+  Task TransferDomainAsync(Apigen.Transip.Models.TransferDomainRequest transferDomainRequest);
 
   /// <summary>
   /// Cancel a domain
   /// Operation: DELETE /domains/{domainName}
   /// </summary>
-  Task DeleteAsync(string domainName, Apigen.Transip.Models.CancelADomainRequest cancelADomainRequest);
+  Task DeleteAsync(string domainName, Apigen.Transip.Models.CancelDomainRequest cancelDomainRequest);
 
   /// <summary>
   /// Retrieve an existing domain
@@ -63,13 +63,13 @@ public interface IDomainsClient
   /// Handover a domain
   /// Operation: PATCH /domains/{domainName}
   /// </summary>
-  Task HandoverADomainAsync(string domainName, Apigen.Transip.Models.HandoverADomainRequest handoverADomainRequest);
+  Task HandoverDomainAsync(string domainName, Apigen.Transip.Models.HandoverDomainRequest handoverDomainRequest);
 
   /// <summary>
   /// Update a domain
   /// Operation: PUT /domains/{domainName}
   /// </summary>
-  Task UpdateAsync(string domainName, Apigen.Transip.Models.UpdateADomainRequest updateADomainRequest);
+  Task UpdateAsync(string domainName, Apigen.Transip.Models.UpdateDomainRequest updateDomainRequest);
 
   /// <summary>
   /// Cancel domain action
@@ -93,13 +93,13 @@ public interface IDomainsClient
   /// Get auth-code of a domain name
   /// Operation: GET /domains/{domainName}/auth-code
   /// </summary>
-  Task<JsonElement> GetAuthCodeOfADomainNameAsync(string domainName);
+  Task<JsonElement> GetAuthCodeDomainNameAsync(string domainName);
 
   /// <summary>
   /// Request an auth code for a domain name
   /// Operation: POST /domains/{domainName}/auth-code
   /// </summary>
-  Task RequestAnAuthCodeForADomainNameAsync(string domainName);
+  Task RequestAuthCodeDomainNameAsync(string domainName);
 
   /// <summary>
   /// Get domain branding
@@ -117,25 +117,25 @@ public interface IDomainsClient
   /// List all contacts for a domain
   /// Operation: GET /domains/{domainName}/contacts
   /// </summary>
-  Task<JsonElement> ListAllContactsForADomainAsync(string domainName);
+  Task<JsonElement> ListAllContactsDomainAsync(string domainName);
 
   /// <summary>
   /// Update contacts for a domain
   /// Operation: PUT /domains/{domainName}/contacts
   /// </summary>
-  Task UpdateContactsForADomainAsync(string domainName, Apigen.Transip.Models.UpdateContactsForADomainRequest updateContactsForADomainRequest);
+  Task UpdateContactsDomainAsync(string domainName, Apigen.Transip.Models.UpdateContactsDomainRequest updateContactsDomainRequest);
 
   /// <summary>
   /// Remove a DNS entry from a domain
   /// Operation: DELETE /domains/{domainName}/dns
   /// </summary>
-  Task RemoveADnsEntryFromADomainAsync(string domainName, Apigen.Transip.Models.RemoveADnsEntryFromADomainRequest removeADnsEntryFromADomainRequest);
+  Task RemoveDnsEntryDomainAsync(string domainName, Apigen.Transip.Models.RemoveDnsEntryDomainRequest removeDnsEntryDomainRequest);
 
   /// <summary>
   /// List all DNS entries for a domain
   /// Operation: GET /domains/{domainName}/dns
   /// </summary>
-  Task<JsonElement> ListAllDnsEntriesForADomainAsync(string domainName);
+  Task<JsonElement> ListAllDnsEntriesDomainAsync(string domainName);
 
   /// <summary>
   /// Update single DNS entry
@@ -147,13 +147,13 @@ public interface IDomainsClient
   /// Add a new single DNS entry to a domain
   /// Operation: POST /domains/{domainName}/dns
   /// </summary>
-  Task AddANewSingleDnsEntryToADomainAsync(string domainName, Apigen.Transip.Models.AddANewSingleDnsEntryToADomainRequest addANewSingleDnsEntryToADomainRequest);
+  Task AddNewSingleDnsEntryDomainAsync(string domainName, Apigen.Transip.Models.AddNewSingleDnsEntryDomainRequest addNewSingleDnsEntryDomainRequest);
 
   /// <summary>
   /// Update all DNS entries for a domain
   /// Operation: PUT /domains/{domainName}/dns
   /// </summary>
-  Task UpdateAllDnsEntriesForADomainAsync(string domainName, Apigen.Transip.Models.UpdateAllDnsEntriesForADomainRequest updateAllDnsEntriesForADomainRequest);
+  Task UpdateAllDnsEntriesDomainAsync(string domainName, Apigen.Transip.Models.UpdateAllDnsEntriesDomainRequest updateAllDnsEntriesDomainRequest);
 
   /// <summary>
   /// List DNSSEC entries
@@ -171,13 +171,13 @@ public interface IDomainsClient
   /// List nameservers for a domain
   /// Operation: GET /domains/{domainName}/nameservers
   /// </summary>
-  Task<JsonElement> ListNameserversForADomainAsync(string domainName);
+  Task<JsonElement> ListNameserversDomainAsync(string domainName);
 
   /// <summary>
   /// Update nameservers for a domain
   /// Operation: PUT /domains/{domainName}/nameservers
   /// </summary>
-  Task UpdateNameserversForADomainAsync(string domainName, Apigen.Transip.Models.UpdateNameserversForADomainRequest updateNameserversForADomainRequest);
+  Task UpdateNameserversDomainAsync(string domainName, Apigen.Transip.Models.UpdateNameserversDomainRequest updateNameserversDomainRequest);
 
   /// <summary>
   /// List all SSL certificates
@@ -195,7 +195,7 @@ public interface IDomainsClient
   /// Get WHOIS information for a domain name
   /// Operation: GET /domains/{domainName}/whois
   /// </summary>
-  Task<JsonElement> GetWhoisInformationForADomainNameAsync(string domainName);
+  Task<JsonElement> GetWhoisInformationDomainNameAsync(string domainName);
 
   /// <summary>
   /// List all TLDs
@@ -213,6 +213,6 @@ public interface IDomainsClient
   /// Order a whitelabel account
   /// Operation: POST /whitelabel
   /// </summary>
-  Task OrderAWhitelabelAccountAsync();
+  Task OrderWhitelabelAccountAsync();
 
 }

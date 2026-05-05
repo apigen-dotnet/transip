@@ -45,16 +45,13 @@ token_header = "Authorization"
 required_headers = []
 
 [naming]
-# Spec uses "HA-IP" in operationIds. The client generator preserves "HAIP"
-# (uppercased) for derived request type names, while the model generator
-# normalises to "Haip". naming.overrides bypasses PascalCase so model files
-# match the client's references.
-[naming.overrides]
-"OrderANewHaipRequest" = "OrderANewHAIPRequest"
-"CancelAhaipRequest" = "CancelAHAIPRequest"
-"UpdateAhaipRequest" = "UpdateAHAIPRequest"
-"AddLetsEncryptCertificateToHaipRequest" = "AddLetsEncryptCertificateToHAIPRequest"
-"SetHaipAttachedIPAddressesRequest" = "SetHAIPAttachedIPAddressesRequest"
+# TransIP-specific acronyms applied on top of the generator's built-in dict.
+# HAIP and IP appear in spec text and need consistent normalization.
+acronyms = { HAIPs = "Haips", HAIP = "Haip", IPs = "Ips", IP = "Ip" }
+
+# Articles/prepositions to strip from operationIds before PascalCase.
+# Turns "Cancel a HA-IP" into "CancelHaip" instead of "CancelAHaip".
+stop_words = ["a", "an", "the", "of", "for", "to", "from", "by"]
 
 [formatting]
 use_spaces = true

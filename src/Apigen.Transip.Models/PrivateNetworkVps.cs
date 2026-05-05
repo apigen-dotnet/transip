@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// PrivateNetworkVps from OpenAPI schema.
 /// Schema path: #/components/schemas/PrivateNetworkVps
 /// </summary>
-public class PrivateNetworkVps
+public partial class PrivateNetworkVps
 {
   /// <summary>
   /// The name that can be set by customer

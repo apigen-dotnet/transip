@@ -24,7 +24,7 @@ namespace Apigen.Transip.Models;
 /// SettingValue from OpenAPI schema.
 /// Schema path: #/components/schemas/SettingValue
 /// </summary>
-public class SettingValue
+public partial class SettingValue
 {
   /// <summary>
   /// Boolean Value
