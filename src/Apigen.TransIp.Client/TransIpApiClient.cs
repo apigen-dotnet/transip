@@ -12,7 +12,7 @@ namespace Apigen.TransIp.Client;
 /// <summary>
 /// Main API client for accessing all resources
 /// </summary>
-public partial class TransIpApiClient
+public partial class TransIpApiClient : IDisposable
 {
   private readonly HttpClient _httpClient;
   private readonly bool _disposeHttpClient;
