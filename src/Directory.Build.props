@@ -14,7 +14,7 @@
 
   <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.TransIp.Client'">
     <PackageId>Apigen.TransIp.Client</PackageId>
-    <Version>6.53.2</Version>
+    <Version>6.53.3</Version>
     <Description>Generated C# client for the TransIP REST API v6</Description>
     <PackageTags>transip;api;client;openapi;apigen;hosting;domains;vps</PackageTags>
     <PackageReadmeFile>NUGET.md</PackageReadmeFile>
