@@ -1,11 +1,11 @@
 <Project>
-  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Transip.Client'">
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.TransIp.Client'">
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeModelsInPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <Target Name="IncludeModelsInPackage">
     <ItemGroup>
-      <BuildOutputInPackage Include="$(OutputPath)Apigen.Transip.Models.dll" />
+      <BuildOutputInPackage Include="$(OutputPath)Apigen.TransIp.Models.dll" />
     </ItemGroup>
   </Target>
 </Project>

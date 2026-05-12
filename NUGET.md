@@ -1,23 +1,23 @@
-# Apigen.Transip
+# Apigen.TransIp
 
 Generated C# client for the [TransIP REST API v6](https://api.transip.nl/rest/docs.html).
 
 ## Installation
 
 ```bash
-dotnet add package Apigen.Transip.Client
+dotnet add package Apigen.TransIp.Client
 ```
 
 ## Quick start
 
 ```csharp
-using Apigen.Transip.Client;
+using Apigen.TransIp.Client;
 
 string privateKeyPem = File.ReadAllText("transip.pem");
 
-// Singleton-friendly: returns a TransipApiClient whose HttpClient
+// Singleton-friendly: returns a TransIpApiClient whose HttpClient
 // automatically acquires & refreshes JWTs.
-TransipApiClient client = TransipAuthTokenProvider.CreateClient(
+TransIpApiClient client = TransIpAuthTokenProvider.CreateClient(
     login: "your-username",
     privateKeyPem: privateKeyPem,
     label: "my-app");
@@ -28,24 +28,24 @@ var domains = await client.Domains.ListAllDomainsAsync();
 ## Custom `HttpClient` pipeline
 
 ```csharp
-TransipTokenAccessor accessor = TransipAuthTokenProvider.CreateAccessor(login, privateKeyPem);
+TransIpTokenAccessor accessor = TransIpAuthTokenProvider.CreateAccessor(login, privateKeyPem);
 
-HttpClient http = new(new TransipBearerHandler(accessor, new HttpClientHandler()))
+HttpClient http = new(new TransIpBearerHandler(accessor, new HttpClientHandler()))
 {
     BaseAddress = new Uri("https://api.transip.nl/v6/"),
 };
-var client = new TransipApiClient(http);
+var client = new TransIpApiClient(http);
 ```
 
 ## Bring your own token storage
 
-`TransipTokenAccessor` is a delegate — implement it to persist the JWT wherever
+`TransIpTokenAccessor` is a delegate — implement it to persist the JWT wherever
 you like (file, database, Vault, etc.). Default storage is in-memory only.
 
 ## With a pre-obtained Bearer token
 
 ```csharp
-var client = TransipApiClient.WithBearer("eyJ0eXAi...");
+var client = TransIpApiClient.WithBearer("eyJ0eXAi...");
 ```
 
 ## Authentication options

@@ -12,8 +12,8 @@ path = "specs/transip.yaml"
 path_prefix = ""
 
 [models]
-namespace = "Apigen.Transip.Models"
-project_name = "Apigen.Transip.Models"
+namespace = "Apigen.TransIp.Models"
+project_name = "Apigen.TransIp.Models"
 
 [model_generation]
 strategy = "SingleModel"
@@ -29,9 +29,9 @@ ignore_condition = "WhenWritingNull"
 
 [client]
 generate_client = true
-namespace = "Apigen.Transip.Client"
-project_name = "Apigen.Transip.Client"
-client_class_name = "TransipApiClient"
+namespace = "Apigen.TransIp.Client"
+project_name = "Apigen.TransIp.Client"
+client_class_name = "TransIpApiClient"
 use_async_suffix = true
 generate_interfaces = true
 

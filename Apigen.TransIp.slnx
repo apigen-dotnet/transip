@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Apigen.TransIp.Client/Apigen.TransIp.Client.csproj" />
+    <Project Path="src/Apigen.TransIp.Models/Apigen.TransIp.Models.csproj" />
+  </Folder>
+</Solution>
