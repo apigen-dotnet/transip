@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Apigen.TransIp.Models;
 
@@ -15,24 +16,24 @@ public partial interface IGeneralClient
   /// API Test
   /// Operation: GET /api-test
   /// </summary>
-  Task<JsonElement> ApiTestAsync();
+  Task<JsonElement> ApiTestAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List available AvailabilityZones
   /// Operation: GET /availability-zones
   /// </summary>
-  Task<JsonElement> ListAvailableAvailabilityZonesAsync();
+  Task<JsonElement> ListAvailableAvailabilityZonesAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List all products
   /// Operation: GET /products
   /// </summary>
-  Task<JsonElement> ListAllProductsAsync();
+  Task<JsonElement> ListAllProductsAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List specifications for product
   /// Operation: GET /products/{productName}/elements
   /// </summary>
-  Task<JsonElement> ListSpecificationsProductAsync(string productName);
+  Task<JsonElement> ListSpecificationsProductAsync(string productName, CancellationToken cancellationToken = default);
 
 }

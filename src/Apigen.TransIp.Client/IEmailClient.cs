@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Apigen.TransIp.Models;
 
@@ -15,120 +16,120 @@ public partial interface IEmailClient
   /// List all mail packages
   /// Operation: GET /email
   /// </summary>
-  Task<JsonElement> ListAllMailPackagesAsync();
+  Task<JsonElement> ListAllMailPackagesAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List all mail addons
   /// Operation: GET /email/{domain}/mail-addons
   /// </summary>
-  Task<JsonElement> ListAllMailAddonsAsync(string domain);
+  Task<JsonElement> ListAllMailAddonsAsync(string domain, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Unlink email addon to mailbox
   /// Operation: PATCH /email/{domain}/mail-addons/{id}
   /// </summary>
-  Task<JsonElement> UnlinkEmailAddonMailboxAsync(string domain, string id, Apigen.TransIp.Models.UnlinkEmailAddonMailboxRequest unlinkEmailAddonMailboxRequest);
+  Task<JsonElement> UnlinkEmailAddonMailboxAsync(string domain, string id, Apigen.TransIp.Models.UnlinkEmailAddonMailboxRequest unlinkEmailAddonMailboxRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List all mail forwards
   /// Operation: GET /email/{domain}/mail-forwards
   /// </summary>
-  Task<JsonElement> ListAllMailForwardsAsync(string domain);
+  Task<JsonElement> ListAllMailForwardsAsync(string domain, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Create mail forward
   /// Operation: POST /email/{domain}/mail-forwards
   /// </summary>
-  Task<JsonElement> CreateMailForwardAsync(string domain, Apigen.TransIp.Models.CreateMailForwardRequest createMailForwardRequest);
+  Task<JsonElement> CreateMailForwardAsync(string domain, Apigen.TransIp.Models.CreateMailForwardRequest createMailForwardRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Delete mail forward
   /// Operation: DELETE /email/{domain}/mail-forwards/{forwardId}
   /// </summary>
-  Task DeleteAsync(string domain, string forwardId);
+  Task DeleteAsync(string domain, string forwardId, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get mail forward
   /// Operation: GET /email/{domain}/mail-forwards/{forwardId}
   /// </summary>
-  Task<JsonElement> GetAsync(string domain, string forwardId);
+  Task<JsonElement> GetAsync(string domain, string forwardId, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Update mail forward field
   /// Operation: PATCH /email/{domain}/mail-forwards/{forwardId}
   /// </summary>
-  Task UpdateMailForwardFieldAsync(string domain, string forwardId, Apigen.TransIp.Models.UpdateMailForwardFieldRequest updateMailForwardFieldRequest);
+  Task UpdateMailForwardFieldAsync(string domain, string forwardId, Apigen.TransIp.Models.UpdateMailForwardFieldRequest updateMailForwardFieldRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Update mail forward
   /// Operation: PUT /email/{domain}/mail-forwards/{forwardId}
   /// </summary>
-  Task UpdateAsync(string domain, string forwardId, Apigen.TransIp.Models.UpdateMailForwardRequest updateMailForwardRequest);
+  Task UpdateAsync(string domain, string forwardId, Apigen.TransIp.Models.UpdateMailForwardRequest updateMailForwardRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List all Mail lists
   /// Operation: GET /email/{domain}/mail-lists
   /// </summary>
-  Task<JsonElement> ListAllMailListsAsync(string domain);
+  Task<JsonElement> ListAllMailListsAsync(string domain, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Create Mail list
   /// Operation: POST /email/{domain}/mail-lists
   /// </summary>
-  Task CreateMailListAsync(string domain, Apigen.TransIp.Models.CreateMailListRequest createMailListRequest);
+  Task CreateMailListAsync(string domain, Apigen.TransIp.Models.CreateMailListRequest createMailListRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Delete Mail List
   /// Operation: DELETE /email/{domain}/mail-lists/{listId}
   /// </summary>
-  Task DeleteEmailMailListsAsync(string domain, string listId);
+  Task DeleteEmailMailListsAsync(string domain, string listId, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get Mail list
   /// Operation: GET /email/{domain}/mail-lists/{listId}
   /// </summary>
-  Task<JsonElement> GetEmailMailListsAsync(string domain, string listId);
+  Task<JsonElement> GetEmailMailListsAsync(string domain, string listId, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Update Mail list
   /// Operation: PUT /email/{domain}/mail-lists/{listId}
   /// </summary>
-  Task UpdateAsync(string domain, string listId, Apigen.TransIp.Models.UpdateMailListRequest updateMailListRequest);
+  Task UpdateAsync(string domain, string listId, Apigen.TransIp.Models.UpdateMailListRequest updateMailListRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// List all Mailboxes
   /// Operation: GET /email/{domain}/mailboxes
   /// </summary>
-  Task<JsonElement> ListAllMailboxesAsync(string domain);
+  Task<JsonElement> ListAllMailboxesAsync(string domain, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Create Mailbox
   /// Operation: POST /email/{domain}/mailboxes
   /// </summary>
-  Task<JsonElement> CreateMailboxAsync(string domain, Apigen.TransIp.Models.CreateMailboxRequest createMailboxRequest);
+  Task<JsonElement> CreateMailboxAsync(string domain, Apigen.TransIp.Models.CreateMailboxRequest createMailboxRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Delete Mailbox
   /// Operation: DELETE /email/{domain}/mailboxes/{identifier}
   /// </summary>
-  Task<JsonElement> DeleteEmailMailboxesAsync(string domain, string identifier);
+  Task<JsonElement> DeleteEmailMailboxesAsync(string domain, string identifier, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get Mailbox
   /// Operation: GET /email/{domain}/mailboxes/{identifier}
   /// </summary>
-  Task<JsonElement> GetEmailMailboxesAsync(string domain, string identifier);
+  Task<JsonElement> GetEmailMailboxesAsync(string domain, string identifier, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Update Mailbox field
   /// Operation: PATCH /email/{domain}/mailboxes/{identifier}
   /// </summary>
-  Task<JsonElement> UpdateMailboxFieldAsync(string domain, string identifier, Apigen.TransIp.Models.UpdateMailboxFieldRequest updateMailboxFieldRequest);
+  Task<JsonElement> UpdateMailboxFieldAsync(string domain, string identifier, Apigen.TransIp.Models.UpdateMailboxFieldRequest updateMailboxFieldRequest, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Update Mailbox
   /// Operation: PUT /email/{domain}/mailboxes/{identifier}
   /// </summary>
-  Task<JsonElement> UpdateAsync(string domain, string identifier, Apigen.TransIp.Models.UpdateMailboxRequest updateMailboxRequest);
+  Task<JsonElement> UpdateAsync(string domain, string identifier, Apigen.TransIp.Models.UpdateMailboxRequest updateMailboxRequest, CancellationToken cancellationToken = default);
 
 }
