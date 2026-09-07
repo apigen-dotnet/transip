@@ -1093,6 +1093,7 @@ paths:
                   value:
                     availabilityZones:
                       - country: nl
+                        displayName: Amsterdam
                         isDefault: true
                         name: ams0
               schema:
@@ -13053,10 +13054,13 @@ paths:
                 response:
                   value:
                     nodePools:
-                      - availabilityZone: ams0
+                      - autoscalingEnabled: true
+                        availabilityZone: ams0
                         clusterName: k888k
                         description: frontend
                         desiredNodeCount: 3
+                        maxNodeCount: 5
+                        minNodeCount: 1
                         nodeSpec: vps-bladevps-x4
                         nodes:
                           - clusterName: k888k
@@ -13148,13 +13152,13 @@ paths:
                 response:
                   value:
                     error: >-
-                      The provided parameter 'description' can be 64 characters
-                      maximum
+                      When updating autoscaling, autoscalingEnabled,
+                      minNodeCount and maxNodeCount must all be provided
               schema:
                 example:
                   error: >-
-                    The provided parameter 'description' can be 64 characters
-                    maximum
+                    When updating autoscaling, autoscalingEnabled, minNodeCount
+                    and maxNodeCount must all be provided
                 properties:
                   error:
                     type: string
@@ -13206,11 +13210,17 @@ paths:
           application/json:
             schema:
               example:
+                autoscalingEnabled: true
                 availabilityZone: ams0
                 description: frontend-pool
                 desiredNodeCount: 3
+                maxNodeCount: 5
+                minNodeCount: 1
                 nodeSpec: node-k8
               properties:
+                autoscalingEnabled:
+                  description: Whether autoscaling is enabled for this Node Pool
+                  type: boolean
                 availabilityZone:
                   description: Availability Zone the WorkerNodes of this pool will spawn
                   type: string
@@ -13219,6 +13229,12 @@ paths:
                   type: string
                 desiredNodeCount:
                   description: Amount of WorkerNodes
+                  type: number
+                maxNodeCount:
+                  description: Maximum amount of nodes when autoscaling is enabled
+                  type: number
+                minNodeCount:
+                  description: Minimum amount of nodes when autoscaling is enabled
                   type: number
                 nodeSpec:
                   description: Node type for the WorkerNodes in this pool
@@ -13331,10 +13347,13 @@ paths:
                 response:
                   value:
                     nodePool:
+                      autoscalingEnabled: true
                       availabilityZone: ams0
                       clusterName: k888k
                       description: frontend
                       desiredNodeCount: 3
+                      maxNodeCount: 5
+                      minNodeCount: 1
                       nodeSpec: vps-bladevps-x4
                       nodes:
                         - clusterName: k888k
@@ -13351,6 +13370,9 @@ paths:
                 properties:
                   nodePool:
                     properties:
+                      autoscalingEnabled:
+                        description: Whether autoscaling is enabled for this NodePool
+                        type: boolean
                       availabilityZone:
                         description: The availabilityZone the nodes of this nodePool are in
                         type: string
@@ -13364,6 +13386,12 @@ paths:
                         description: >-
                           The desired amount of nodes in this pool, might not
                           always be the actual count of nodes
+                        type: number
+                      maxNodeCount:
+                        description: Maximum amount of nodes when autoscaling is enabled
+                        type: number
+                      minNodeCount:
+                        description: Minimum amount of nodes when autoscaling is enabled
                         type: number
                       nodeSpec:
                         description: The specification of the Nodes in this NodePool
@@ -13423,6 +13451,92 @@ paths:
         :::
       operationId: List single nodepool
       summary: List single nodepool
+    patch:
+      parameters:
+        - description: clusterName
+          example: k888k
+          in: path
+          name: clusterName
+          required: true
+          schema:
+            type: string
+        - description: NodePool Uuid
+          example: 402c2f84-c37d-9388-634d-00002b7c6a82
+          in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+          headers: {}
+        '404':
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    error: >-
+                      Node with uuid '10ad431f-4b81-0729-6208-0000574cdeae' not
+                      found
+              schema:
+                example:
+                  error: >-
+                    Node with uuid '10ad431f-4b81-0729-6208-0000574cdeae' not
+                    found
+                properties:
+                  error:
+                    type: string
+                type: object
+          description: Not Found
+          headers: {}
+        '409':
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    error: >-
+                      Actions on Pool '10bfa0da-97be-39a8-3b05-0000534269df' are
+                      temporary disabled
+              schema:
+                example:
+                  error: >-
+                    Actions on Pool '10bfa0da-97be-39a8-3b05-0000534269df' are
+                    temporary disabled
+                properties:
+                  error:
+                    type: string
+                type: object
+          description: Conflict
+          headers: {}
+      security:
+        - oauth2: []
+      tags:
+        - Kubernetes
+      description: >-
+        This API call allows you to remove multiple specific nodes.
+
+
+        To remove specific nodes, send a PATCH request with the `action`
+        attribute set to `remove_nodes`.
+      operationId: Remove multiple nodes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                action: reboot
+                nodes:
+                  - reboot
+              properties:
+                action:
+                  type: string
+                nodes:
+                  type: array
+              type: object
+      summary: Remove multiple nodes
     put:
       parameters:
         - description: clusterName
@@ -13470,13 +13584,13 @@ paths:
                 response:
                   value:
                     error: >-
-                      The provided parameter 'description' can be 64 characters
-                      maximum
+                      When updating autoscaling, autoscalingEnabled,
+                      minNodeCount and maxNodeCount must all be provided
               schema:
                 example:
                   error: >-
-                    The provided parameter 'description' can be 64 characters
-                    maximum
+                    When updating autoscaling, autoscalingEnabled, minNodeCount
+                    and maxNodeCount must all be provided
                 properties:
                   error:
                     type: string
@@ -13513,6 +13627,9 @@ paths:
 
         * Set a different amount of desired Nodes;
 
+
+        * Configure autoscaling (enable/disable, set min/max node count);
+
          ::: warning
 
          <i class="fa fa-warning"></i> **Warning**: This method is experimental and could be changed
@@ -13525,10 +13642,13 @@ paths:
             schema:
               example:
                 nodePool:
+                  autoscalingEnabled: true
                   availabilityZone: ams0
                   clusterName: k888k
                   description: frontend
                   desiredNodeCount: 3
+                  maxNodeCount: 5
+                  minNodeCount: 1
                   nodeSpec: vps-bladevps-x4
                   nodes:
                     - clusterName: k888k
@@ -13544,6 +13664,9 @@ paths:
               properties:
                 nodePool:
                   properties:
+                    autoscalingEnabled:
+                      description: Whether autoscaling is enabled for this NodePool
+                      type: boolean
                     availabilityZone:
                       description: The availabilityZone the nodes of this nodePool are in
                       type: string
@@ -13557,6 +13680,12 @@ paths:
                       description: >-
                         The desired amount of nodes in this pool, might not
                         always be the actual count of nodes
+                      type: number
+                    maxNodeCount:
+                      description: Maximum amount of nodes when autoscaling is enabled
+                      type: number
+                    minNodeCount:
+                      description: Minimum amount of nodes when autoscaling is enabled
                       type: number
                     nodeSpec:
                       description: The specification of the Nodes in this NodePool
@@ -13887,6 +14016,60 @@ paths:
               type: object
       summary: List all nodes
   '/kubernetes/clusters/{clusterName}/nodes/{uuid}':
+    delete:
+      parameters:
+        - description: clusterName
+          example: k888k
+          in: path
+          name: clusterName
+          required: true
+          schema:
+            type: string
+        - description: Uuid
+          example: 158ae73a-d13b-52e8-a244-000006b1a48e
+          in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+          headers: {}
+        '404':
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    error: >-
+                      Node with uuid '10ad431f-4b81-0729-6208-0000574cdeae' not
+                      found
+              schema:
+                example:
+                  error: >-
+                    Node with uuid '10ad431f-4b81-0729-6208-0000574cdeae' not
+                    found
+                properties:
+                  error:
+                    type: string
+                type: object
+          description: Not Found
+          headers: {}
+      security:
+        - oauth2: []
+      tags:
+        - Kubernetes
+      description: |-
+        Removes a specific node from the NodePool by its UUID
+
+        ::: warning
+
+        This method also updates the NodePool's count it belongs to.
+
+        :::
+      operationId: Remove a node
+      summary: Remove a node
     get:
       parameters:
         - description: clusterName
@@ -16552,7 +16735,8 @@ paths:
                         isDefault: false
                         isPreinstallableImage: false
                         licenses:
-                          - isDefault: true
+                          - description: cPanel Pro
+                            isDefault: true
                             maxQuantity: 1
                             minQuantity: 1
                             name: cpanel-pro
@@ -18428,6 +18612,7 @@ paths:
                           - customTag
                           - anotherTag
                         availabilityZone: ams0
+                        availabilityZoneDisplayName: Amsterdam
                         bandwidthInboundInGb: 1
                         bandwidthOutboundInGb: 1
                         cpus: 2
@@ -18741,6 +18926,7 @@ paths:
                         - customTag
                         - anotherTag
                       availabilityZone: ams0
+                      availabilityZoneDisplayName: Amsterdam
                       bandwidthInboundInGb: 1
                       bandwidthOutboundInGb: 1
                       cpus: 2
@@ -18772,6 +18958,9 @@ paths:
                         type: array
                       availabilityZone:
                         description: The name of the availability zone the VPS is in
+                        type: string
+                      availabilityZoneDisplayName:
+                        description: Full name of the availability zone the VPS is in
                         type: string
                       bandwidthInboundInGb:
                         description: The VPS bandwidth limit (Inbound) in GigaBit
@@ -19117,6 +19306,7 @@ paths:
                     - customTag
                     - anotherTag
                   availabilityZone: ams0
+                  availabilityZoneDisplayName: Amsterdam
                   bandwidthInboundInGb: 1
                   bandwidthOutboundInGb: 1
                   cpus: 2
@@ -19146,6 +19336,9 @@ paths:
                       type: array
                     availabilityZone:
                       description: The name of the availability zone the VPS is in
+                      type: string
+                    availabilityZoneDisplayName:
+                      description: Full name of the availability zone the VPS is in
                       type: string
                     bandwidthInboundInGb:
                       description: The VPS bandwidth limit (Inbound) in GigaBit
@@ -20401,7 +20594,8 @@ paths:
                   value:
                     licenses:
                       active:
-                        - id: 42
+                        - description: cPanel Admin
+                          id: 42
                           keys:
                             - key: XXXXXXXXXXX
                               name: Cpanel license key
@@ -20412,7 +20606,8 @@ paths:
                           recurringPrice: 1050
                           type: addon
                       available:
-                        - isDefault: true
+                        - description: cPanel Pro
+                          isDefault: true
                           maxQuantity: 1
                           minQuantity: 1
                           name: cpanel-pro
@@ -20420,7 +20615,8 @@ paths:
                           recurringPrice: 2750
                           type: operating-system
                       cancellable:
-                        - id: 42
+                        - description: cPanel Admin
+                          id: 42
                           keys:
                             - key: XXXXXXXXXXX
                               name: Cpanel license key
@@ -20831,7 +21027,8 @@ paths:
                         isDefault: false
                         isPreinstallableImage: false
                         licenses:
-                          - isDefault: true
+                          - description: cPanel Pro
+                            isDefault: true
                             maxQuantity: 1
                             minQuantity: 1
                             name: cpanel-pro
@@ -23260,6 +23457,10 @@ components:
           description: The 2 letter code for the country the AvailabilityZone is in
           example: nl
           type: string
+        displayName:
+          description: Full name of AvailabilityZone
+          example: Amsterdam
+          type: string
         isDefault:
           description: If true this is the default zone new VPSes and clones are created in
           example: true
@@ -24652,6 +24853,10 @@ components:
       type: object
     KubernetesNodePool:
       properties:
+        autoscalingEnabled:
+          description: Whether autoscaling is enabled for this NodePool
+          example: true
+          type: boolean
         availabilityZone:
           description: The availabilityZone the nodes of this nodePool are in
           example: ams0
@@ -24669,6 +24874,14 @@ components:
             The desired amount of nodes in this pool, might not always be the
             actual count of nodes
           example: 3
+          type: number
+        maxNodeCount:
+          description: Maximum amount of nodes when autoscaling is enabled
+          example: 5
+          type: number
+        minNodeCount:
+          description: Minimum amount of nodes when autoscaling is enabled
+          example: 1
           type: number
         nodeSpec:
           description: The specification of the Nodes in this NodePool
@@ -24852,6 +25065,10 @@ components:
       type: object
     License:
       properties:
+        description:
+          description: License description
+          example: cPanel Admin
+          type: string
         id:
           description: License Id
           example: 42
@@ -24887,6 +25104,7 @@ components:
       required:
         - id
         - name
+        - description
         - price
         - recurringPrice
         - type
@@ -24910,6 +25128,10 @@ components:
       type: object
     LicenseProduct:
       properties:
+        description:
+          description: License description
+          example: cPanel Pro
+          type: string
         isDefault:
           description: Whether this license is the default
           example: true
@@ -24940,6 +25162,7 @@ components:
           type: string
       required:
         - name
+        - description
         - price
         - recurringPrice
         - type
@@ -26057,6 +26280,10 @@ components:
           description: The name of the availability zone the VPS is in
           example: ams0
           type: string
+        availabilityZoneDisplayName:
+          description: Full name of the availability zone the VPS is in
+          example: Amsterdam
+          type: string
         bandwidthInboundInGb:
           description: The VPS bandwidth limit (Inbound) in GigaBit
           example: 1
@@ -26920,6 +27147,25 @@ tags:
 
       When this rate limit is exceeded, the response contains an error with HTTP
       status code: `429: Too many requests`.
+
+
+      ## Time-Zone header
+
+
+      By providing a valid IANA timezone as a Time-Zone header in the request,
+      any DateTimes will be localised to that timezone (unless specified
+      otherwise).
+
+
+      ```http
+
+      Time-Zone: Europe/Amsterdam
+
+      ```
+
+
+      If no, or an invalid header is supplied, the timezone will default to
+      Europe/Amsterdam
 
 
       ## Test mode
