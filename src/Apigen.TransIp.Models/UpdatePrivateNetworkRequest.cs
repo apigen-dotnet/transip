@@ -28,5 +28,5 @@ public partial class UpdatePrivateNetworkRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("privateNetwork")]
-  public object? PrivateNetwork { get; set; }
+  public UpdatePrivateNetworkRequestPrivateNetwork? PrivateNetwork { get; set; }
 }

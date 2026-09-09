@@ -28,5 +28,5 @@ public partial class UpdateTenantRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("tenant")]
-  public object? Tenant { get; set; }
+  public Tenant? Tenant { get; set; }
 }

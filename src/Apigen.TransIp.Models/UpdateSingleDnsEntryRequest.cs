@@ -28,5 +28,5 @@ public partial class UpdateSingleDnsEntryRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("dnsEntry")]
-  public object? DnsEntry { get; set; }
+  public DnsEntry? DnsEntry { get; set; }
 }

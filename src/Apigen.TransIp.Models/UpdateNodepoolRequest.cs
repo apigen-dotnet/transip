@@ -28,5 +28,5 @@ public partial class UpdateNodepoolRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("nodePool")]
-  public object? NodePool { get; set; }
+  public UpdateNodepoolRequestNodePool? NodePool { get; set; }
 }

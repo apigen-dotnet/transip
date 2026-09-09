@@ -28,5 +28,5 @@ public partial class UpdateLoadBalancerRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("loadBalancerConfig")]
-  public object? LoadBalancerConfig { get; set; }
+  public UpdateLoadBalancerRequestLoadBalancerConfig? LoadBalancerConfig { get; set; }
 }

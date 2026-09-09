@@ -28,5 +28,5 @@ public partial class UpdateBigStorageRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("bigStorage")]
-  public object? BigStorage { get; set; }
+  public BigStorage? BigStorage { get; set; }
 }

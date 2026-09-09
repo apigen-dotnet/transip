@@ -28,5 +28,5 @@ public partial class UpdateSshKeyRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("sshKey")]
-  public object? SshKey { get; set; }
+  public SshKey? SshKey { get; set; }
 }

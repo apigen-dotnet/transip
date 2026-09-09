@@ -28,5 +28,5 @@ public partial class UpdateUserRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("user")]
-  public object? User { get; set; }
+  public OpenStackUser? User { get; set; }
 }

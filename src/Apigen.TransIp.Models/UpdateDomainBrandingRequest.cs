@@ -28,5 +28,5 @@ public partial class UpdateDomainBrandingRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("branding")]
-  public object? Branding { get; set; }
+  public DomainBranding? Branding { get; set; }
 }

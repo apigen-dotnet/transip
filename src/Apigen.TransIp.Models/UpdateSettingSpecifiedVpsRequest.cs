@@ -28,5 +28,5 @@ public partial class UpdateSettingSpecifiedVpsRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("setting")]
-  public object? Setting { get; set; }
+  public UpdateSettingSpecifiedVpsRequestSetting? Setting { get; set; }
 }

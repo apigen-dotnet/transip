@@ -21,17 +21,17 @@ using System.Text.Json.Serialization;
 namespace Apigen.TransIp.Models;
 
 /// <summary>
-/// Vps from OpenAPI schema.
-/// Schema path: #/components/schemas/Vps
+/// UpdateVpsRequestVps from OpenAPI schema.
+/// Schema path: #/components/schemas/UpdateVpsRequestVps
 /// </summary>
-public partial class Vps
+public partial class UpdateVpsRequestVps
 {
   /// <summary>
   /// The custom tags added to this VPS
   /// </summary>
   [Required]
   [System.Text.Json.Serialization.JsonPropertyName("tags")]
-  public List<object?>? Tags { get; set; }
+  public List<object>? Tags { get; set; }
 
   /// <summary>
   /// The name of the availability zone the VPS is in

@@ -28,5 +28,5 @@ public partial class UpdateContactRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("contact")]
-  public object? Contact { get; set; }
+  public Contact? Contact { get; set; }
 }

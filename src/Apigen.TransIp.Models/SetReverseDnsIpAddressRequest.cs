@@ -28,5 +28,5 @@ public partial class SetReverseDnsIpAddressRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("ipAddress")]
-  public object? IpAddress { get; set; }
+  public SetReverseDnsIpAddressRequestIpAddress? IpAddress { get; set; }
 }

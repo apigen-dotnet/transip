@@ -28,5 +28,5 @@ public partial class UpdateBlockStorageRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("blockStorage")]
-  public object? BlockStorage { get; set; }
+  public BlockStorage? BlockStorage { get; set; }
 }

@@ -28,5 +28,5 @@ public partial class UpdateFirewallVpsRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("vpsFirewall")]
-  public object? VpsFirewall { get; set; }
+  public UpdateFirewallVpsRequestVpsFirewall? VpsFirewall { get; set; }
 }

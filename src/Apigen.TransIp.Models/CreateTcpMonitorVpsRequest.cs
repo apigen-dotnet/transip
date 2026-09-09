@@ -28,5 +28,5 @@ public partial class CreateTcpMonitorVpsRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("tcpMonitor")]
-  public object? TcpMonitor { get; set; }
+  public CreateTcpMonitorVpsRequestTcpMonitor? TcpMonitor { get; set; }
 }

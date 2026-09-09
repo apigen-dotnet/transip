@@ -21,32 +21,35 @@ using System.Text.Json.Serialization;
 namespace Apigen.TransIp.Models;
 
 /// <summary>
-/// AvailabilityZone from OpenAPI schema.
-/// Schema path: #/components/schemas/AvailabilityZone
+/// UpdateMailListRequestMailList from OpenAPI schema.
+/// Schema path: #/components/schemas/UpdateMailListRequestMailList
 /// </summary>
-public partial class AvailabilityZone
+public partial class UpdateMailListRequestMailList
 {
   /// <summary>
-  /// The 2 letter code for the country the AvailabilityZone is in
+  /// The emailAddress of the list.
   /// </summary>
-  [System.Text.Json.Serialization.JsonPropertyName("country")]
-  public string? Country { get; set; }
+  [Required]
+  [System.Text.Json.Serialization.JsonPropertyName("emailAddress")]
+  public string? EmailAddress { get; set; }
 
   /// <summary>
-  /// Full name of AvailabilityZone
+  /// The Email Addresses in the list.
   /// </summary>
-  [System.Text.Json.Serialization.JsonPropertyName("displayName")]
-  public string? DisplayName { get; set; }
+  [Required]
+  [System.Text.Json.Serialization.JsonPropertyName("entries")]
+  public List<object>? Entries { get; set; }
 
   /// <summary>
-  /// If true this is the default zone new VPSes and clones are created in
+  /// Unique identifier of the MailList
   /// </summary>
-  [System.Text.Json.Serialization.JsonPropertyName("isDefault")]
-  public bool? IsDefault { get; set; }
+  [System.Text.Json.Serialization.JsonPropertyName("id")]
+  public string? Id { get; set; }
 
   /// <summary>
-  /// Name of AvailabilityZone
+  /// Name of the MailList
   /// </summary>
+  [Required]
   [System.Text.Json.Serialization.JsonPropertyName("name")]
   public string? Name { get; set; }
 }

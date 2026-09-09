@@ -28,5 +28,5 @@ public partial class UpdateDiskRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("disk")]
-  public object? Disk { get; set; }
+  public FilehostingDisk? Disk { get; set; }
 }

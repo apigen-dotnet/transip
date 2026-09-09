@@ -21,12 +21,16 @@ using System.Text.Json.Serialization;
 namespace Apigen.TransIp.Models;
 
 /// <summary>
-/// AddNewSingleDnsEntryDomainRequest (generated from inline request body).
-/// Source: POST /domains/{domainName}/dns (requestBody)
+/// RemoveMultipleNodesRequest (generated from inline request body).
+/// Source: PATCH /kubernetes/clusters/{clusterName}/node-pools/{uuid} (requestBody)
 /// </summary>
-public partial class AddNewSingleDnsEntryDomainRequest
+public partial class RemoveMultipleNodesRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
-  [System.Text.Json.Serialization.JsonPropertyName("dnsEntry")]
-  public DnsEntry? DnsEntry { get; set; }
+  [System.Text.Json.Serialization.JsonPropertyName("action")]
+  public string? Action { get; set; }
+
+  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+  [System.Text.Json.Serialization.JsonPropertyName("nodes")]
+  public List<object>? Nodes { get; set; }
 }

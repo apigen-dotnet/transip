@@ -28,5 +28,5 @@ public partial class UpdatePortConfigurationRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("portConfiguration")]
-  public object? PortConfiguration { get; set; }
+  public HaipPortConfiguration? PortConfiguration { get; set; }
 }

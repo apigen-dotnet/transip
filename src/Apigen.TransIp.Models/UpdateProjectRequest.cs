@@ -28,5 +28,5 @@ public partial class UpdateProjectRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("project")]
-  public object? Project { get; set; }
+  public OpenStackProject? Project { get; set; }
 }

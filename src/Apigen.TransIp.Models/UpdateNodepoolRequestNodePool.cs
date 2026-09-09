@@ -21,57 +21,76 @@ using System.Text.Json.Serialization;
 namespace Apigen.TransIp.Models;
 
 /// <summary>
-/// AddNodepoolRequest (generated from inline request body).
-/// Source: POST /kubernetes/clusters/{clusterName}/node-pools (requestBody)
+/// UpdateNodepoolRequestNodePool from OpenAPI schema.
+/// Schema path: #/components/schemas/UpdateNodepoolRequestNodePool
 /// </summary>
-public partial class AddNodepoolRequest
+public partial class UpdateNodepoolRequestNodePool
 {
   /// <summary>
-  /// Whether autoscaling is enabled for this Node Pool
+  /// Whether autoscaling is enabled for this NodePool
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("autoscalingEnabled")]
   public bool? AutoscalingEnabled { get; set; }
 
   /// <summary>
-  /// Availability Zone the WorkerNodes of this pool will spawn
+  /// The availabilityZone the nodes of this nodePool are in
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("availabilityZone")]
   public string? AvailabilityZone { get; set; }
 
   /// <summary>
-  /// Describes the Node Pool (max 64 chars)
+  /// Name of the cluster the nodePool is in
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+  [Required]
+  [System.Text.Json.Serialization.JsonPropertyName("clusterName")]
+  public string? ClusterName { get; set; }
+
+  /// <summary>
+  /// cluster (string, optional) - Describes this NodePool
+  /// </summary>
   [System.Text.Json.Serialization.JsonPropertyName("description")]
   public string? Description { get; set; }
 
   /// <summary>
-  /// Amount of WorkerNodes
+  /// The desired amount of nodes in this pool, might not always be the actual count of nodes
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+  [Required]
   [System.Text.Json.Serialization.JsonPropertyName("desiredNodeCount")]
-  public decimal? DesiredNodeCount { get; set; }
+  public decimal DesiredNodeCount { get; set; }
 
   /// <summary>
   /// Maximum amount of nodes when autoscaling is enabled
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("maxNodeCount")]
   public decimal? MaxNodeCount { get; set; }
 
   /// <summary>
   /// Minimum amount of nodes when autoscaling is enabled
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("minNodeCount")]
   public decimal? MinNodeCount { get; set; }
 
   /// <summary>
-  /// Node type for the WorkerNodes in this pool
+  /// The specification of the Nodes in this NodePool
   /// </summary>
-  [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("nodeSpec")]
   public string? NodeSpec { get; set; }
+
+  /// <summary>
+  /// Nodes currently in NodePool
+  /// </summary>
+  [System.Text.Json.Serialization.JsonPropertyName("nodes")]
+  public List<object>? Nodes { get; set; }
+
+  /// <summary>
+  /// The NodePool status
+  /// </summary>
+  [System.Text.Json.Serialization.JsonPropertyName("status")]
+  public string? Status { get; set; }
+
+  /// <summary>
+  /// Uuid of the NodePool
+  /// </summary>
+  [System.Text.Json.Serialization.JsonPropertyName("uuid")]
+  public string? Uuid { get; set; }
 }

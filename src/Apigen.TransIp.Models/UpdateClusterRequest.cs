@@ -28,5 +28,5 @@ public partial class UpdateClusterRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("cluster")]
-  public object? Cluster { get; set; }
+  public KubernetesCluster? Cluster { get; set; }
 }

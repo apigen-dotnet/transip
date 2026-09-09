@@ -27,6 +27,13 @@ namespace Apigen.TransIp.Models;
 public partial class LicenseProduct
 {
   /// <summary>
+  /// License description
+  /// </summary>
+  [Required]
+  [System.Text.Json.Serialization.JsonPropertyName("description")]
+  public string? Description { get; set; }
+
+  /// <summary>
   /// Whether this license is the default
   /// </summary>
   [Required]

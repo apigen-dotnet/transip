@@ -27,6 +27,12 @@ namespace Apigen.TransIp.Models;
 public partial class KubernetesNodePool
 {
   /// <summary>
+  /// Whether autoscaling is enabled for this NodePool
+  /// </summary>
+  [System.Text.Json.Serialization.JsonPropertyName("autoscalingEnabled")]
+  public bool? AutoscalingEnabled { get; set; }
+
+  /// <summary>
   /// The availabilityZone the nodes of this nodePool are in
   /// </summary>
   [System.Text.Json.Serialization.JsonPropertyName("availabilityZone")]
@@ -51,6 +57,18 @@ public partial class KubernetesNodePool
   [Required]
   [System.Text.Json.Serialization.JsonPropertyName("desiredNodeCount")]
   public decimal DesiredNodeCount { get; set; }
+
+  /// <summary>
+  /// Maximum amount of nodes when autoscaling is enabled
+  /// </summary>
+  [System.Text.Json.Serialization.JsonPropertyName("maxNodeCount")]
+  public decimal? MaxNodeCount { get; set; }
+
+  /// <summary>
+  /// Minimum amount of nodes when autoscaling is enabled
+  /// </summary>
+  [System.Text.Json.Serialization.JsonPropertyName("minNodeCount")]
+  public decimal? MinNodeCount { get; set; }
 
   /// <summary>
   /// The specification of the Nodes in this NodePool

@@ -22,7 +22,7 @@ TransIpApiClient client = TransIpAuthTokenProvider.CreateClient(
     privateKeyPem: privateKeyPem,
     label: "my-app");
 
-var domains = await client.Domains.ListAllDomainsAsync();
+var domains = await client.Domains.ListAsync(new());
 ```
 
 ## Custom `HttpClient` pipeline

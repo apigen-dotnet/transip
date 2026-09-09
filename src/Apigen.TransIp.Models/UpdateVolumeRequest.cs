@@ -28,5 +28,5 @@ public partial class UpdateVolumeRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("volume")]
-  public object? Volume { get; set; }
+  public KubernetesBlockStorage? Volume { get; set; }
 }

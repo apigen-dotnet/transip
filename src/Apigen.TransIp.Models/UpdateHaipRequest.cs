@@ -28,5 +28,5 @@ public partial class UpdateHaipRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("haip")]
-  public object? Haip { get; set; }
+  public UpdateHaipRequestHaip? Haip { get; set; }
 }

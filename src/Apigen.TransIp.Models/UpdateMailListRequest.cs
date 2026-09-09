@@ -28,5 +28,5 @@ public partial class UpdateMailListRequest
 {
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
   [System.Text.Json.Serialization.JsonPropertyName("mailList")]
-  public object? MailList { get; set; }
+  public UpdateMailListRequestMailList? MailList { get; set; }
 }
