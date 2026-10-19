@@ -67,7 +67,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '404':
           content:
             application/json:
@@ -126,6 +129,10 @@ paths:
         - Acronis
       description: >-
         Order a new tenant
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
 
 
         ::: warning
@@ -2221,7 +2228,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -2318,6 +2328,8 @@ paths:
 
         * Set the `vpsName` property to null to detach the Block Storage from
         the currently attached VPS.
+
+         The response contains a `Content-Location` header with the URL of the action that was started, see [Actions](#actions) for more information.
       operationId: Update block storage
       requestBody:
         content:
@@ -2445,7 +2457,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '404':
           content:
             application/json:
@@ -2487,6 +2502,10 @@ paths:
         the [backups](#vps-backups-get-1) resource. Please note this is only
         possible when any backups are created with the off-site backups feature,
         otherwise no backups will be made nor listed.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Revert a block storage backup
       requestBody:
         content:
@@ -8869,7 +8888,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '404':
           content:
             application/json:
@@ -8894,6 +8916,10 @@ paths:
         Order a HA-IP. After assigning the HA-IP to an IP (which can be done
         through the API as well) all incoming TCP traffic will be routed to the
         specified IP addresses (only VPS IPs are allowed).
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
 
 
         ::: warning
@@ -8933,7 +8959,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -9020,6 +9049,10 @@ paths:
         end of the contract period. In case you specify 'immediately' the HA-IP
         will be detached from any IPs it's currently attached to and traffic
         will no longer be proxied.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Cancel a HA-IP
       requestBody:
         content:
@@ -9199,7 +9232,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -9314,6 +9350,8 @@ paths:
 
 
         * **ipv4to6**: forward ipv4 traffic to ipv6.
+
+         The response contains a `Content-Location` header with the URL of the action that was started, see [Actions](#actions) for more information.
       operationId: Update a HA-IP
       requestBody:
         content:
@@ -9513,7 +9551,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -9613,6 +9654,8 @@ paths:
         portConfiguration on port 80. When using this, you will also no longer
         be able to verify your own LetsEncrypt certificates via HA-IP.
 
+         The response contains a `Content-Location` header with the URL of the action that was started, see [Actions](#actions) for more information.
+
          ::: warning
 
          <i class="fa fa-warning"></i> **Warning**: If your HA-IP does not have a HTTP portconfiguration on port 80, we will ensure it will.
@@ -9653,7 +9696,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -9715,6 +9761,10 @@ paths:
       description: >-
         Detaches a HA-IP certificate by the given `certificateId`, this is the
         same identifier as seen on [domain ssl](#domains-ssl).
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Detach a certificate from this HA-IP
       summary: Detach a certificate from this HA-IP
   '/haips/{haipName}/ip-addresses':
@@ -9730,7 +9780,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -9795,6 +9848,10 @@ paths:
 
         Removing the last IP from HA-IP will also delete all port
         configurations.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Detach all IPs from HA-IP
       summary: Detach all IPs from HA-IP
     get:
@@ -9896,7 +9953,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -9971,13 +10031,18 @@ paths:
         - oauth2: []
       tags:
         - HA-IP
-      description: |-
+      description: >-
         Replace or attach IPs for HA-IP.
+
 
         Only IPs in your account are allowed.
 
+
         When load balancing is enabled, multiple IPs can be attached to HA-IP.
          If load balancing is not enabled, the current attached IP (if any) will be replaced with the first provided IP.
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Set HA-IP attached IP addresses
       requestBody:
         content:
@@ -10098,7 +10163,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -10214,6 +10282,8 @@ paths:
         - **strict** an SSL connection is established between our load balancers
         your attached IP address(es), and the certificate must signed by a
         trusted Certificate Authority.
+
+         The response contains a `Content-Location` header with the URL of the action that was started, see [Actions](#actions) for more information.
       operationId: Create a port configuration
       requestBody:
         content:
@@ -10269,7 +10339,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -10328,7 +10401,12 @@ paths:
         - oauth2: []
       tags:
         - HA-IP
-      description: Remove a port configuration by id.
+      description: >-
+        Remove a port configuration by id.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Remove port configuration
       summary: Remove port configuration
     get:
@@ -10477,7 +10555,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -10594,6 +10675,8 @@ paths:
         - **strict** an SSL connection is established between our load balancers
         your VPS, and the certificate must signed by a trusted Certificate
         Authority.
+
+         The response contains a `Content-Location` header with the URL of the action that was started, see [Actions](#actions) for more information.
       operationId: Update a port configuration
       requestBody:
         content:
@@ -16868,7 +16951,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
       security:
         - oauth2: []
       tags:
@@ -16876,6 +16962,10 @@ paths:
       description: >-
         Order a new private network. After ordering a private network you’re
         able to attach it to a VPS t o make use of the private network.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
 
 
         ::: warning
@@ -17143,7 +17233,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -17199,6 +17292,10 @@ paths:
       description: >-
         Detach VPSes from the private network one at a time. Send a PATCH
         request with the `action` attribute set to `removevps`.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Detach vps from privateNetwork
       requestBody:
         content:
@@ -18669,7 +18766,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -18753,6 +18853,8 @@ paths:
         * VPS add-ons such as Big Storage aren’t affected by cloning - these
         will stay attached to the original VPS and can’t be swapped
         automatically
+
+         The response contains a `Content-Location` header with the URL of the action that was started, see [Actions](#actions) for more information.
 
          ::: warning
 
@@ -19736,7 +19838,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -19800,6 +19905,10 @@ paths:
 
         To convert a backup to a VPS snapshot, send a PATCH request with the
         `action` attribute set to `convert`.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Convert backup to snapshot
       requestBody:
         content:
@@ -21084,7 +21193,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -21178,6 +21290,10 @@ paths:
         the default cPanel license will allow you to create 5 user accounts. If
         the cPanel Pro license is provided, the default license is replaced, and
         after installation you are able to create 30 user accounts.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
 
 
         ::: warning
@@ -21827,7 +21943,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -21892,6 +22011,10 @@ paths:
         Creating a snapshot allows for restoring it on another VPS using the
         [Revert snapshot to a VPS](#vps-snapshots-patch) given that its
         specifications equals or exceeds those of the snapshot's source VPS.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
 
 
         ::: warning
@@ -22096,7 +22219,10 @@ paths:
       responses:
         '204':
           description: No Content
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -22179,6 +22305,10 @@ paths:
         breaking connectivity when restored onto another VPS with a new assigned
         IP. You should be able to alter this through the KVM console in the
         control panel in case SSH is unavailable.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
       operationId: Revert snapshot to a VPS
       requestBody:
         content:
@@ -22680,7 +22810,10 @@ paths:
       responses:
         '201':
           description: Created
-          headers: {}
+          headers:
+            Content-Location:
+              schema:
+                type: string
         '403':
           content:
             application/json:
@@ -22747,6 +22880,10 @@ paths:
         only pay for add-ons that you need after an upgrade. So, if you have a
         BladeVPS X1 with an additional 100GB disk space Add-on then it will
         automatically expire after an upgrade to a BladeVPS X4.
+
+
+        The response contains a `Content-Location` header with the URL of the
+        action that was started, see [Actions](#actions) for more information.
 
 
         ::: warning
